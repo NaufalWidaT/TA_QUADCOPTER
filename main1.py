@@ -1,3 +1,6 @@
+## PROGRAM AWAL QC FOLLOWING
+## Dikarenakan arah kamera (landscape/potrait), arah gerakan qc kebalik
+
 from dronekit import connect, VehicleMode, LocationGlobalRelative
 from pymavlink import mavutil
 import time
