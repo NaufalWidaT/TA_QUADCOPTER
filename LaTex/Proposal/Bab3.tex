@@ -1,0 +1,300 @@
+	%==================================================================
+% Ini adalah bab 3
+% Silahkan edit sesuai kebutuhan, baik menambah atau mengurangi \section, \subsection
+%==================================================================
+
+\chapter{\\ KONSEP RANCANGAN}
+
+\section{Metode Penelitian}
+Tugas akhir ini menggunakan metode penelitin dengan jenis metode Engineering Design Process (EDP). Metode EDP adalah serangkaian proses yang diikuti oleh para teknisi (engineer) untuk mendapatkan solusi dari suatu permasalahan [27].
+
+Metode penelitian ini dipilih karena ini karena memiliki tahap-tahap yang relevan untuk digunakan dalam pengembangan penelitian ini. Berikut merupakan penjabaran tahap-tahapan dari model  pada penelitian ini:
+
+\begin{packed_enum}
+	\item Tahap Define The Problem
+	\\Diawali dengan tahap menjabarkan masalah yang akan dicari solusinya, pada penelitian ini memiliki masalah utama yaitu kurangnya kemampuan quadcopter untuk melakukan landing pada landasan yang bergerak. Hal diperlukan apabila ingin membuat sebuah quadcopter yang dapat digunakan dalam bidang industri, militer maupun personal seperti pengiriman barang ke kapal kargo di tengah laut.
+	\item Tahap Backgorund Research
+	\\Tahap ini merupakan tahap mencari referensi dan kajian pustaka yang relevan mengenai masalah diatas, bisa dengan membaca jurnal, buku, penelitian sebelumnya, dan lain-lain.
+	\item Tahap Specify Requirements
+	\\Tahap ini adalah tahap untuk menentukan kebutuhan alat-alat dan bahan yang diperlukan dalam penelitian, Kebutuhan yang diperlukan pada penelitian ini adalah kebutuhan hardware, software dan elektronik.
+	\item Tahap Brainstorm Solutions
+	\\Tahap ini merupakan tahapan untuk mencari solusi dari permasalahan diatas. Dari beberapa referensi yang sudah dibaca, sebenarnya terdapat banyak solusi yang dapat dilakukan seperti menggunakan Model Predicitve Control [28], menggunakan GPS yang telah dikembangkan [29], menggunakan Computer Vision yang dipasang pada landasan [30], dan lain-lain.
+	\item Tahap Choosing the best Solution
+	\\ Tahap ini adalah kelanjutan dari tahap sebelumnya, yang merangkul seluruh referensi diatas, dan mengambil solusi yang paling baik. Dari selurub referensi yang diambil, digunakan ArUco marker yang dibantu oleh Computer Vision pada penelitian ini.
+	\item Tahap Build a Prototype
+	\\ Membuat desain prototipe alat untuk digunakan dalam uji coba pada tahap selanjutnya, dengan menggabungkan seluruh kebutuhan yang telah ditentukan sebelumnya.
+	\item Tahap Test and Redesign
+	\\ Merupakan tahap Uji coba dari berbagai aspek, seperti uji coba komponen, uji coba misi penerbangan, uji coba landasan, dan lain-lain. Uji coba dilakukan agar mendapati hasil akhir penelitian yang sempurna.
+	\item Tahap Communicate Result
+	\\Tahap akhir ini berisikan tahap evaluasi mengenai alat yang telah kita buat, alat ini harus melewati uji coba dan nilai yang didapat dari uji coba tersebut harus atau mendekati sempurna agar dapat di produksi.
+\end{packed_enum}
+
+\section{Penentuan Kebutuhan}
+Penentuan kebutuhan yang diperlukan pada penelitian ini dilakukan dengan cara mencari, mengumpulkan, dan mengidentifikasi keperluan dan tujuan dari sistem pendaratan quadcopter. Penentuan kebutuhan disini dibagi menjadi 3 yaitu penentuan kebutuhan hardware, software dan elektronik.
+
+\subsection{Hardware}
+
+\begin{packed_enum}
+	\item Frame
+	\item Baut M2
+	\item Stand GPS
+	\item Propeller
+	\item Landing Skit
+	\item Damper
+\end{packed_enum}
+
+\subsection{Software}
+
+\begin{packed_enum}
+	\item BlHeli
+	\item Ardupilot MissionPlanner
+	\item Pycharm Community Edition
+	\item Droidcam
+\end{packed_enum}
+
+\subsection{Elektronik}
+\begin{packed_enum}
+	\item Flight Controller
+	\item GPS
+	\item Brushless Motor
+	\item ESC
+	\item Baterai LiPo 3s/4s
+	\item Radio Controll
+	\item Telemetry 433MHz
+	\item Smartphone Android
+	\item Buzzer
+\end{packed_enum}
+
+Setelah menentukan kebutuhan untuk setiap keperluan, dibawah ini merupakan penjelasan dari masing-masing komponen yang akan digunakan:
+
+\begin{packed_enum}
+	\item Hardware
+	\begin{packed_item}
+		\item[a.] Frame
+		\\ Sebagai badan quadcopter, sekaligus tempat untuk pemasangan seluruh komponen elektronik. Jenis frame yang diambil adalah jenis F450 yang memiliki 4 ujung sisi sebagai letak pemasangan motor brushless.
+		\item [b.] Baut M2
+		\\ Baut yag digunakan untuk mengencangkan pemasangan komponen hardware dan elektronik sekaligus memudahkan proses bongkar pasang.
+		\item [c.] Stand GPS
+		\\ Stand yang berfungsi sebagai tempat GPS agar terlindung dari hal-hal yang mampu mengancam kondisi GPS.
+		\item [d.] Propeller
+		\\ Alat yang digunakan untuk menerbangkan quadcopter. Propeller dipasang diatas motor brushless agar ikut berputar saat motor berputar.
+		\item [e.] Landing skit
+		\\ Landing skit melindungi komponen yang terpasang dibagian bawah quadcopter dari sentuhan tanah guna menjaga keamanan komponen tersebut.
+		\item [f.] Damper
+		\\ Sebuah peredam getaran yang dipasang dibawah flight controller yang berguna melindungi flight controller dari getaran sehingga memaksimalkan pembacaan sensor pada flight controller.
+	\end{packed_item}
+	
+	\item Software
+	\begin{packed_item}
+		\item [a.] BlHeli
+		\\ Aplikasi yang digunakan untuk megatur dan memprogram ESC yang akan mengatur motor. Pada BlHeli, kita dapat mengatur nilai putaran, arah putaran dan firmware motor brushless yang akan digunakan.
+		\item [b.] Ardupilot MissionPlanner
+		\\ Berfungsi sebagai GCS (Ground Control System). Aplikasi yang digunakan untuk mengatur segala kebutuhan flight control mulai dari penginstallan firmware, kalibrasi accelerometer, kalibrasi kompas, mengatur mode terbang, dll.
+		\item [c.] PyCharm Community Edition
+		\\ PyCharm merupakan software untuk menjalankan program dari code yang sudah diketik. PyCharm digunakan untuk penelitian ini karena penggunaannya yang sederhana dengan tampilan dan bahasa yang lebih mudah dipahami.
+		\item [d.] Droidcam
+		\\ Droidcam merupakan aplikasi yang bisa diinstal pada smartphone android dan laptop. Digunakan untuk mengirim data visual berbetnuk video dari quadcopter menuju ke laptop.
+	\end{packed_item}
+	
+	\item Elektronik
+	\begin{packed_item}
+		\item [a.]Flight Controller PIXHAWK 2.4.8.
+		\\ Komponen pemroses seluruh data yang masuk dari para sensor, dan mengirim kembali data ke komponen lainnya sesuai dengan program yang dijalankan.
+		\item [b.]GPS M10Q
+		\\ Pembaca navigasi dan lokasi untuk quadcopter. Banyak fitur dari quadcopter yang menggunakan MissionPlanner bergantung pada komponen ini, seperti mode terbang.
+		\item [c.]Brushless Motor Readytosky 2212 920Kv
+		\\ Komponen aktuator yang menggerakkan propeller agar quadcopter dapat terbang. Kecepatan putaran motor diatur oleh ESC yang mendapat data input dari flight control.
+		\item [d.]ESC 30A
+		\\ Komponen yang mengatur kecepatan dari motor. Dengan data input didapat dari Flight control.
+		\item [e.]Baterai LiPo 3s/4s
+		\\ Berperan sebagai supply tenaga quadcopter. Digunakan baterai LiPo 4S yang memiliki 4 cell yang masing-masing cell bertegangan 3.75V.
+		\item [f.]Radio Control FlySky F6
+		\\ Radio Control digunakan untuk memberikan perintah secara manual kepada flight controller agar dapat diterbangkan secara manual. Radio Control memberikan perintah seperti roll, pitch, yaw untuk menggerakkan quadcopter .
+		\item [g.]Telemetry 433MHz
+		\\ Komponen komunikasi antara quadcopter dengan GCS yang memungkinkan untuk komunikasi tanpa kabel. Komponen ini penting digunakan saat ingin monitoring quadcopter ketika sedang terbang, selain itu, Telemtry juga dapat digunakan untuk mengupload program secara jarak jauh.
+		\item [h.]Smartphone Android
+		\\ Smartphone android digunakan kameranya untuk menangkap visual dari quadcopter, dengan menghubungkan android dengan laptop via aplikasi pihak ketiga.
+		\item [i.] Buzzer
+		\\ Indikator suara dari flight control. Buzzer memiliki peranyang cukup krusial yang mampu menandakan setiap keadaan quadcopter, seperti saat GPS telah membaca lokasi, hingga kesiapan ESC dalam memutar motor.
+	\end{packed_item}
+\end{packed_enum}
+
+\section{Rancangan Pengembangan Sistem}
+Rancangan pengembangan sistem dalam menghasilkan sistem pendaratan UAV secara otonom pada landasan bergerak adalah kunci penting dari proses pengembangan. Rancangan ini mencakup rencana dan desain sistem secara keseluruhan, termasuk perangkat keras, perangkat lunak dan alat elektronik yang akan digunakan.
+
+\subsection{Hardware}
+Terdapat 2 rancangan hardware yaitu desain 3D dan desain objek yang pada penelitian ini menggunakan ArUco Marker.
+\begin{packed_enum}
+	\item Desain 3D
+	\\ Rancangan hardware dalam desain 3D ini dikerjakan untuk mennetukan tata letak komponen sebelum dipasang secara paten, sehingga dapat memberikan gambaran letak-letak yang aman untuk memasang komponen.
+	\item Desain Objek
+	\\ Menggunakan ArUco marker, dilakukan dengan menentukan ID ArUco terlebih dahulu dari kamus ArUco yang digunakan, yang kemudia dimasukkan ke dalam program python untuk menjadi objek pengindraan quadcopter.
+\end{packed_enum}
+
+\subsection{Software}
+Desain software terdiri dari beberapa proses, salah satunya adalah proses pembuatan algoritma pendeteksi ArUco Marker untuk pedaratan.  Proses pembuatan algoritma ini dilakukan dengan cara menginstall library pada PyCharm dengan versi yang compatible, mengkonfigurasi beberapa library seperti OpenCV dan ArUco Marker. Pembuatan algoritma dilakukan di aplikasi Pycharm dengan bahasa pemrograman python. Untuk konfigurasi pada Flight controller, dapat dilakukan penginstallan firmware, konfigurasi multirotor dan kalibrasi sensor. 
+
+\subsection{Elektronik}
+Komponen-komponen yang digunakan dihubungkan dengan kabel ke flight controller, dengan blok diagram yang menentukan pemasangan komponen terhadap komponen lainnya seperti berikut:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{blokdiagram}
+	\caption{Blok Diagram Komponen Elektronik}
+	\label{fig:blokdiagram}
+\end{figure}
+
+Dengan catatan, pemasangan kabel daya ESC dilakukan secara khusus yang akan menentukan arah putaran motor.  ESC 1 hingga 4 dipasang secara berurutan. Kamera (smartphone android) dipasang pada bagian bawah Quadcopter, dengan memasang stand terlebih dahulu. Smartphone dihubungkan secara nirkabel dengan menggunakan aplikasi pihak ketiga yaitu Droidcam, yang juga di instal pada laptop sehingga video yang tertangkap kamera android dapat ditampilkan di layar laptop. 
+
+\section{Rancangan Uji Sistem}
+Rancangan uji siste dilaksanakan untuk mengetahui keadaan fungsionalitas dari setiap komponen yang sudah dipasang pada quadcopter.
+
+\begin{packed_item}
+	\item Uji fungsi pada komponen
+	\begin{packed_item}
+		\item [a.] Uji Accelerometer
+		\\ Uji Accelerometer dilakukan di GCS dengan menggunakan aplikasi MissionPlanner pada bagian Setup, menuju ke Mandatory Hardware, lalu pilih "Accel Calibraion". pengujian ini diperlukan untuk menentukan posisi dan arah hadap dari quadcopter yang bisa di lihat di menu Data. Beberapa posisi untuk melakukan Uji accelerometer bisa dilihat melalui tabel dibawah ini.
+		\begin{table}[h]
+			\label{tab:accel}
+			\centering
+			\begin{tabular}{|c|c|c|}
+				\hline
+				No & Posisi    & Keterangan \\ \hline
+				1  & Level     &            \\ \hline
+				2  & Right     &            \\ \hline
+				3  & Left      &            \\ \hline
+				4  & Nose Up   &            \\ \hline
+				5  & Nose Down &            \\ \hline
+				6  & Back      &            \\ \hline
+			\end{tabular}
+			\caption{Tabel Uji Accelerometer}
+		\end{table}
+		
+		\item [b.] Uji Fungsi Kompas
+		\\ Uji kompas dilakukan untuk mendapatkan arah mata angin yang sejajar dengan magnet bumi. Beberapa hal penting perlu diperhatikan saat melakukan uji kompas seperti memastikan GPS pada quadcopter telah aktif, menguji diruangan terbuka agar mendapat nilai yang lebih rinci, dan tidak lokasi pengujian jauh dari benda logam atau benda yang menghasilkan medan magnet.
+		Pengujian dilakukan dengan menggunakan aplikasi MissionPlanner, di menu Mandatory Hardware, menuju ke Mandatory Hardware, dan pilih "Compass". Posisi yag digunakan untuk uji kompas sama dengan uji accelerometer, hanya saja perlu memutar quadcopter ke arah 180 derajat searah jarum jam dan berkebalikan untuk setiap posisi.
+		
+		\item [c.] Uji Fungsi ESC dan Motor
+		\\ Uji ESC dan Motor ini digunakan untuk mengkalibrasi ESC agar setiap ESC menggerakkan motor secara bersamaan. Pastikan propeller tidak terpasang saat melakukan pengujian. 
+		Pengujian ESC dan motor dilakukan juga di aplikasi MissionPlanner pada menu Setup, Mandatory Hardware, lalu pilih "ESC Calirbration". Pada menu ini juga dijelaskan langkah-langkah yang perlu dilakukan saat uji kalibrasi.
+		Untuk memastikan apakah kalibrasi sudah berhasil atau belum, dapat kita coba dengan melakukan arming pada quadcopter dan melihat apakah seluruh motor berputar dengan bersamaan atau sudah berhenti secara selaras.
+		
+		\item [d.]  Uji Fungsi Radio Control
+		\\ Pengujian RC ini digunakan untuk mengatur nilai paling kecil hingga paling besar seluruh channel pada RC. Sebelum memulai pngujian ini, pastikan reciever RC terpasang pada quadcopter dengan baik dan terhubung pada RC dengan posisi setiap channel RC pada posisi awal/semula. Pengujian ini disarankan menggunakan kabel  USB dan quadcopter yang terhubung tanpa dipasang baterai.
+		Pengujian ini dilakukan di aplikasi MissionPlanner pada menu Setup, Mandatory Hardware, lalu pilih "Radio Calibration". Klik pada tombol "Calibrate Radio", setelah itu putar seluruh tuas yang ada pada radio kesegala arah secara maksimal, apabila sudah, klik pada tombol "Click when Done". Setelah selesai maka akan muncul jendela baru yang mengkonfirmasi nilai minimum dan maximum setiap channel, yang bisa dimasukkan ke dalam tabel dibawah ini.
+		\begin{table}[h]
+			\label{tab:radio}
+			\centering
+			\begin{tabular}{|c|c|c|c|}
+				\hline
+				No & Channel   & Nilai Minimum & Nilai Maximum \\ \hline
+				1  & CH1     & &            \\ \hline
+				2  & CH2     & &           \\ \hline
+				3  & CH3     & &           \\ \hline
+				4  & CH4     & &           \\ \hline
+				5  & CH5 	 & &           \\ \hline
+				6  & CH6     & &           \\ \hline
+				7  & CH7     & &           \\ \hline
+				8  & CH8     & &           \\ \hline
+			\end{tabular}
+			\caption{Tabel Uji Radio Control}
+		\end{table}
+	\end{packed_item}
+\end{packed_item}
+
+\section{Rancangan Uji Software}
+Rancangan Uji Software meliputi pengujian pendeteksi ArUco Marker dengan menggunakan kode program yang sudah dibuat pada aplikasi PyCharm, menggunakan beberapa library seperti OpenCV.
+
+\begin{packed_enum}
+	\item Pengujian Deteksi ArUco Marker
+	\\ Pengujian ini dilakukan menggunakan software PyCharm dengan bahasa pemrograman Python 3.7. Pengujian dilakukan untuk melihat kemampuan kamera untuk mengidentifikasi ArUco Marker pada jarak tertentu. Hasil pembacaan dilakukan beberapa kali dengan menambah jarak antara pengujian pertama dan seterusnya.
+	\begin{table}[h]
+		\label{tab:deteksiaruco}
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			No & Jarak    & Hasil	   \\ \hline
+			1  & 50cm     &            \\ \hline
+			2  & 100cm    &            \\ \hline
+			3  & 150cm    &            \\ \hline
+			4  & 200cm    &            \\ \hline
+			5  & 250cm    &            \\ \hline
+			6  & 300cm    &            \\ \hline
+			7  & 400cm    &            \\ \hline
+		\end{tabular}
+		\caption{Tabel Deteksi ArUco Marker}
+	\end{table}
+\end{packed_enum}
+
+\section{Rancangan Uji Pendaratan}
+Rancangan Uji Misi merupakan salah satu pengujian landing pada penelitian ini. Dilakukan dengan menjalankan beberapa tahap sebelum menuju ke pendaratan yang menggunakan landasan bergerak.
+
+
+\begin{packed_enum}
+	\item Pengujian Mode Pendaratan dengan Kamera pada landasan ArUco Marker
+	\\Pengujian ini menggunakan mode GUIDED pada quadcopter yang menggunakan program pada aplikasi PyCharm untuk memerintahkan quadcopter agar mendarat pada landasan ArUco Marker saat ArUco Marker terdeteksi oleh kamera. 
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.3]{arucobasedland}
+		\caption{Tahap Pengujian Mode Pendaratan Dengan Landasan ArUco Marker}
+		\label{fig:arucobasedland}
+	\end{figure}
+	
+	Pengujian dilakukan beberapa kali untuk mencari tahu besar error yang di peroleh, sebelum menuju ke tahap akhir penelitian ini yaitu pendaratan otonom pada landasan ArUco Marker yang bergerak. Hasil dari pengujian dapat ditulis didalam tabel dibawah ini.
+	
+	\begin{table}[h]
+		\label{tab:arucobasedland}
+		\centering
+		\begin{tabular}{|ccc|c|}
+			\hline
+			\multicolumn{1}{|c|}{Pengujian} & \multicolumn{1}{c|}{Sumbu X (cm)} & Sumbu Y (cm) & Resultan kesalahan    \\ \hline
+			\multicolumn{1}{|c|}{1}         & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{1}{|c|}{2}         & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{1}{|c|}{3}         & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{1}{|c|}{4}         & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{1}{|c|}{5}         & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{1}{|c|}{6}         & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{1}{|c|}{7}         & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{1}{|c|}{8}         & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{1}{|c|}{9}         & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{1}{|c|}{10}        & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{3}{|l|}{Rata-rata resultan kesalahan}                                 & \multicolumn{1}{l|}{} \\ \hline
+		\end{tabular}
+		\caption{Tabel Hasil Pengujian Error Mode Pendaratan pada ArUco Marker}
+	\end{table}
+	
+	\item Pengujian Mode Pendaratan dengan Kamera pada landasan ArUco Marker yang bergerak
+	\\Pengujian terakhir ialah pendaratan pada landasan ArUco yang bergerak, dengan mode GUIDED yang sepenuhnya menggunakan program pada aplikasi PyCharm. Quadcopter akan menuju ke landasan ArUco Marker setelah pergi ke waypoint, dan akan mengikuti landasan (saat landasan bergerak) dan mencoba untuk landing saat landasan masih bergerak.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.3]{arucomovingland}
+		\caption{Tahap Pengujian Mode Pendaratan Dengan Landasan ArUco Marker Yang Bergerak}
+		\label{fig:arucomovingland}
+	\end{figure}
+	
+	Pengujian dilakukan beberapa kali untuk mencari tahu besar error yang di peroleh. Hasil dari pengujian dapat ditulis didalam tabel dibawah ini.
+	
+	\begin{table}[h]
+		\label{tab:arucomovingland}
+		\centering
+		\begin{tabular}{|ccc|c|}
+			\hline
+			\multicolumn{1}{|c|}{Pengujian} & \multicolumn{1}{c|}{Sumbu X (cm)} & Sumbu Y (cm) & Resultan kesalahan    \\ \hline
+			\multicolumn{1}{|c|}{1}         & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{1}{|c|}{2}         & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{1}{|c|}{3}         & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{1}{|c|}{4}         & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{1}{|c|}{5}         & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{1}{|c|}{6}         & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{1}{|c|}{7}         & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{1}{|c|}{8}         & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{1}{|c|}{9}         & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{1}{|c|}{10}        & \multicolumn{1}{c|}{}             &              &                       \\ \hline
+			\multicolumn{3}{|l|}{Rata-rata resultan kesalahan}                                 & \multicolumn{1}{l|}{} \\ \hline
+		\end{tabular}
+		\caption{Tabel Hasil Pengujian Error Mode Pendaratan pada ArUco Marker Yang Bergerak}
+	\end{table}
+	
+\end{packed_enum}
