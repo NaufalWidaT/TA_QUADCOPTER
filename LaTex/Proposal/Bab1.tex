@@ -1,0 +1,85 @@
+%==================================================================
+% Ini adalah bab 1
+% Silahkan edit sesuai kebutuhan, baik menambah atau mengurangi \section, \subsection
+%==================================================================
+
+\chapter[PENDAHULUAN]{\\ PENDAHULUAN}
+
+\section{Latar Belakang Masalah}
+
+Di era perkembangan teknologi yang pesat seperti saat ini, \textit{Unmanned Aerial Vehicles} (\textit{UAV}), telah menjadi salah satu inovasi paling menonjol di bidang teknologi penerbangan. UAV menawarkan potensi yang besar dalam berbagai aplikasi. Keberhasilan dan keefisienan penggunaan \textit{UAV} dalam berbagai konteks telah digunakan secara luas dari berbagai sektor, mulai dari sektor industri sebagai pengawas barang (surveilansi), sektor agrikultur sebagai penyemprot pupuk atau pengawas ladang pertanian, sektor militer sebagai pengenali posisi musuh atau pengecek medan, hingga kemanusiaan sebagai pengantar makanan, paket atau barang [1]. Di negara Rwanda, UAV digunakan untuk mengirim persediaan medis untuk masyarakat yang membutuhkan, dikarenakan penduduk yang terpencil dan akses jalan yang buruk [2].
+
+\textit{UAV} atau yang dikenal sebagai pesawat tanpa awak, adalah pesawat yang dikendalikan secara \textit{remote} atau \textit{otonom} (manual). Dengan keunggulan mobilitas dan kemampuan untuk mencapai area yang sulit dijangkau oleh manusia, \textit{UAV} telah digunakan dalam berbagai aplikasi seperti pemetaan, fotografi udara, pengiriman barang, penjagaan keamanan, dan lain sebagainya [3]. Quadcopter sendiri merupakan salah satu contoh dari banyaknya jenis dari UAV. Quadcopter adalah sebuah multirotor yang mengfungsikan 4 motor untuk menggerakkan baling-baling agar menghasilkan gaya angkat. Quadcopter memiliki 2 konfigurasi yaitu tipe X dan tipe H [4]. 
+
+Kemampuan yang perlu dimiliki saat menerbangkan sebuah \textit{quadcopter} adalah kemampuan dalam mengendalikan \textit{quadcopter} atau \textit{piloting}. \textit{Piloting} ini sangat ditekankan untuk mencegah kecelakaan saat terbang, sekaligus mengurangi resiko rusaknya komponen-komponen pendukung dari \textit{quadcopter} [5]. Salah satu kendala yang cukup sering dialami oleh \textit{pilot quadcopter} adalah sulitnya mendaratkan \textit{quadcopter} dengan tepat dan aman, seperti kesulitan dalam menurunkan altitude (ketinggian) \textit{quadcopter}, hingga mendaratkan \textit{quadcopter} dengan lancar dan akurat pada lokasi yang tepat. \textit{Quadcopter} yang tidak diturunkan dengan halus memiliki potensi tinggi untuk merusakkan komponen yang dipasang pada \textit{quadcopter}. Selain itu, lokasi pendaratan yang kurang tepat atau berada terlalu dekat dengan orang lain dapat menimbulkan rasa takut dan dapat mengancam (terlebih apabila pendaratan \textit{quadcopter} dilakukan dengan kurang hati-hati) masyarakat maupun perseorangan [6].
+
+Untuk mengatasi kendala \textit{landing} atau pendaratan \textit{quadcopter} diatas, digunakan sistem otomasi pada \textit{quadcopter} dengan menggunakan sebuah marker (penanda) berupa \textit{ArUco marker} yang digunakan untuk landasan pendaratan \textit{quadcopter}. \textit{ArUco marker} merupakan kotak sintetik yang disusun oleh garis tepi hitam dan matriks biner bagian dalam yang menentukan identifikasi dari marker tersebut. Garis tepi hitam digunakan untuk pendeteksi gambar secara cepat dan memungkinkan kodifikasi biner, sekaligus pengaplikasian teknik deteksi dan \textit{error} [7].Pengenalan objek \textit{ArUco marker} bisa dilakukan dengan menggunakan \textit{library} \textit{ArUco marker} yang terdapat di \textit{OpenCv}, pada pengenalan \textit{marker} ini didapat sumbu x, y, z dari \textit{marker} yang digunakan sehingga pengontrolan  pendaratan quadcopter dilakukan oleh kamera dan komputer [8]. 
+
+Pendaratan presisi sebenarnya sudah diteliti dengan judul "Rancang Bangun Sistem Pendaratan Otonom pada UAV Quadcopter Menggunakan ArUco Marker" oleh Akhil Oktanto, dengan rasio ketepatan pendaratan diatas landasan ArUco marker dan tidak mengenai ladasannya adalah 7 banding 3 dari percobaan sebanyak 10 kali. Landasan yang digunakan pada penelitian ini bersifat statis atau tidak bergerak [9].
+
+Berdasarkan judul penelitian sebelumnya, dapat dikembangkan lagi untuk landing presisi pada landasan ArUco marker yang landasannya dapat bergerak, dengan memanfaatkan sensor-sensor yang berada pada quadcopter dan kamera external untuk membaca dan memproses gambar dari ArUco marker. 
+
+Pendaratan otonom pada landasan bergerak ini dapat digunakan juga pada kawasan industri, seperti pengantaran barang secara otonom kepada sebuah kapal yang sedang berlabuh di tengah laut, dikarenakan ombak yang selalu menerjang badan kapal membuat kondisi kapal tidak statis, sehingga diperlukan algoritma yang lebih kompleks pada quadcotper untuk memiliki kemampuan landing dalam kondisi tersebut.
+
+\section{Identifikasi Masalah}
+Berdasarkan uraian latar belakang masalah di atas dapat diidentifikasi masalah adalah sebagai berikut:
+\begin{enumerate}
+	\item Perlunya kemampuan \textit{piloting} yang mumpuni untuk menerbangkan hingga mendaratkan \textit{quadcopter} secara aman agar tidak merusak komponen quadcotper.
+	\item Penelitian sebelumnya menjelaskan tentang pendaratan quadcopter secara otonom pada landasan ArUco, namun dengan landasan yang bersifat statis (tidak bergerak).
+	\item Lokasi pendaratan quadcopter tidak selalu bersiat statis, sehingga diperlukan algoritma lebih pada quadcopter agar bisa landing secara presisi pada lokasi yang bergerak.
+\end{enumerate}
+
+\section{Batasan Masalah}
+Berdasarkan identifikasi masalah di atas, beberapa masalah akan dibatasi seperti :
+\begin{enumerate}
+	\item Uji coba dilakukan diluar ruangan.
+	\item Landasan digerakkan menggunakan tenaga manusia dengan perkiraan kecepatan 20cm/s.
+	\item Jarak tinggi antara quadcopter dengan Landasan adalah 300cm.
+	\item Landasan menggunakan 1 jenis ID ArUco marker.
+	\item Menggunakan modul kamera FPV analog sebagai penginderaan.
+\end{enumerate}
+
+
+\section{Rumusan Masalah}
+Berdasarkan batasan masalah di atas dapat dirumuskan
+permasalahan sebagai berikut:
+\begin{enumerate}
+	\item Bagaimana cara membuat quadcopter agar bisa landing secara otonom di landasan yang bergerak ?
+	\item Bagaimana cara mendaratkan quadcotper secara presisi ?
+\end{enumerate}
+
+\section{Tujuan}
+Tujuan dari penelitian ini mengacu pada rumusan masalah yang
+telah disebutkan di atas yaitu:
+
+\begin{enumerate}
+	\item Membuat rancangan dan program quadcopter yang dapat mendarat di landasan yang bergerak secara otonom dengan aman dan lancar.
+	\item Membuat rancangan dan program quadcopter yang dapat mendarat di landasan yang bergerak dengan presisi.
+\end{enumerate}
+
+\section{Manfaat}
+Skripsi atau proyek akhir memiliki manfaat yang sangat penting bagi mahasiswa dan lingkungan akademik, antara lain:
+\begin{enumerate}
+	\item Manfaat Teoritis
+	\begin{packed_item}
+		\item Bagi peneliti dapat menambah wawasan dan mengembangkan ilmu yang
+		didapat selama proses pembelajaran.
+		\item Menambah pemahaman mahasiswa terkait dengan pandaratan otonom quadcopter.
+		\item Dapat merancang pendaratan quadcopter secara otonom dengan landasan yang bergerak menggunakan ArUco.
+	\end{packed_item}
+	\item Manfaat Praktis
+	\begin{packed_item}
+		\item Bagi peneliti dapat menerapka ilmu yang didapat selama proses pembelajaran.
+		\item Membuat rancangan quadcopter yang bisa mendarat di suatu landasan bergerak dengan aman.
+	\end{packed_item}
+\end{enumerate}
+\section{Keaslian Gagasan}
+Tugas akhir dengan judul "Pendaratan Presisi Otonom Quadcopter dengan ArUco Pada Landasan Bergerak" merupakan hasil pengembangan dari alat dan metode yang sudah ada sebelumnya, dibawah ini adalah penelitian yang dijadikan acuan tugas akhir sebagai berikut:
+
+\begin{packed_enum}
+	\item Tugas akhir dengan judul "Rancang Bangun Sistem Pendaratan Otonom pada UAV Quadcopter Menggunakan ArUco Marker" oleh Akhil Oktanto (2024) yang memfungsikan Quadcopter dengan bantuan kamera dan image processing terhadap landasan ArUco marker. Hasil dari tugas akhir ini adalah keberhasilan dalam penggunaan kamera untuk mendeteksi landasan ArUco marker dan juga dapat mendarat dengn baik diatas landasan dengan rasio quadcopter mendarat dalam landasan dan diluar landasan adalah 7 berbanding 3 [9].
+	\item Jurnal dengan judul "A Vision and GPS Based System for Autonomous Precision Vertical Landing of UAV Quadcoptet" oleh Ardy Seto Priambodo yang mengimplementasikan penggunaan Computer Vision dan GPS untuk melakukan landing pada landasan ArUco marker. Hasil dari jurnal ini adalah berhasilnya pendaratan quadcopter untuk mendarat tepat diatas landasan ArUco marker, pendaratan tersebut dilakukan hanya dengan menggunakan computer vision dan tanpa bantuan dari GPS [7].
+	\item Jurnal dengan judul "Automatic Navigation and Landing of an Indoor AR Drone Quadrotor Using ArUco Marker and Inertial Sensors" oleh Mohammad Fattahi Sani dan Ghader Karimian yang menggunakan quadcopter indoor dan kamera untuk mendeteksi ArUco marker dilantai. Kesimpulan dari jurnal ini adalah pendaratan secara perlahan dan akurat quadcopter pada ArUco marker yang dalam percobaannya memiliki posisi eror maksimal sebesar 6cm dari landasan ArUco marker [10].
+	
+	Penelitian yang dilakukan diatas dijadikan acuan oleh penulis dalam mengembangkan penelitian  yang sedang dilakukan oleh penulis. Perbedaan utama yang menjadi pembanding sekaligus pegembangan dari beberapa judul diatas, terutama pada Tugas Akhir miliki Akhil Oktanto adalah digunakannya landasan yang dapat bergerak dengan masih menggunakan ArUco Marker sebagai target landasannya.
+\end{packed_enum}
