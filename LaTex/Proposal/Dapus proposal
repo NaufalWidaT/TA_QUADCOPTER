@@ -1,0 +1,263 @@
+%==================================================================
+% Ini adalah daftar referensi dalam format bib, bisa digenerate dengan
+% software mendeley atau zotero
+%==================================================================
+
+%% Edit sesuai kebutuhan
+
+
+@article{usman2020database,
+	title={Database Pemetaan Bangunan Universitas Sam Ratulangi},
+	author={Usman, Ibnhu Yudhatama and Lumenta, Arie SM and Sugiarso, Brave},
+	year={2020},
+	publisher={-}
+}
+
+@online{hirarki_2020,
+	author={Terra Drone},
+	title={Tantangan dan Keahlian yang Harus Dimiliki oleh Seorang Pilot Drone},
+	year={2023},
+	howpublished={ \textit{Retrieved from} \url{https://training.terra-drone.co.id/tantangan-dan-keahlian-yang-harus-dimiliki-oleh-seorang-pilot-drone/}},
+}
+
+@article{anggara2018rancang,
+	title={Rancang Bangun Alat Estimasi Lokasi Target Pada Unmanned Aerial Vehicle (UAV) Berdasarkan Posisi dan Ketinggian Kamera},
+	author={Anggara, Rycho and Mardyanto, Ronny},
+	journal={SinarFe7},
+	volume={1},
+	number={1},
+	pages={87--90},
+	year={2018}
+}
+
+@phdthesis{yofan2016sistem,
+	title={Sistem Kontrol Keseimbangan Quadcopter Menggunakan Metode Fuzzy Logic Controller},
+	author={Yofan, Al Hafizh},
+	year={2016},
+	school={Universitas Andalas}
+}
+
+@inproceedings{ljungblad2021matters,
+	title={What matters in professional drone pilots’ practice? An interview study to understand the complexity of their work and inform human-drone interaction research},
+	author={Ljungblad, Sara and Man, Yemao and Bayta{\c{s}}, Mehmet Ayd{\i}n and Gamboa, Mafalda and Obaid, Mohammad and Fjeld, Morten},
+	booktitle={Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems},
+	pages={1--16},
+	year={2021}
+}
+
+@online{hirarki_2023,
+	author={Terra Drone},
+	title={Mengenal Risiko-Risiko Terkait Pengoperasian UAV di Indonesia},
+	year={2023},
+	howpublished={ \textit{Retrieved from} \url{https://terra-drone.co.id/mengenal-risiko-risiko-terkait-pengoperasian-uav-di-indonesia/}},
+}
+
+@inproceedings{priambodo2022vision,
+	title={A Vision and GPS Based System for Autonomous Precision Vertical Landing of UAV Quadcopter},
+	author={Priambodo, AS and Arifin, F and Nasuha, A and Winursito, A and others},
+	booktitle={Journal of Physics: Conference Series},
+	volume={2406},
+	number={1},
+	pages={012004},
+	year={2022},
+	organization={IOP Publishing}
+}
+
+@inproceedings{supriyanto2019sistem,
+	title={Sistem Kendali Quadcopter Melalui Jaringan Internet Berbasis Lokasi dan Pengenalan Marker Menggunakan Smartphone},
+	author={Supriyanto, Hadi and Afifah, Nur and Budiyanto, Aris},
+	booktitle={Prosiding Industrial Research Workshop and National Seminar},
+	volume={10},
+	number={1},
+	pages={141--148},
+	year={2019}
+}
+
+@phdthesis{akhiloktantoqc,
+	title={Rancang Bangun Sistem Pendaratan Otonom pada UAV Quadcopter Menggunakan ArUco Marker},
+	author={Akhil Oktanto},
+	year={2024},
+	school={Universitas Negeri Yogyakarta}
+}
+
+@inproceedings{sani2017automatic,
+	title={Automatic navigation and landing of an indoor AR. drone quadrotor using ArUco marker and inertial sensors},
+	author={Sani, Mohammad Fattahi and Karimian, Ghader},
+	booktitle={2017 international conference on computer and drone applications (IConDA)},
+	pages={102--107},
+	year={2017},
+	organization={IEEE}
+}
+
+%% -------------------------------------------------------------------------------------------
+
+@phdthesis{devianto2017sistem,
+	title={Sistem Kendali Vertikal Take-off Landing Otomatis pada Penerbangan Quadrotor di Dalam Ruangan},
+	author={DEVIANTO, KRISTIAWAN},
+	year={2017},
+	school={Universitas Gadjah Mada}
+}
+
+@online{aerospace,
+	author={Aerospace Krossblade},
+	title={HISTORY OF QUADCOPTERS AND OTHER MULTIROTORS},
+	year={2022},
+	howpublished={ \textit{Retrieved from} \url{https://www.krossblade.com/history-of-quadcopters-and-multirotors}},
+}
+
+@phdthesis{zuhri2023penerapan,
+	title={Penerapan Haversine Formula Dalam Navigasi Waypoint Pada Package Delivery Quadcopter},
+	author={Zuhri, Maulana},
+	year={2023},
+	school={Institut Teknologi Sepuluh Nopember}
+}
+
+@phdthesis{chandrapa,
+	title={Pengembangan Training Kit Robot Quadcopter Sebagai Media Pembelajaran Pada Mata Kuliah Robotika},
+	author={Chandra, Pangestu, Aji},
+	year={2020},
+	school={Universitas Negeri Yogyakarta}
+}
+
+@phdthesis{mediyutansyah2020perancangan,
+	title={PERANCANGAN TROLLER DENGAN MENGGUNAKAN REMOTE},
+	author={MEDIYUTANSYAH, BOBBY},
+	year={2020},
+	school={POLITEKNIK NEGERI SRIWIJAYA}
+}
+
+@article{ali2020global,
+	title={Global Positioning System (GPS): Definition, Principles, Errors, Applications \& DGPS},
+	author={Ali, E},
+	journal={no. April},
+	year={2020}
+}
+
+@article{efrian2022image,
+	title={Image recognition berbasis convolutional neural network (CNN) untuk mendeteksi penyakit kulit pada manusia},
+	author={Efrian, Muhammad Rizqi and Latifa, Ulinnuha},
+	journal={Power Elektronik: Jurnal Orang Elektro},
+	volume={11},
+	number={2},
+	pages={276--282},
+	year={2022}
+}
+
+@inproceedings{mustofa2023ai,
+	title={Ai-Based Building Security System Using Vision Tracking Motion Method},
+	author={Mustofa, Bisri and Sujadi, Harun and Wahyuni, Tantri},
+	booktitle={SEMINAR TEKNOLOGI MAJALENGKA (STIMA)},
+	volume={7},
+	pages={120--129},
+	year={2023}
+}
+
+@online{computervis,
+	author={Gagan Harpiawan},
+	title={Apa itu Computer Vision: Penggunaan dan Manfaatnya},
+	year={2023},
+	howpublished={ \textit{Retrieved from} \url{https://metanesia.id/blog/apa-itu-computer-vision}},
+}
+
+@phdthesis{nurakbar2022pengenalan,
+	title={Pengenalan Wajah Menggunakan Metode Principal Component Analysis (Pca) Dan Support Vector Machine (Svm)},
+	author={Nurakbar, Alfi},
+	year={2022},
+	school={Universitas Komputer Indonesia}
+}
+
+@online{digitalimageproc,
+	author={University of Tartu},
+	title={Digital Image Processing},
+	year={2014},
+	howpublished={ \textit{Retrieved from} \url{https://sisu.ut.ee/imageprocessing/book/1}},
+}
+
+@article{triwahyudin2022pembacaan,
+	title={Pembacaan Jarak dan Kecepatan dengan ArUco Marker pada Sistem Koper Follow Me Beroda},
+	author={Triwahyudin, Agus and Safitri, Hari Kurnia and Fauziyah, Mila},
+	journal={Maj. Ilm. Teknol. Elektro},
+	volume={21},
+	number={1},
+	pages={97},
+	year={2022}
+}
+
+@online{stemR,
+	author={STEMRobotics},
+	title={Lesson: ArUco Marker Detection with OpenCV},
+	year={2023},
+	howpublished={ \textit{Retrieved from} \url{https://stemrobotics.cs.pdx.edu/node/10508.html}},
+}
+
+@online{detectaruco,
+	author={Sergio Garrido and Alexander Panov},
+	title={Detection of ArUco Markers},
+	year={2024},
+	howpublished={ \textit{Retrieved from} \url{https://docs.opencv.org/4.x/d5/dae/tutorial_aruco_detection.html}},
+}
+
+@article{setyawan2015sistem,
+	title={Sistem kendali ketinggian quadcopter menggunakan PID},
+	author={Setyawan, Gembong Edhi and Setiawan, Eko and Kurniawan, Wijaya},
+	journal={Jurnal Teknologi Informasi dan Ilmu Komputer},
+	volume={2},
+	number={2},
+	pages={125--131},
+	year={2015}
+}
+
+@phdthesis{arizona2018miniatur,
+	title={Miniatur Kendaraan Ringan Pemanjat Dinding Menggunakan Baling-Baling},
+	author={Arizona, Fondra},
+	year={2018},
+	school={Universitas Brawijaya}
+}
+
+@online{scbuddies,
+	author={Science Buddies},
+	title={Engineering Design Process},
+	year={2012},
+	howpublished={ \textit{Retrieved from} \url{https://www.sciencebuddies.org/science-fair-projects/engineering-design-process/engineering-design-process-steps}},
+}
+
+@article{guo2022autonomous,
+	title={Autonomous landing of a quadrotor on a moving platform via model predictive control},
+	author={Guo, Kaiyang and Tang, Pan and Wang, Hui and Lin, Defu and Cui, Xiaoxi},
+	journal={Aerospace},
+	volume={9},
+	number={1},
+	pages={34},
+	year={2022},
+	publisher={MDPI}
+}
+
+@article{khyasudeen2022development,
+	title={The development of a GPS-based autonomous quadcopter towards precision landing on moving platform},
+	author={Khyasudeen, Muhammad Farris and Buniyamin, Norlida and Azzuhri, Saaidal Razalli and Noor, Muhammad Badri Mhd and Bakar, Mohamad Hakim Bin Abu and Rahman, Mohamad Faizal Abd and Kamel, Nik Izwan and Shariffuddin, Aliff and Amiri, Iraj Sadegh},
+	journal={International Journal of Vehicle Autonomous Systems},
+	volume={16},
+	number={2-4},
+	pages={108--126},
+	year={2022},
+	publisher={Inderscience Publishers (IEL)}
+}
+
+@article{goh2019outdoor,
+	title={Outdoor autonomous landing of a quadcopter on a moving platform using off-board computer vision},
+	author={Goh, GL and Goh, GD and Zhong, ZW},
+	journal={Journal of Modeling and Optimization},
+	volume={11},
+	number={2},
+	pages={86--96},
+	year={2019}
+}
+
+
+
+
+
+
+
+
+%% Edit sesuai kebutuhan
