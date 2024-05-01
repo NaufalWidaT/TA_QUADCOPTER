@@ -1,0 +1,195 @@
+%==================================================================
+% Ini adalah bab 2
+% Silahkan edit sesuai kebutuhan, baik menambah atau mengurangi \section, \subsection
+%==================================================================
+
+\chapter[PENDEKATAN PEMECAHAN MASALAH]{\\ PENDEKATAN PEMECAHAN MASALAH}
+
+\section{Quadcopter}
+Quadcopter merupakan contoh dari teknologi Unmanned Aerial Vehicle (UAV) yaitu pesawat tanpa awak yang berkembang pesat dan menjadi subjek pada banyak penelitian seperti pada indstri, militer, agrikultur, dsb. Quadcopter sendiri merupakan jenis pesawat Vertical Take Off Landing (VTOL) yang menggunakan empat buah motor penggerak yang dikendalikan menggunakan flight controller (FC) dimana didalamnya telah memiliki algoritma, sensor-sensor khusus, dan dilengkapi dengan GPS [11]. Perkembangan quadcopter bermula dari uji experimen lepas landas yang dilakukan pada tahhun 1907 oleh Jacques dan Louis Breguet, seorang peneliti dari Perancis yang membangun dan menguji sebuah quadcopter Gyroplane No. 1. Quadcopter milik mereka berhasil lepas landas, namun dinilai kurang stabil, sehingga tidak efektif. Pada tahun 1924, insinyur dari Perancis bernama Étienne Oehmichen berhasil menerbangkan quadcopter miliknya (Oehmichen No.2) dengan jarak 360m dan memecahkan rekor dunia. Di tahun yang sama quuadcopter milik Étienne juga berhasil terbang sejauh 1km dalam waktu 7 menit dan 40 detik [12].
+
+Motor merupakan penggerak utama pada quadcopter yang memiliki fungsi penting yaitu memutar baling-baling (propeller) agar quadcopter dapat lepas landas [13]. Terdapat 2 jenis putaran motor,  ClockWise (CW, searah jarum jam) dan CounterClockWise (CCW, melawan arah jarum jam) . 2 motor akan berputar secara ClockWise, sedangkan 2 motor lainnya akan berputar dengan cara CounterClockwise. Poros letak motor terpasang dan bergerak ke satu arah tertentu akan bergerak ke arah berlawanan sesuai dengan prinsip momen torsi. Secara desain, putaran motor quadcopter dapat dilihat pada gambar 2.1.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{putaranmotor}
+	\caption{Putaran Motor Pada Quadcopter}
+	\label{fig:motor}
+\end{figure}
+
+Dari gambar diatas, motor 2 dan 4 akan bergerak secara ClockWise yang mengakibatkan frame pada quadcopter bergerak melawan arah jarum jam. Maka putaran motor 1 dan 3 dibuat CounterClockWise sehingga frame quadcopter akan searah jarum jam. Apabila seluruh motor berputar secara bersamaan, maka akan didapat nilai momen torsi pada frame quadcopter yang bernilai nol sehingga quadcopter akan terbang dengan stabil.
+
+Gerakan dari quadcopter dipengaruhi oleh kecepatan dari seluruh motor. Quadcopterdapat bergerak maju, mundur, miring ke kanan, miring ke kiri, berputar kanan dan berputar kiri berdasarkan pengaturan kecepatan pada setiap motor. Pergerakan ini memiliki istilah-istilah tersendiri seperti gerakan maju dan mundur dinamakan pitch, pergerakan miring ke kiri atau ke kanan dinamakan roll, dan pergerakan berputar ke kanan atau kiri dinamakan yaw. Dibawah ini merupakan grafik arah dari pergerakan quadcopter [14].
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{rollpitchyaw}
+	\caption{Gerakan Quadcopter Dengan Istilahnya}
+	\label{fig:gerakqc}
+\end{figure}
+
+\subsection{Flight Controller (FC)}
+Sebuah Flight Controller atau biasa disingkat FC adalah komponen pemroses data utama atau otak dari quadcopter. Komponen ini berupa papan sirkuit yang dilengkapi dengan sensor-sensor yang dapat digunakan untuk mendeteksi gerakan quadcopter dan perintah pilot (menggunakan remote control atau kode program). Dengan data yang terangkap oleh sensor, Flight Controller dapat mengatur kecepatan dari setiap motor untuk menggerakkan quadcopter ke arah yang diinginkan.
+
+Semua jenis Flight Controller dilengkapi dengan sensor dasar seperti sensor putaran (gyroscope/gyro) dan sensor kecepatan (accelerometers/acc). Beberapa FC yang lebih modern memiliki fitur yang lebih lengkap seperti sensor ketinggian (barometer/baro) hingga penggunaan kompas (mangnetometer).
+
+Flight Controller juga memiliki beberapa port yang dapat dihubungkan dengan alat-alat lainnya yang dapat menunjang penggunaan quadcopter seperti ESC, GPS, LED, Penerima Radio, Kamera FPV, dan VTX.
+
+Dalam mengatur Flight Controller dilakukan dengan menggunakan firmware khusus untuk memprogram Flight Controller. Ada banyak pilihan firmware yang dapat digunakan dengan fitur yang berbeda-beda setiap firmwarenya, beberapa contoh firmware yang populer dan sering digunakan oleh banyak orang yaitu iNav, KISS dan Betaflight.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{flightcontroller}
+	\caption{Bentuk Flight Controller}
+	\label{fig:fc}
+\end{figure}
+
+\subsection{Brushless Motor}
+Merupakan motor listrik yang menggunakan arus searah (Direct Current / DC) untuk menghasilkan putaran pada rotor. Dibangun dengan stator yang berisi kumparan dan rotor yang dilengkapi dengan magnet, motor ini bekerja menggunakan prinsip elektromagnetisme yang akan menghasilkan putaran dengan mengatur arus listrik yang diberikan ke kumparan stator.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{brushless}
+	\caption{Bentuk Brushless DC Motor}
+	\label{fig:brushless}
+\end{figure}
+
+\subsection{Electronic Speed Controller (ESC) }
+Komponen yang digunakan untuk mengatur kecepatan putaran motor. ESC akan menerima data perintah dari Flight Controller dan memproses data tersebut sehingga akan menghasilkan output yang akan mempercepat atau memperlambat putaran dari motor.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{esc}
+	\caption{Bentuk ESC}
+	\label{fig:esc}
+\end{figure}
+
+\subsection{Frame Quadcopter}
+Frame Quadcopter adalah salah satu desain dari banyaknya multirotor dalam dunia VTOL, memiliki 4 lengan yang masing-masing ujungnya memiliki motor dan sebuah propeller. Konfigurasi 4 lengan ini memberikan stabilitas, kemampuan manuver dan kapasitas muatatn yang sangat baik.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{frameqc}
+	\caption{Bentuk Frame Quadcopter}
+	\label{fig:frame}
+\end{figure}
+
+\subsection{Propeller}
+Propeller dapat diartikan sebagai baling-baling yang mengubah gerak putar menjadi gaya dorong linear. Baling-baling dapat mengangkat drone dengan cara berputar menciptakan aliran udara yang mengakibatkan tekanan antara permukaan atas dan bawah baling-baling.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{propeller}
+	\caption{Bentuk Propeller}
+	\label{fig:propeller}
+\end{figure}
+
+\subsection{Radio Control}
+Sebuah alat elektronik yang digunakan untuk mengoperasikan sebuah alat yang terkoneksi dari jarak jauh, biasanya berbentuk benda kecil tanpa kabel yang dilengkapi dengan berbagai tombol atau tuas untuk menyesuaikan berbagai pengaturan yang dipegang dalam genggaman tangan.
+
+Radio control terdiri dari dua bagian, yaitu bagian transmitter (pengirim) yang berfungsi mengirim data perintah dan bagian reciever (penerima) yang berfungsi untuk menerima perintah dari transmitter dan meneruskan data tersebut ke microcontroller [15].
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{rc}
+	\caption{Bentuk Radio Control}
+	\label{fig:rc}
+\end{figure}
+
+\subsection{Global Positioning System (GPS) }
+Merupakan sistem navigasi satelit yang dikontrol oleh Amerika Serikat yang dikhususkan untuk tujuan militer. Pada tahun 1980an, Sistem ini dapat digunakan oleh masyarakat umum. Fungsinya adalah untuk melakukan penampilan waktu, arah, kecepatan, dan lokasi. Sistem ini dapat diandalkan dalam kondisi cuaca apa pun, memberikan banyak manfaat bagi para pengguna militer, sipil, dan komersial di seluruh dunia dan dapat diakses secara gratis oleh siapa saja yang memiliki perangkat GPS. Ini juga menyediakan kemampuan perjalanan yang lebih baik bagi para pengendara, dan telah menjadi inti dari banyak aplikasi dan teknologi modern [16].
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{gps}
+	\caption{Bentuk Komponen GPS}
+	\label{fig:gps}
+\end{figure}
+
+\subsection{Telemetry}
+Telemetri adalah alat pengukur otomatis dan pengirim data nirkabel dari sumber jarak jauh. Telemetri bekerja dengan berbagai cara seperti sensor pada sumbernya mengukur data listrik, seperti tegangan dan arus, atau data fisik, seperti suhu dan tekanan yang kemudian mengirimkan data ini ke perangkat yang terhubung untuk dilakukan pemantauan dan analisa lebih jauh.
+
+Pengembang software dan pengelola IT menggunakan telemetri untuk memantau kesehatan, keamanan, dan kinerja aplikasi dan komponen aplikasi dari jarak jauh secara real-time. Mereka menggunakan telemetri untuk mengukur waktu startup dan pemrosesan, crash, perilaku pengguna dan penggunaan sumber daya, serta untuk memantau keadaan sistem. Telemetri juga digunakan untuk mengumpulkan informasi di berbagai bidang seperti meteorologi, pertanian, pertahanan dan kesehatan.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{telemetry}
+	\caption{Bentuk Komponen USB Telemetry}
+	\label{fig:telemetry}
+\end{figure}
+
+\subsection{Baterai LiPo}
+Baterai litium polimer, atau lebih tepatnya baterai polimer litium-ion (disingkat LiPo), adalah baterai berteknologi litium-ion yang dapat diisi ulang menggunakan elektrolit polimer, bukan elektrolit cair. Polimer semipadat (gel) dengan konduktivitas tinggi membentuk elektrolit ini. Baterai ini memberikan energi yang lebih tinggi dibandingkan jenis baterai litium lainnya dan digunakan dalam aplikasi yang mengutamakan bobot, seperti perangkat seluler, pesawat yang dikendalikan radio, dan beberapa kendaraan listrik.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.9]{lipo}
+	\caption{Bentuk Baterai LiPo}
+	\label{fig:lipo}
+\end{figure}
+
+\subsection{Smartphone Android}
+Merupakan telepon genggam modern yang memiliki sistem operasi yang luas. Dengan fungsi yang tidak hanya sebagai alat komunikasi seperti SMS dan telepon, namun juga seiring berkembangnya teknologi, beberapa fitur baru ditambahkkan seperti pemutar lagu, kamera, bermain permainan, dan lain-lain. Pada penelitian ini, android digunakan fitur kameranya sebagai visual pengganti kamera FPV.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{android}
+	\caption{Bentuk Smartphone Android}
+	\label{fig:android}
+\end{figure}
+
+\section{Computer Vision}
+Computer Vision adalah bidang kecerdasan buatan (Artificial Intelegence / AI) yang menggunakan pembelajaran mesin (machine learning) dan jaringan saraf (neural network) untuk mengajarkan komputer dan sistem memperoleh informasi bermakna dari gambar digital, video, dan masukan visual lainnya—dan untuk membuat rekomendasi atau mengambil tindakan ketika mereka melihat cacat atau masalah [17].
+Cara kerja computer vision hampir sama dengan manusia, hanya saja manusia memiliki keunggulan. Penglihatan manusia memiliki keuntungan dari konteks kehidupan untuk melatih cara membedakan objek, seberapa jauh jaraknya, apakah bergerak atau ada yang salah dengan gambar. Computer vision melatih mesin untuk melakukan fungsi-fungsi ini, namun ia harus melakukannya dalam waktu yang jauh lebih singkat dengan kamera, data, dan algoritma yang dibandingkan dengan retina, saraf optik, dan korteks visual [18]. 
+Karena sistem yang dilatih untuk memeriksa produk atau mengawasi aset produksi dapat menganalisis ribuan produk atau proses dalam satu menit, mendeteksi cacat atau masalah yang tidak terlihat, sistem ini dapat dengan cepat melampaui kemampuan manusia [19].
+
+
+\subsection{Image Processing (Pengolahan Gambar)}
+Image processing adalah metode untuk melakukan beberapa operasi pada suatu gambar, untuk mendapatkan gambar yang disempurnakan atau untuk mengekstrak beberapa informasi berguna dari gambar tersebut. Ini adalah jenis pemrosesan sinyal di mana inputnya berupa gambar dan outputnya dapat berupa gambar atau karakteristik/fitur yang terkait dengan gambar tersebut [20].
+
+Pemrosesan gambar pada dasarnya mencakup tiga langkah berikut:
+
+\begin{packed_item}
+	\item Menginput gambar melalui alat pengambil gambar.
+	\item Menganalisis dan memanipulasi gambar.
+	\item Output yang hasilnya dapat berupa gambar atau laporan yang diubah berdasarkan analisis gambar input.
+\end{packed_item}
+
+Ada dua jenis metode yang digunakan untuk Image processing yaitu analog dan digital. Metode analog dapat digunakan untuk hard copy seperti cetakan dan foto. Sedangkan metode digital membantu dalam manipulasi gambar digital dengan menggunakan komputer. Tiga fase umum yang harus dilalui semua jenis data saat menggunakan teknik digital adalah pra-pemrosesan, peningkatan, dan pengambilan informasi tampilan [21].
+
+Operasi pada Image processing dapat dibagi berdasarkan tujuan dari pengolahan, yaitu:
+
+\begin{packed_enum}
+	\item Image Enhancement (Peningkatan kualitas gambar)
+	\\	Operasi peningkatan kualitas gambar berfungsi untuk meningkatkan fitur tertentu pada gambar sehingga tingkat keberhasilan dalam pengolahan gambar berikutnya menjadi tinggi. Operasi ini lebih banyak berhubungan dengan penajaman dari fitur tertentu pada gambar. Peningkatan kualitas gambar ini dapat dilakukan “secara manual”, dengan menggunakan program lukis atau dengan pertolongan software lainnya.
+	\item Image Restoration (Pemulihan gambar)
+	\\	Operasi pemulihan gambar bertujuan untuk mengembalikan kondisi gambar yang telah rusak atau cacat yang sebelumnya telah diketahui menjadi gambar seperti pada kondisi awal, karena adanya gangguan yang menyebabkan penurunan kualitas gambar, misalnya mengalami suatu degradasi. Degradasi dalam hal ini yaitu saat gambar menjadi agak kabur (blur) sehingga menurunkan kualitas gambar. Blur dapat terjadi karena banyak faktor seperti  misalnya pergerakan selama pengambilan gambar oleh alat optik seperti kamera, penggunaan alat optik yang tidak fokus, pengguanaan lensa dengan sudut yang lebar, gangguan atmosfir, pencahayaan yang singkat sehingga mengurangi jumlah foton yang ditangkap oleh alat optik, dan sebagainya. Gambar yang tertangkap oleh alat-alat optik seperti mata, kamera, dan sebagainya sebenarnya merupakan citra yang sudah mengalami degradasi. yang dalam hal ini jika f(x, y) adalah citra asli dan g(x, y) adalah citra terdegradasi, maka g(x, y) adalah perkalian f(x, y) dengan operator distorsi H ditambah dengan derau aditif n(x, y): g(x, y) = Hf(x, y) + n(x, y)
+	\item Image Compression (Kompresi gambar)
+	\\	Kompresi gambar bertujuan untuk meminimalkan jumlah bit yang diperlukan untuk merepresentasikan gambar. Hal ini sangat berguna apabila anda ingin mengirimkan gambar berukuran besar. Gambar yang berukuran besar akan berpengaruh pada lamanya waktu pengiriman. Maka dari itu kompresi gambar akan memadatkan ukuran gambar menjadi lebih kecil dari ukuran asli sehingga waktu yang diperlukan untuk transfer data juga akan lebih cepat.	
+	Ada dua tipe utama kompresi data, yaitu kompresi tipe lossless dan kompresi tipe lossy. Kompresi tipe lossy adalah kompresi dimana terdapat data yang hilang selama proses kompresi. Akibatnya kualitas data yang dihasilkan jauh lebih rendah daripada kualitas data asli. Sementara itu, kompresi tipe lossless tidak menghilangkan informasi setelah proses kompresi terjadi, akibatnya kualitas gambar hasil kompresi juga tidak berkurang
+	\item Image Refresention and Modelling (Representasi dan permodelan gambar).
+	\\	Representasi mengacu pada data konversi dari hasil segmentasi ke bentuk yang lebih sesuai untuk proses pengolahan pada komputer. Keputusan pertama yang harus sudah dihasilkan pada tahap ini adalah data yang akan diproses dalam batasan-batasan atau daerah yang lengkap. Batas representasi digunakan ketika penekanannya pada karakteristik bentuk luar, dan area representasi digunakan ketika penekanannya pada karakteristik dalam, sebagai contoh tekstur. Setelah data telah direpresentasikan ke bentuk tipe yang lebih sesuai, tahap selanjutnya adalah menguraikan data.
+\end{packed_enum}
+
+\subsection{ArUco Marker}
+AruCo marker, seperti yang dijelaskan pada bab sebelumnya, merupakan kotak sintetik yang disusun oleh garis tepi hitam dan matriks biner bagian dalam yang menentukan identifikasi dari marker tersebut. Garis tepi hitam digunakan untuk pendeteksi gambar secara cepat dan memungkinkan kodifikasi biner, sekaligus pengaplikasian teknik deteksi dan error [7].
+ArUco marker sering digunakan di aplikasi robotika dan Augmented Reality, penggunaannya cukup sederhana, misalnya, seseorang dapat meletakkan ArUco di samping stasiun pengisian robot, tombol elevator, atau objek lain yang akan menjadi titik yang akan di kerjakan/operasikan oleh robot [23]. Berdasarkan situs web OpenCV (salah satu library yang digunakan dalam Computer Vision), kelebihan dari ArUco marker ialah marker dengan pendeteksian kuat, cepat dan sederhana [24] .
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{aruco}
+	\caption{Gambar ArUco Marker}
+	\label{fig:aruco}
+\end{figure}
+
+\section{PID Controller}
+PID controller adalah kontroler yang dapat menentukan presisi dari sistem instrumentasi dengan karakteristik adanya feedback di dalam sistem. Komponen kontrol PID ini terdiri dari tiga type yaitu proportional, integral, dan derivative. Tiga Elemen ini bertujuan untuk mempercepat reaksi sistem, menghilangkan offset dan menyederhanakan perubahan awal yang signifikan. Hal ini dapat memiliki efek positif dalam mengontrol system, mengurangi error atau kesalahan dalam sistem, dan meningkatkan ketepatan sistem [25].
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{pid}
+	\caption{Blok Diagram Dari PID Controller}
+	\label{fig:pid}
+\end{figure}
+
+Hasil output dari controller PID adalah penjumlahan dari seluruh controller proporsional, controller integral, dan controller diferensial. Karakteristik dari PID controller sangat dipengaruhi oleh kontribusi besar dari ketiga parameter P, I, dan D. Variable dalam kontrol PID dapat memicu fokus pada satu atau dua parameter yang dapat memiliki nilai yang lebih tinggi/rendah daripada yang lainnya [26].
