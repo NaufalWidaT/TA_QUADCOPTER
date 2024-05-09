@@ -11,64 +11,62 @@ from cv2 import aruco
 import numpy as np
 import threading
 def cari_aruco():
-    global x, y, z, id, cx, cy, cz
+    global x, y, z, id, cx, cy, cz5, cz18
     while True:
         global a
         a = 0
 #If Aruco jauh dan hanya di 1 sisi
-        if id == 5 and z <= 400 and z >= 100 :
-
+        if id == 5 and cz5 <= 400 and cz5 >= 100:
             print("x : ", cx, "y : ", cy)
 
-            if cx >= 330 and cx <= 640:
-                print("ID = ", id, "Terbaca, bergerak mundur")
+            if cx >= 350 and cx <= 640:
+                print("ID = 5 Terbaca, bergerak mundur")
               #  velocity(-0.2,0, 0, 1)
             elif cx <= 290 and cx >= 0:
-                print("ID = ", id, "Terbaca, bergerak maju")
+                print("ID = 5 Terbaca, bergerak maju")
                # velocity(0.2, 0, 0, 1)
             elif cy <= 210 and cy >= 0:
-                print("ID = ", id, "Terbaca, bergerak kanan")
+                print("ID = 5 Terbaca, bergerak kanan")
              #   velocity(0, 0.2, 0, 1)
             elif cy >= 270 and cy <= 480:
-                print("ID = ", id, "Terbaca, bergerak kiri")
+                print("ID = 5 Terbaca, bergerak kiri")
              #   velocity(0, -0.2, 0, 1)
 
 # IF (x,y) ArUco masuk toleransi, tapi masih antara 200-400cm
 
-            elif cx >= 290 and cx <= 330 and cy >= 210 and cy <= 270:
-                print("Masuk toleransi, bergerak turun")
-              #  velocity(0, 0, 0.3, 1)
+            elif cx >= 290 and cx <= 350 and cy >= 210 and cy <= 270:
+                   print("Masuk toleransi id 5, bergerak turun")
+                #  velocity(0, 0, 0.3, 1)
+
+  # ArUco dibawah 100 menggunakan id 18
+        if id == 18 and cz18 <= 107 and cz18 >= 50:
+
+            print("x : ", cx, "y : ", cy)
+
+            if cx >= 350 and cx <= 640:
+                print("ID = 18 Terbaca, bergerak mundur 18")
+                #velocity(-0.1, 0, 0, 1)
+            elif cx <= 290 and cx >= 0:
+                print("ID = 18 Terbaca, bergerak maju 18")
+                #velocity(0.1, 0, 0, 1)
+            elif cy <= 210 and cy >= 0:
+                print("ID = 18 Terbaca, bergerak kanan 18")
+                #velocity(0, 0.1, 0, 1)
+            elif cy >= 270 and cy <= 480:
+                print("ID = 18 Terbaca, bergerak kiri 18")
+                #velocity(0, -0.1, 0, 1)
+
 
 #######################################  LANDING  ###################################################
 
-        if id == 5 and cx >= 290 and cx <= 330 and cy >= 210 and cy <= 270 and cz <=100 and cz >= 50:
-            print("Diatas ArUco,Landing, A5")
+        #if id == 5 and cx >= 290 and cx <= 330 and cy >= 210 and cy <= 270 and cz5 <=100 and cz5 >= 50:
+         #   print("Diatas ArUco,Landing, A5")
           #  vehicle.mode = VehicleMode("LAND")
           #  vehicle.close()
           #  exit(1)
 
-        if id == 0 and cz <= 100 and cz >= 50  :
-            print("Landing, A0")
-          #  vehicle.mode = VehicleMode("LAND")
-          #  vehicle.close()
-            exit(1)
-
-        for a in range(50):
-            if id == 0 :
-                print("ArUco tidak terdeteksi, Berputar mencari ArUco Marker")
-             #   yaw(90)
-                a += 0.5
-                time.sleep(1)
-                print(a)
-                while a == 50:
-                    time.sleep(1)
-                    print("ArUco Tidak ditemukan, Landing")
-                  #  vehicle.mode = VehicleMode("LAND")
-                  #  vehicle.close()
-                    exit(1)
-
 def kamera_aruco():
-    global id, cx, cy, cz
+    global id, cx, cy, cz5, cz18
     calib_data_path = "MultiMatrix.npz"
     calib_data = np.load(calib_data_path)
     print(calib_data.files)
@@ -79,7 +77,7 @@ def kamera_aruco():
     t_vectors = calib_data["tVector"]
 
     MARKER_SIZE = 8  # CM
-    marker_dict = cv2.aruco.getPredefinedDictionary(aruco.DICT_6X6_100)
+    marker_dict = cv2.aruco.getPredefinedDictionary(aruco.DICT_6X6_50)
     param_markers = cv2.aruco.DetectorParameters()
     cap = cv2.VideoCapture(0)
 
@@ -95,7 +93,7 @@ def kamera_aruco():
         )
 
         if marker_corners:
-            global rVec, tVec, ids, cx, cy, cz
+            global rVec, tVec, ids, cx, cy, cz5, cz18
             rVec, tVec, _ = cv2.aruco.estimatePoseSingleMarkers(
                 marker_corners, MARKER_SIZE, cam_mat, dist_coef
             )
@@ -116,45 +114,83 @@ def kamera_aruco():
                 # Nambah titik tengah di ArUco Marker
                 cx = int((top_left[0] + bottom_right[0]) / 2)
                 cy = int((top_left[1] + bottom_right[1]) / 2)
-                cz = 2.2 * round(tVec[i][0][2], 2)
+                cz5 = 3 * round(tVec[i][0][2], 2)
+                cz18 = 0.6 *round(tVec[i][0][2], 2)
                 cv2.circle(frame, (cx, cy), 5, (0, 0, 255), -1)
 
                 #distance
-                cv2.putText(
-                    frame,
-                    f"Dist: {2.2 * round(tVec[i][0][2], 2)}",
-                    (0, 30),
-                    cv2.FONT_HERSHEY_PLAIN,
-                    1.5,
-                    (255, 25, 25),
-                    2,
-                    cv2.LINE_AA,
-                )
+                if ids == 5 :
+                    #nilai distance
+                    cv2.putText(
+                        frame,
+                        f"Dist: {(3 * round(tVec[i][0][2], 2))}",
+                        (0, 30),
+                        cv2.FONT_HERSHEY_PLAIN,
+                        1.5,
+                        (255, 25, 25),
+                        1,
+                        cv2.LINE_AA,
+                    )
 
-                #nilai x
-                cv2.putText(
-                    frame,
-                    f"x:{cx}",
-                    (0, 65),
-                    cv2.FONT_HERSHEY_PLAIN,
-                    1.5,
-                    (5, 255, 40),
-                    2,
-                    cv2.LINE_AA,
-                )
+                    #nilai x
+                    cv2.putText(
+                        frame,
+                        f"x:{cx}",
+                        (320, 30),
+                        cv2.FONT_HERSHEY_PLAIN,
+                        1.5,
+                        (5, 255, 40),
+                        1,
+                        cv2.LINE_AA,
+                    )
 
-                #nilai y
-                cv2.putText(
-                    frame,
-                    f"y:{cy}",
-                    (75, 65),
-                    cv2.FONT_HERSHEY_PLAIN,
-                    1.5,
-                    (10, 10, 255),
-                    2,
-                    cv2.LINE_AA,
-                )
+                    #nilai y
+                    cv2.putText(
+                        frame,
+                        f"y:{cy}",
+                        (420, 30),
+                        cv2.FONT_HERSHEY_PLAIN,
+                        1.5,
+                        (10, 10, 255),
+                        1,
+                        cv2.LINE_AA,
+                    )
+                if ids == 18 :
+                    #nlai distacne id 18
+                    cv2.putText(
+                        frame,
+                        f"Dist: { 0.6 * round(tVec[i][0][2], 2)}",
+                        (0, 65),
+                        cv2.FONT_HERSHEY_PLAIN,
+                        1.5,
+                        (255, 25, 25),
+                        1,
+                        cv2.LINE_AA,
+                    )
 
+                    # nilai x 18
+                    cv2.putText(
+                        frame,
+                        f"x:{cx}",
+                        (320, 65),
+                        cv2.FONT_HERSHEY_PLAIN,
+                        1.5,
+                        (5, 255, 40),
+                        1,
+                        cv2.LINE_AA,
+                    )
+
+                    # nilai y 18
+                    cv2.putText(
+                        frame,
+                        f"y:{cy}",
+                        (420, 65),
+                        cv2.FONT_HERSHEY_PLAIN,
+                        1.5,
+                        (10, 10, 255),
+                        1,
+                        cv2.LINE_AA,
+                    )
                 cv2.putText(
                     frame,
                     f"id: {ids[0]}",
@@ -170,14 +206,13 @@ def kamera_aruco():
             global x,y,z
             x = round(tVec[i][0][0], 1)
             y = round(tVec[i][0][1], 1)
-            z = 2.2 * round(tVec[i][0][2], 2)
+            z = 3 * round(tVec[i][0][2], 2)
             titik = cx, cy
 
             if ids == 5 :
                 id = 5
-
-        if marker_IDs == None:
-                id = 0
+            if ids == 18:
+                id = 18
 
         cv2.imshow("frame", frame)
         key = cv2.waitKey(1)
