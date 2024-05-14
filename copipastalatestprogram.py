@@ -80,14 +80,14 @@ def cari_aruco():
         global a
         a = 0
         # ArUco setelah takeoff (diatas 200cm)
-        if vehicle.location.global_relative_frame.alt > 1.5:
+        if vehicle.location.global_relative_frame.alt > 2.2:
 
-            if id == 5 and cz5 <= 450 and cz5 >= 150:
+            if id == 5 and cz5 <= 450 and cz5 >= 200:
                 print("x : ", cx5, "y : ", cy5, "tinggi: ", vehicle.location.global_relative_frame.alt)
 
                 if cx5 >= 350 and cx5 <= 640:
                     print("ID = 5 Terbaca, bergerak mundur")
-                    velocity(-0.2,0, 0, 1)
+                    velocity(-0.2, 0, 0, 1)
                 elif cx5 <= 290 and cx5 >= 0:
                     print("ID = 5 Terbaca, bergerak maju")
                     velocity(0.2, 0, 0, 1)
@@ -105,9 +105,9 @@ def cari_aruco():
                     velocity(0, 0, 0.3, 1)
 
         # ArUco dibawah 100 menggunakan id 18
-        if vehicle.location.global_relative_frame.alt < 1.5:
+        if vehicle.location.global_relative_frame.alt < 2.2:
 
-            if id == 18 and cz18 <= 150 and cz18 >= 50:
+            if id == 18 and cz18 <= 200 and cz18 >= 50:
 
                 print("x : ", cx18, "y : ", cy18, "tinggi: ", vehicle.location.global_relative_frame.alt)
 
@@ -126,15 +126,36 @@ def cari_aruco():
 
                 elif cx18 >= 130 and cx18 <= 160 and cy18 >= 210 and cy18 <= 270:
                     print("Masuk toleransi, bergerak turun")
-                    velocity(0, 0, 0.1, 1)
+                    velocity(0, 0, 0.2, 1)
+
+            if id == 18 and cz18 <= 50 :
+
+                print("x : ", cx18, "y : ", cy18, "tinggi: ", vehicle.location.global_relative_frame.alt)
+
+                if cx18 >= 160 and cx18 <= 640:
+                    print("ID = 18 Terbaca, bergerak mundur 18")
+                    velocity(-0.1, 0, 0, 1)
+                elif cx18 <= 130 and cx18 >= 0:
+                    print("ID = 18 Terbaca, bergerak maju 18")
+                    velocity(0.1, 0, 0, 1)
+                elif cy18 <= 210 and cy18 >= 0:
+                    print("ID = 18 Terbaca, bergerak kanan 18")
+                    velocity(0, 0.1, 0, 1)
+                elif cy18 >= 270 and cy18 <= 480:
+                    print("ID = 18 Terbaca, bergerak kiri 18")
+                    velocity(0, -0.1, 0, 1)
+
+                elif cx18 >= 130 and cx18 <= 160 and cy18 >= 210 and cy18 <= 270:
+                    print("Masuk toleransi, bergerak turun")
+                    velocity(0, 0, 0.3, 1)
 
         #######################################  LANDING  ###################################################
 
-        if id == 18 and cx18 >= 130 and cx18 <= 160 and cy18 >= 210 and cy18 <= 270 and cz18 <= 100 and cz18 >= 50:
-            print("Diatas ArUco,Landing, A5")
-            vehicle.mode = VehicleMode("LAND")
-            vehicle.close()
-            exit(1)
+        #if id == 18 and cx18 >= 130 and cx18 <= 160 and cy18 >= 210 and cy18 <= 270 and cz18 <= 100 and cz18 >= 50:
+        #    print("Diatas ArUco,Landing, A5")
+        #    vehicle.mode = VehicleMode("LAND")
+        #    vehicle.close()
+        #    exit(1)
 
 
 def kamera_aruco():
@@ -185,8 +206,6 @@ def kamera_aruco():
                     bottom_right5 = corners5[2].ravel()
                     bottom_left5 = corners5[3].ravel()
 
-
-
                     # Nambah titik tengah di ArUco Marker
                     cx5 = int((top_left5[0] + bottom_right5[0]) / 2)
                     cy5 = int((top_left5[1] + bottom_right5[1]) / 2)
@@ -229,7 +248,7 @@ def kamera_aruco():
                         cv2.LINE_AA,
                     )
 
-                    #id
+                    # id
                     cv2.putText(
                         frame,
                         f"id: {ids[0]}",
@@ -240,10 +259,10 @@ def kamera_aruco():
                         2,
                         cv2.LINE_AA,
                     )
-                   
+
             for ids, corners18, i in zip(marker_IDs, marker_corners, total_markers):
                 if ids == 18:
-                    #kotak ijo ArUco 18
+                    # kotak ijo ArUco 18
                     cv2.polylines(
                         frame, [corners18.astype(np.int32)], True, (0, 255, 0), 4, cv2.LINE_AA
                     )
@@ -295,7 +314,7 @@ def kamera_aruco():
                         1,
                         cv2.LINE_AA,
                     )
-                    #id
+                    # id
                     cv2.putText(
                         frame,
                         f"id: {ids[0]}",
@@ -312,7 +331,7 @@ def kamera_aruco():
             x = round(tVec[i][0][0], 1)
             y = round(tVec[i][0][1], 1)
             z = 3 * round(tVec[i][0][2], 2)
-            
+
             if ids == 5:
                 id = 5
             if ids == 18:
