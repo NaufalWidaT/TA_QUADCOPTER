@@ -1,1 +1,2 @@
-Yang main41 print kanan kiri maju mundur kebalik
+- Yang main41 print kanan kiri maju mundur kebalik + no safety
+- main41,5 ndandani print diatas, + safety 
