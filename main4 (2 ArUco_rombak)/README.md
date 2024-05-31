@@ -8,4 +8,6 @@
 
 - main44 di gerakqc tambahi while True, lag untuk pembacaan kamera (tanpa take off)
 
-- main45 di deteksi_aruco ditambahi while True, pembacaan lancar, take off lancar, tapi saat terbaca 2 ArUco lag parah
+- main45 di deteksi_aruco ditambahi while True, pembacaan lancar, take off lancar, tapi saat terbaca 2 ArUco lag parah, gerakan qc juga tersendat-sendat (probs PID)
+
+- main46 coba tanpa thread, rung njajal
