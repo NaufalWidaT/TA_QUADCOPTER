@@ -12,4 +12,4 @@
 
 - main46 coba tanpa thread, work, tapi rung iso landing
 
-- main47 nambahi program land, belum coba
+- main47 nambahi program land berdasarkan pembacaan ketinggian (vehicle.location.global_relative_frame.alt), belum coba
