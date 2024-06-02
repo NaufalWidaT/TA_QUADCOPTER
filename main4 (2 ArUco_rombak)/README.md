@@ -10,4 +10,6 @@
 
 - main45 di deteksi_aruco ditambahi while True, pembacaan lancar, take off lancar, tapi saat terbaca 2 ArUco lag parah, gerakan qc juga tersendat-sendat (probs PID)
 
-- main46 coba tanpa thread, rung njajal
+- main46 coba tanpa thread, work, tapi rung iso landing
+
+- main47 nambahi program land, belum coba
