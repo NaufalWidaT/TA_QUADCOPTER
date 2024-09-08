@@ -1,0 +1,586 @@
+	%==================================================================
+% Ini adalah bab 3
+% Silahkan edit sesuai kebutuhan, baik menambah atau mengurangi \section, \subsection
+%==================================================================
+
+\chapter[KONSEP RANCANGAN]{\\ KONSEP RANCANGAN}
+
+\section{Metode Penelitian}
+Tugas akhir ini menggunakan metode penelitin dengan jenis metode \textit{Engineering Design Process (EDP)}. Metode \textit{EDP} adalah serangkaian proses yang diikuti oleh para teknisi (\textit{engineer}) untuk mendapatkan solusi dari suatu permasalahan \citep{scbuddies}.
+
+Metode penelitian ini dipilih karena ini karena memiliki tahap-tahap yang relevan untuk digunakan dalam pengembangan penelitian ini. Berikut merupakan penjabaran tahap-tahapan dari model  pada penelitian ini:
+
+\begin{packed_enum}
+	\item Tahap \textit{Define The Problem}
+\\Diawali dengan tahap menjabarkan masalah yang akan dicari solusinya, pada penelitian ini memiliki masalah utama yaitu kurangnya kemampuan quadcopter untuk melakukan landing pada landasan yang bergerak. Hal diperlukan apabila ingin membuat sebuah quadcopter yang dapat digunakan dalam bidang industri, militer maupun personal seperti pengiriman barang ke kapal kargo di tengah laut.
+	\item Tahap \textit{Backgorund Research}
+\\Tahap ini merupakan tahap mencari referensi dan kajian pustaka yang relevan mengenai masalah diatas, bisa dengan membaca jurnal, buku, penelitian sebelumnya, dan lain-lain.
+	\item Tahap \textit{Specify Requirements}
+\\Tahap ini adalah tahap untuk menentukan kebutuhan alat-alat dan bahan yang diperlukan dalam penelitian, Kebutuhan yang diperlukan pada penelitian ini adalah kebutuhan hardware, software dan elektronik.
+	\item Tahap \textit{Brainstorm Solutions}
+\\Tahap ini merupakan tahapan untuk mencari solusi dari permasalahan diatas. Dari beberapa referensi yang sudah dibaca, sebenarnya terdapat banyak solusi yang dapat dilakukan seperti menggunakan \textit{Model Predicitve Control} \citep{guo2022autonomous}, menggunakan \textit{GPS} yang telah dikembangkan \citep{khyasudeen2022development}, menggunakan \textit{Computer Vision} yang dipasang pada landasan \citep{goh2019outdoor}, dan lain-lain.
+	\item Tahap \textit{Choosing the best Solution}
+\\ Tahap ini adalah kelanjutan dari tahap sebelumnya, yang merangkul seluruh referensi diatas, dan mengambil solusi yang paling baik. Dari selurub referensi yang diambil, digunakan \textit{ArUco marker} yang dibantu oleh \textit{Computer Vision} pada penelitian ini.
+	\item Tahap \textit{Build a Prototype}
+\\ Membuat desain prototipe alat untuk digunakan dalam uji coba pada tahap selanjutnya, dengan menggabungkan seluruh kebutuhan yang telah ditentukan sebelumnya.
+	\item Tahap \textit{Test and Redesign}
+\\ Merupakan tahap Uji coba dari berbagai aspek, seperti uji coba komponen, uji coba misi penerbangan, uji coba landasan, dan lain-lain. Uji coba dilakukan agar mendapati hasil akhir penelitian yang sempurna.
+	\item Tahap \textit{Communicate Result}
+\\Tahap akhir ini berisikan tahap evaluasi mengenai alat yang telah dibuat, alat ini harus melewati uji coba dan nilai yang didapat dari uji coba tersebut harus atau mendekati sempurna agar dapat di produksi.
+\end{packed_enum}
+
+\section{Penentuan Kebutuhan}
+Penentuan kebutuhan yang diperlukan pada penelitian ini dilakukan dengan cara mencari, mengumpulkan, dan mengidentifikasi keperluan dan tujuan dari sistem pendaratan \textit{quadcopter}. Penentuan kebutuhan disini dibagi menjadi 3 yaitu penentuan kebutuhan \textit{hardware}, \textit{software} dan elektronik.
+
+Kebutuhan komponen yang digunakan pada penelitian ini dijabarkan pada \cref{tab:penentuankebutuhan} dibawah ini.
+
+\begin{table}[h]
+	\centering
+	\caption{Berbagai kebutuhan komponen yang akan digunakan beserta keterangan modelnya}
+	\label{tab:penentuankebutuhan}
+	\begin{tabular}{|l|l|l|} 
+		\hline
+		\textbf{Hardware}  & \textbf{Elektronik}     & \textbf{Software}  \\ 
+		\hline
+		Frame F450         & PixHawk 2.4.8           & PyCharm            \\ 
+		\hline
+		Baut M2            & Ublox M10q              & MissionPlanner     \\ 
+		\hline
+		GPS Stand          & ReadyToSky 2212 920Kv   & DroidCam           \\ 
+		\hline
+		Propeller 9450 DJI & ESC Cyclone 35A         &                    \\ 
+		\hline
+		Landing Skit       & Batera Li-Po 4c 2200mAh &                    \\ 
+		\hline
+		Damper APM 2.6     & FS-I6 dan FS-IA6B RC    &                    \\ 
+		\hline
+		ArUco Marker       & Kamera depan Smartphone &                    \\ 
+		\hline
+		& Telemetry 433MHz         &                    \\
+		\hline
+	\end{tabular}
+\end{table}
+
+Setelah menentukan kebutuhan untuk setiap keperluan, dibawah ini merupakan penjelasan dari masing-masing komponen yang akan digunakan:
+
+\begin{packed_enum}
+	\item Hardware
+	\begin{packed_item}
+		\item[a.] \textit{Frame} F450
+		\\ Sebagai badan quadcopter, sekaligus tempat untuk pemasangan seluruh komponen elektronik. Jenis \textit{frame} yang diambil adalah jenis F450 yang memiliki 4 ujung sisi sebagai letak pemasangan motor brushless.
+		\item [b.] Baut M2
+		\\ Baut yag digunakan untuk mengencangkan pemasangan komponen \textit{hardware} dan elektronik sekaligus memudahkan proses bongkar pasang.
+		\item [c.] \textit{Stand} \textit{GPS}
+		\\ Stand yang berfungsi sebagai tempat \textit{GPS} agar terlindung dari hal-hal yang mampu mengancam kondisi \textit{GPS}. Stand \textit{GPS} ini dipasang di sebelah kanan dari \textit{FC}.
+		\item [d.] \textit{Propeller} 9450 DJI
+		\\ Alat yang digunakan untuk menerbangkan quadcopter. \textit{Propeller} dipasang diatas motor brushless agar ikut berputar saat motor berputar. \textit{Propeller} yang digunakan dalam penelitian ini adalah propeler dengan ukuran 10 inci.
+		\item [e.] \textit{Landing skit}
+		\\ Landing skit melindungi komponen yang terpasang dibagian bawah \textit{quadcopter} dari sentuhan tanah guna menjaga keamanan komponen yang berada di bawah \textit{quadcopter}.
+		\item [f.] Damper PixHawk 
+		\\ Sebuah peredam getaran yang dipasang dibawah \textit{flight controller} yang berguna melindungi \textit{flight controller} dari getaran sehingga memaksimalkan pembacaan sensor pada \textit{flight controller}.
+		\item [g.] \textit{ArUco Marker}
+		\\ \textit{Marker} yang digunakan untuk operasi penginderaan, sekaligus landasan untuk quadcopter. Digunakan 2 \textit{ArUco Marker} pada penelitian ini.
+	\end{packed_item}
+	
+	\item Elektronik
+	\begin{packed_item}
+		\item [a.]\textit{Flight Controller} PIXHAWK 2.4.8.
+		\\ \textit{Flight Controller} ini dipilih karena dapat di program menggunakan bahasa pemrograman \textit{python} 3.7, harganya cukup terjangkau dan pengaplikasiannya yang mudah. FC ini memiliki banyak pin khusus yang memiliki fungsinya masing-masing.
+		\item [b.]\textit{GPS} Ublox M10Q
+		\\ Pembaca navigasi dan lokasi untuk quadcopter. \textit{GPS} ini dipilih karena memiliki banyak komponen yang sudah terintegrasi seperti \textit{Barometer}, \textit{Magnetometer} dll. Banyak fitur dari quadcopter yang menggunakan MissionPlanner bergantung pada komponen ini, seperti mode terbang. \textit{GPS} dipasang didalam tabung \textit{Stand GPS}.
+		\item [c.]\textit{Brushless Motor} Readytosky 2212 920Kv
+		\\ Komponen aktuator yang menggerakkan \textit{propeller} agar \textit{quadcopter} dapat terbang. Motor dengan spesifikasi ini dipilih karena cukup untuk mengangkat beban hingga 1,6 Kg. Ke empat motor \textit{brushless} dipasang pada ujung setiap lengan \textit{frame quadcopter}.
+		\item [d.]\textit{ESC} Cyclone 35A
+		\\ Komponen yang mengatur kecepatan dari motor, dengan data input didapat dari \textit{Flight control}. \textit{ESC} ini dipilih karena mampu mengirim arus hingga 35 A dan memeiliki kompatibilitas dengan banyak model motor. \textit{ESC} dipasang pada bagian bawah setiap lengan \textit{frame} .
+		\item [e.]Baterai \textit{LiPo} 3s/4s
+		\\ Berperan sebagai supply tegangn utama \textit{quadcopter}. Digunakan baterai \textit{LiPo} 4S yang memiliki 4 \textit{cell} yang masing-masing \textit{cell} bertegangan 3.75V dengan tegangan max keseluruhan \textit{cell} adalah 16.1 V. Baterai ini memiliki harga yang cukup murah dan mampu mensupplai quadcopter untuk beberapa kali proses pengujian. Baterai dipasang pada bagian tengah yang kosong dari \textit{frame}, tepat dibawah \textit{FC}.
+		\item [f.]\textit{Radio Control} FlySky F6
+		\\ \textit{Radio Control} digunakan untuk memberikan perintah secara manual kepada \textit{flight controller} agar dapat diterbangkan secara manual. \textit{Radio Control} FlySky f6 dipilih karena memiliki tuas dan switch yang cocok untuk menerbangkan quadcopter. \textit{Reciever} dari \textit{Radio Control} ini dipasang dibagian bawah \textit{frame}, dibawah baterai.
+		\item [g.]\textit{Telemetry} 433MHz
+		\\ Komponen komunikasi antara \textit{quadcopter} dengan \textit{GCS} yang memungkinkan untuk komunikasi tanpa kabel. Komponen ini dipilih karena jarak tangkap komunikasi yang jauh dan cukup untuk digunakan pada penelitian ini. \textit{Telemetry} dipasang pada bagian kiri \textit{FC}, dengan antennanya membentang ke belakang.
+		\item [h.]Kamera
+		\\ Kamera dipasang di bagian bawah quadcopter menghadap ke bawah pula. Digunakan sebagai pengindera saat menggunakan \textit{ArUco marker}. Kamera yang digunakan adalah kamera depan dari smartphone \textit{Samsung Galaxy a10s} yang memiliki resolusi \textit{8MP}. \textit{Smartphone} ini dipasang pada bagian bawah \textit{frame}.
+		\item [i.]\textit{Smartphone Handler}
+		\\ Untuk menggabungkan \textit{smartphone} pada \textit{quadcopter}, dibutuhkan alat untuk memasangkan \textit{smartphone} pada \textit{quadcopter} agar tidak jatuh saat mengudara.
+		\item [j.] \textit{Buzzer}
+		\\ Indikator suara dari \textit{flight control}. \textit{Buzzer} memiliki peranyang cukup krusial yang mampu menandakan setiap keadaan \textit{quadcopter}, seperti saat \textit{GPS} telah membaca lokasi, hingga kesiapan \textit{ESC} dalam memutar motor.
+	\end{packed_item}
+	
+	\item Software
+	\begin{packed_item}
+		\item [a.] Ardupilot MissionPlanner
+		\\ Berfungsi sebagai \textit{GCS}. Aplikasi ini dipilih karena dapat mengatur segala kebutuhan \textit{flight control} mulai dari penginstallan \textit{firmware}, kalibrasi \textit{accelerometer}, kalibrasi kompas, mengatur mode terbang, dll.
+		\item [b.] PyCharm \textit{Community Edition}
+		\\ PyCharm merupakan \textit{software} untuk menjalankan program dari kode yang sudah diketik. PyCharm digunakan untuk penelitian ini karena penggunaannya yang sederhana dengan tampilan dan bahasa yang mudah dipahami.
+		\item [c.]DroidCam
+		\\ DroidCam dipilih karena dapat menghubungkan kamera pada \textit{smartphone} ke laptop. Komunikasi diantaranya menggunakan \textit{Wi-Fi}, sehingga dierlukan jaringan yang stabil saat menggunakannya.
+	\end{packed_item}
+\end{packed_enum}
+
+\section{Perencanaan Pengembangan Sistem}
+Rancangan pengembangan sistem dalam menghasilkan sistem pendaratan \textit{UAV} secara otonom pada landasan bergerak adalah kunci penting dari proses pengembangan. Rancangan ini mencakup rencana dan desain sistem secara keseluruhan, termasuk perangkat keras, perangkat lunak dan alat elektronik yang akan digunakan.
+
+\subsection{\textit{Hardware}}
+Terdapat 2 rancangan \textit{hardware} yaitu desain 3D dan desain objek yang pada penelitian ini menggunakan \textit{ArUco Marker}.
+\begin{packed_enum}
+	\item Desain 3D
+	\\ Rancangan \textit{hardware} dalam desain 3D seperti pada \cref{fig:3dframe} dikerjakan untuk mennetukan tata letak komponen sebelum dipasang secara paten, sehingga dapat memberikan gambaran letak-letak yang aman untuk memasang komponen.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.2]{3dframe}
+		\caption{Desain Frame Quadcopter (Sumber: Taufiq, 2024)}
+		\label{fig:3dframe}
+	\end{figure}
+	
+	\item Desain Objek pendaratan
+	\\ Desain Objek disini merupakan desain landasan yang akan digunakan sebagai landasan bergerak \textit{quadcopter}, dengan tambahan \textit{ArUco Marker} diatasnya. Pembuatan desain objek landasan dilakukan dengan menentukan \textit{ID ArUco} terlebih dahulu dari kamus \textit{ArUco Marker} yang digunakan. Bahan yang digunakan sebagai landasan ini adalah kertas kardus. Kertas kardus dipilih karena mudah ditemukan di lingkungan sekitar, memiliki daya tahan yang cukup untuk menjadi landasan quadcopter dan ringan untuk digerakkan. Digunakan 2 kotak kertas kardus yang di gabungkan menjadi satu kotak kardus yang lebih tebal, sehingga meningkatkan daya tahan kertas kardus tersebut. 	
+	\\ Diatas kertas kardus dilekatkan sebuah \textit{ArUco Marker} sebagai objek deteksi \textit{quadcopter}, yang menjadi titik tengah dari pendaratan presisi \textit{quadcopter}. \textit{ArUco Marker} dibuat dengan bahan kertas arturo berwarna hitam pekat seperti pada \cref{fig:arucoasturo2} dibawah. Kertas asturo dipilh karena bahannya yang cukup tebal dan memiliki warna hitam yang apabila di desain, dipotong menggunakan gunting atau cutter hingga menyerupai salah satu ID ArUco. Penelitian ini menggunakan 2 kertas asturo dengan kriteria berwarna hitam pekat di satu sisi dan berwana putih bersih di sisi lainnya. Hal ini berguna agar setelah kertas asturo pertama dipotong, lalu ditempelkan ke sisi putih kertas asturo ke-2, \textit{ArUco Marker} dapat terbaca secara jelas oleh kamera.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}[b]{0.45\textwidth}
+			\centering
+			\includegraphics[scale=0.2]{kertasasturo}
+			\caption{Kertas asturo hitam}
+			\label{fig:kertasasturo}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.45\textwidth}
+			\centering
+			\includegraphics[scale=0.2]{asturoaruco}
+			\caption{Kertas asturo dan desain \textit{ArUco Marker}}
+			\label{fig:asturoaruco}
+		\end{subfigure}
+		\caption{Kertas asturo (kiri) dan Kertas asturo yang hendak dipotong diberi desain \textit{ArUco marker} diatasnya (kanan)}
+		\label{fig:arucoasturo2}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.2]{bandingarucokardus}
+		\caption{Perbandingan Ukuran \textit{ArUco Marker} dan kertas Kardus}
+		\label{fig:bandingarucokardus}
+	\end{figure}
+	
+	
+	Ukuran kertas kardus yang digunakan harus lebih besar dari ukuran \textit{ArUco Marker}, ukuran nyata yang digunakan pada penelitian ini adalah 45cm x 60cm untuk kedua kertas kardus, dan 40cm x 40cm untuk \textit{ArUco Marker} dengan id 5, 10cm x 10cm untuk \textit{ArUco Marker} dengan id 18, seperti pada \cref{fig:bandingarucokardus}. Ketiga bahan lalu digabungkan menjadi satu, seperti pada \cref{fig:arucokardusgabung} dibawah ini.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.2]{arucokardusgabung}
+		\caption{Skenario penggabungan kertas kardus dan kertas \textit{ArUco Marker}}
+		\label{fig:arucokardusgabung}
+	\end{figure}
+\end{packed_enum}
+
+\subsection{\textit{Software}}
+Desain \textit{software} terdiri dari beberapa proses, salah satunya adalah proses  penginstallan \textit{firmware} untuk \textit{Flight Control}, hingga pembuatan algoritma pendeteksi \textit{ArUco Marker} untuk pedaratan. Pembuatan algoritma dilakukan di aplikasi Pycharm dengan bahasa pemrograman python pada versi 3.7.
+\begin{packed_enum}
+	\item ArduPilot MissionPlanner
+	\\ ArduPilot Mission Planner dipilih karena penggunaan dan implementasi pada \textit{quadcopter} yang mudah, seperti saat penginstalan \textit{firmware} dan konfigurasi \textit{Flight Control}.
+	\\ Hal pertama yang dilakukan adalah menghubungkan \textit{Flight Control} dengan \textit{PC} menggunakan kabel \textit{USB} tanpa mengklik tombol \textbf{Connect} karena proses ini hendak menginstall \textit{firmware} pada \textit{Flight Control}. Selanjutnya memilih \textit{port} pada \cref{fig:mpconnect}yang terhubung pada \textit{Flight Control}, dengan \textit{baud rate} yang cocok (115200 untuk penggunaan kabel \textit{USB}, 57600 untuk penggunaan telemetri).
+		
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.4]{mpconnect}
+		\caption{Mengkonfigurasi \textit{port} dan \textit{baud rate} untuk menghubungkan \textit{Flight Control} dengan \textit{PC} (Sumber: ardupilot.org)}
+		\label{fig:mpconnect}
+	\end{figure}
+	
+	Setelah itu, pergi ke menu \textbf{Setup} seperti pada \cref{fig:mpinstfirm}, dan pilih menu \textbf{Install Firmware}. Pilih jenis frame yang akan digunakan, pada penelitian ini, digunakan jenis \textit{frame QUAD-X}.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.3]{mpinstfirm}
+		\caption{Memilih jenis frame (Sumber: ardupilot.org)}
+		\label{fig:mpinstfirm}
+	\end{figure}
+	
+	Setelah memilih jenis \textit{frame} yang digunakan, Mission Planner akan mendeteksi jenis \textit{board} pada \textit{flight controll}, dengan memunculkan \textit{dialog box} (Pada \cref{fig:mpconnect2}) yang menyuruh untuk mencabut \textit{USB} lalu mengeklik \textbf{OK} pada \textit{dialog box} tersebut, dan memasang kembali kabel \textit{USB} dengan \textit{Flight Control}.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.3]{mpconnect2}
+		\caption{\textit{Dialog box} yang muncul setelah memilih jenis \textit{frame} (Sumber: ardupilot.org)}
+		\label{fig:mpconnect2}
+	\end{figure}
+	
+	Setelah melakukan deteksi \textit{board}, layar akan memunculkan pilihan \textit{firmware} seperti pada \cref{fig:mppilihfirm}, yang dapat di klik untuk dipilih menurut penggunaan \textit{flight control} yang digunakan. Pada penelitian ini digunakan \textit{Flight Control} PixHawk yang menggunakan \textit{firmware} bernama Pixhawk1.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{mppilihfirm}
+		\caption{Memilih \textit{firmware} yang akan digunakan (Sumber: ardupilot.org)}
+		\label{fig:mppilihfirm}
+	\end{figure}
+	
+	Setelah memilih \textit{firmware}, akan muncul tulisan \textbf{Upload Done}, yang menandakan penginstalan \textit{firmware} telah berhasil dan dapat dihubungkan dengan menekan \textbf{Connect} pada layar awal.
+	
+	Didalam aplikasi ini juga banyak fitur-fitur yang dapat diakses yang mendukung pengembangan penelitian ini seperti kalibrasi accelerasi, kompas, \textit{PID tuning}, mode terbang, dll.
+	
+	\item PyCharm
+	\\ Aplikasi yang digunakan untuk menulis program yang akan dikirim ke \textit{Flight Control}.
+	\\ Sebelum masuk ke pengetikan kode program, sebelumnya harus dilakukan peginstallan berbagai \textit{library} yang akan digunakan pada aplikasi ini, seperti \textit{library} \textbf{Dronekit} dan \textbf{OpenCV}.
+	\\ Dikarenakan bahasa pemrograman yang digunakan adalah bahasa pemrograman \textit{python}, sebelumnya harus dicari terlebih dahulu versi \textit{python} yang mendukung \textit{library-library} tersebut, pada penelitian ini digunakan \textit{python} versi 3.7 karena versi tersebut mendukung \textit{library dronekit} yang akan digunakan untuk menerbangkan quadcopter dengan kode program.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.4]{pycinslib}
+		\caption{Tampilan untuk menginstall \textit{library} pada PyCharm}
+		\label{fig:pycinslib}
+	\end{figure}
+	
+	Untuk menginstall \textit{library}, pergi ke menu \textbf{File-Settings} seperti pada \cref{fig:pycinslib}, lalu pilih pada \textbf{Project-Python Interpreter}. Pada halaman ini, ditunjukkan banyak sekali \textit{libary} yang sudah terinstall, pengguna dapat menambahkan \textit{library} yang dinginkan dengan cara mengklik tombol \textbf{+} diatas baris \textbf{Package}, lalu mencari dan memilih \textit{library} yang akan di install.
+	
+	
+\end{packed_enum}
+
+\section{Konsep Pendaratan \textit{Quadcopter}}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{flowchart}
+	\caption{\textit{Flowchart} Pendaratan \textit{Quadcopter} pada landasan bergerak}
+	\label{fig:flowchart}
+\end{figure}
+
+Berdasarkan \textit{flowchart} pada \cref{fig:flowchart} diatas, setelah \textit{quadcopter} diaktifkan (\textit{arming}) dan lepas landas (\textit{take off}), \textit{quadcopter} akan terbang menuju lokasi landasan yang ditandai dengan \textit{ArUco Marker}. Setelah \textit{ArUco Marker} ditemukan, \textit{quadcopter} akan melakukan koreksi posisi berdasarkan pembacaan dari kamera. Jika \textit{quadcopter} telah mencapai lokasi landasan namun tidak dapat menemukan \textit{ArUco Marker}, maka \textit{quadcopter} akan berputar secara perlahan hingga kamera menemukan \textit{ArUco Marker}.
+
+Setelah posisi \textit{quadcopter} berada di titik yang sudah ditentukan dari landasan \textit{ArUco Marker} (berdasarkan penginderaan kamera), \textit{quadcopter} akan menurunkan ketinggian hingga jarak ketinggian antara \textit{quadcopter} dengan landasan bernilai 0 atau \textit{quadcopter} telah mendarat berada tepat diatas landasan, dan akan mematikan sistem \textit{arming}.
+Sejak proses koreksi posisi, Landasan akan digerakkan secara manual ke satu atau berbagai arah sehingga mengharuskan \textit{quadcopter} melakukan koreksi posisi setiap kali \textit{quadcopter} berada diluar titik yang sudah ditentukan.
+
+Proses koreksi posisi, dilakukan dengan cara membandngkan titik tengah \textit{ArUco Marker} yang didapat dari penginderaan yang ditangkap oleh kamera. Memanfaatkan \textit{frame} dari \textit{library opecv-contrib} pada aplikasi pycharm dengan bahasa pemrograman \textit{python} 3.7, dibuatlah sebuah program yang dapat mengatur \textit{quadcopter} untuk bergerak menggunakan kontrol \textit{PID} berdasarkan posisi landasan ArUco Marker yang dideteksi oleh kamera.
+
+\subsection{Konsep Pembacaan \textit{ArUco Marker} dan Gerakan \textit{Quadcopter}}
+Proses penentuan gerakan \textit{quadcopter} didasari dari pembacaan posisi \textit{ArUco marker} yang terdeteksi. Pendeteksian \textit{ArUco marker} dilakukan untuk mencari \textit{error} pada jarak \textit{quadcopter} dan \textit{AruCo Marker} dengan asumsi titik idealnya adalah berada ditengah \textit{frame}, dengan ukuran \textit{frame} yang digunakan pada \textit{GCS} adalah berukuran 640x480 dalam satuan \textit{pixel} dengan titik tengah berada pada titik 320 untuk sumbu X dan 240 untuk sumbu Y (Visualisasi pada \cref{fig:framearuco}). Penghitungan \textit{error} dilakukan dengan cara mencari selisih jarak antara titik tengah \textit{frame} dengan titik tengah \textit{ArUco Marker}, dan \textit{quadcopter} akan bergerak dengan kecepatan dan arah yang sudah ditentukan sesuai dengan perhitungan jarak tersebut.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{framearuco}
+	\caption{Ukuran dan titik tengah \textit{frame}, dan letak ideal \textit{ArUco Marker}}
+	\label{fig:framearuco}
+\end{figure}
+
+
+Pada \textit{ArUco marker} sendiri harus dicari titik tengah dari \textit{marker}, dengan cara menggunakan program \textit{pose estimation} yang diambil dari \textit{library ArUco} itu sendiri dan memanggil fungsi \textit{corner} untuk menentukan ke 4 titik pojok dari \textit{ArUco} marker. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{titikaruco}
+	\caption{Berdasarkan \textit{Pose Estimaton}, ditentukan titik pojok ArUco Marker A, B, C, dan D}
+	\label{fig:titikaruco}
+\end{figure}
+
+Asumsikan \cref{fig:titikaruco} adalah ke 4 titik yang sudah ditentukan, titik tengah dari \textit{ArUco marker} dapat dicari dengan mengambil nilai x dan y dari titik A menuju ke titik D, dan membagi 2 nilai tersebut dengan catatan hasil nilai x dan y dimasukkan ke variabel yang berbeda.
+
+Setelah mendapatkan titik tengah \textit{ArUco marker}, dapat dilakukan perncarian selisih dari nilai titik tengah \textit{ArUco Marker} dengan titik tengah \textit{frame} dengan rumus perhitungan seperti dibawah ini. \\
+
+Untuk mencari selisih sumbu x
+\begin{equation}
+	jfx = fX - cX
+	\label{eq:selsumx}
+\end{equation}
+
+Untuk mencari selisih sumbu y
+\begin{equation}
+	jfy = fY - cY
+	\label{eq:selsumy}
+\end{equation}
+
+Dengan keterangan :
+
+\begin{packed_item}
+	\item \({cX}\) merupakan nilai titik tengah sumbu x yang terbaca dari \textit{ArUco Marker}
+	\item \({cY}\) merupakan nilai titik tengah sumbu y yang terbaca dari \textit{ArUco Marker}
+	\item \({fX}\) merupakan nilai titik tengah sumbu x pada \textit{frame} (nilai = 320)
+	\item \({fY}\) merupakan nilai titik tengah sumbu y pada \textit{frame} (nilai =240)
+\end{packed_item}
+
+
+Dengan catatan nilai selisih kedua sumbu ini dapat bernilai positif dan negatif.\\ 
+
+Ditentukan juga arah depan dari quadcopter pada frame untuk mempermudah proses penentuan gerakan, \cref{fig:framearahqc} merupakan arah \textit{quadcopter} berdasarkan \textit{frame} pada \textit{OpenCV}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{framearahqc}
+	\caption{Arah depan \textit{quadcopter}, beserta penjelasan sumbu berdsasarkan tampilan \textit{frame}}
+	\label{fig:framearahqc}
+\end{figure}
+
+Kecepatan gerak \textit{quadcopter} juga dipengaruhi oleh nilai selisih ini, semakin jauh titik pembacaan selisih, maka akan semakin cepat juga \textit{quadcopter} bergerak untuk melakukan koreksi. Dibawah ini merupakan rumus untuk menghitung kecepatan \textit{quadcopter} berdasarkan selisih nilai tengah, dengan acuan kecepatan maksimal ialah 1m/s. \\
+
+Untuk mencari kecepatan \textit{Pitch} (Gerak maju atau mundur) berdasarkan sumbu x
+\begin{equation}
+	pitch = jfx*(1/320)
+\end{equation}
+
+Untuk mencari kecepatan \textit{Roll} (Gerak kanan atau kiri) berdasarkan sumbu y
+\begin{equation}
+	roll = jfy*(1/240)
+\end{equation}
+
+Dengan keterangan :
+
+\begin{packed_item}
+	\item \({jfx}\) merupakan selisih jarak sumbu x dari kedua titik tengah.
+	\item \({jfy}\) merupakan selisih jarak sumbu y dari kedua titik tengah. \\
+\end{packed_item}
+
+Dengan rumus dan konsep pembacaan \textit{ArUco Marker} diatas, dapat diatur gerak \textit{quadcopter} saat mendapati berbagai kondisi pembacaan seperti contoh dibawah ini. Perlu diketahui bahwa proses koreksi \textit{error} dilakukan dengan mengkoreksi sumbu x terlebih dahulu, saat sumbu x sudah berada di titik toleransi, maka barulah \textit{quacopter} akan mengkoreksi sumbu y.
+
+Kondisi 1
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{framex1}
+		\caption{\textit{ArUco Marker} terdeteksi didepan \textit{Quadcopter}}
+		\label{fig:framex1}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.4\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{framex2}
+		\caption{\textit{AruCo Marker} terdeteksi dibelakang \textit{Quadcopter}}
+		\label{fig:framex2}
+	\end{subfigure}
+	\caption{Kondisi 1 Pembacaan \textit{Quadcopter}}
+	\label{fig:kondisi1}
+\end{figure}
+
+Pada kondisi 1 (\cref{fig:kondisi1}), \textit{ArUco Marker} terbaca pada garis lurus sumbu x, dan berada didalam toleransi sumbu y, sehingga \textit{quadcopter} akan melakukan koreksi sumbu x saja hingga posisi \textit{ArUco Marker} berada di titik ideal. 
+Pada Kondisi 1.a, nilai \({jfx}\) akan bernilai positif, sehingga perhitungan rumus \textit{pitch} akan menghasilkan angka yang positif yang akan mengatur gerak \textit{pitch} dari \textit{quadcopter} ke depan, sehingga \textit{quadcopter} akan maju dengan kecepatan berdasarkan pembacaan. 
+Sedangkan pada kondisi 1.b, nilai \({jfx}\) akan bernilai negatif, perhitungan rumus \textit{pitch} akan menghasilkan angka negatif pula yang akan mengatur gerak \textit{pitch quadcopter} ke belakang. \\
+
+Kondisi 2
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{framey1}
+		\caption{\textit{ArUco Marker} terdeteksi disisi kiri \textit{Quadcopter}}
+		\label{fig:framey1}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.4\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{framey2}
+		\caption{\textit{AruCo Marker} terdeteksi disisi kanan \textit{Quadcopter}}
+		\label{fig:framey2}
+	\end{subfigure}
+	\caption{Kondisi 2 Pembacaan Quadcopter}
+	\label{fig:kondisi2}
+\end{figure}
+
+Pada kondisi 2 (\cref{fig:kondisi2}), \textit{ArUco Marker} terbaca pada garis lurus sumbu y, dan berada didalam toleransi sumbu x, sehingga quadcopter akan melakukan koreksi sumbu y saja.
+Untuk perhitungan rumus yang digunakan adalah rumus \textit{roll} dikarenakan koreksi sumbu y, maka pada saat kondisi 2.a, nilai \({jfy}\) akan bernilai negatif, mengatur \textit{quadcopter} untuk bergerak ke kiri (\textit{roll} ke kiri), sedangkan pada kondisi 2.b, \({jfy}\) akan bernilai positif yang akan mengatur \textit{quadcopter} untuk bergerak ke kanan (\textit{roll} ke kanan).
+
+Kondisi 3
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{framexy1}
+		\caption{\textit{ArUco Marker} terdeteksi disisi depan kanan \textit{Quadcopter}}
+		\label{fig:framexy1}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.4\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{framexy2}
+		\caption{\textit{AruCo Marker} terdeteksi disisi depan kiri \textit{Quadcopter}}
+		\label{fig:framexy2}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.4\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{framexy3}
+		\caption{\textit{AruCo Marker} terdeteksi disisi belakang kanan \textit{Quadcopter}}
+		\label{fig:framexy3}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.4\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{framexy4}
+		\caption{\textit{AruCo Marker} terdeteksi disisi belakang kiri \textit{Quadcopter}}
+		\label{fig:framexy4}
+	\end{subfigure}
+	\caption{Kondisi 3 Pembacaan \textit{Quadcopter}}
+	\label{fig:kondisi3}
+\end{figure}
+
+Kondisi 3(\cref{fig:kondisi3}) ini merupakan kondisi posisi serong dari pembacaan \textit{ArUco Marker}, dengan menggunakan perhitungan rumus \textit{pitch} dan \textit{roll}, maka \textit{quadcopter} akan melakukan koreksi \textit{error} berdasarkan pembacaan selisih titik tengah. \textit{Quadcopter} akan melakukan koreksi sumbu x dan y secara bersamaan, membuat quadcopter bergerak memperbaiki koreksi ke 2 arah atau menyerong hingga \textit{ArUco Marker} berada di tengah. Proses koreksi ini berlaku untuk seluruh kondisi 3.
+
+\subsection{Konsep Pembacaan 2 \textit{ArUco Marker}}
+Pada penelitian ini, digunakan 2 \textit{ArUco marker} dengan ukuran yang berbeda, \textit{ArUco marker} yang kecil berfungsi untuk membantu pembacaan kamera apabila \textit{quadcopter} berada di ketinggian tertentu yang tidak memungkinkan untuk melakukan pembacaan \textit{ArUco Marker} besar, sehingga koreksi \textit{error} akan dilakukan pada \textit{ArUco Marker} yang kecil. Visualisasi penempatan 2 \textit{ArUco Marker} ada pada \cref{fig:2arucomarker}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{2arucomarker}
+	\caption{Visualisasi penginderaan \textit{frame} pada penggunaan 2 \textit{ArUco Marker}}
+	\label{fig:2arucomarker}
+\end{figure}
+
+Gambar diatas merupakan visualisasi kedua \textit{ArUco Marker} yang terbaca, saat ketinggian \textit{quadcopter} diatas nilai tertentu dan kedua \textit{ArUco Marker} terbaca, maka \textit{ArUco Marker} yang terbesar akan dijadikan acuan pendaratan otonom.
+
+Sedangkan \cref{fig:2arucomarker2} dibawah adalah kondisi saat \textit{quadcopter} sudah menurunkan ketinggian karena proses koreksi, sehingga pada ketinggian tertentu, \textit{ArUco marker} besar tidak terbaca lagi, sehingga digunakan lah \textit{ArUco marker} yang lebih kecil sebagai pengganti acuan landasan pendaratan.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{2arucomarker2}
+	\caption{Visualisasi \textit{frame} saat tidak membaca \textit{ArUco Marker} besar, dan beralih menggunakan \textit{ArUco Marker} kecil}
+	\label{fig:2arucomarker2}
+\end{figure}
+
+\section{Integrasi Sistem}
+Integrai sistem pada penelitian ini adalah penggabungan seluruh komponen dan sistem yang memiliki fungsinya masing-masing menjadi satu, sehingga setiap komponen dapat berkomunikasi dengan baik secara efektif satu sama lain untuk mendukung tahap-tahap pengujian yang dilakukan.
+
+Intergrasi sistem ini menghubungkan komunikasi antara \textit{hardware} seperti pertukaran data dan penggunan protokol komunikasi. \cref{fig:integrasisistem} merupakan desain integrasi sistem yang digunakan pada penelitian ini.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{integrasisistem}
+	\caption{Desain Intgerasi Sistem}
+	\label{fig:integrasisistem}
+\end{figure}
+
+Dari desain arsitektur integrasi sistem diatas, \textit{PC} berkomunikasi dengan \textit{flight controller} untuk mengirim dan menerima data menggunakan protokol \textit{MAVLink} menggunakan perangkat atau komponen berupa telemetri 433 \textit{MHz}. \textit{Flight controller} akan menerima data dari komputer dan memproses data tersebut lalu melakukan perintah kepada \textit{quadcopter} berdasarkan hasil proses data yang diterima.
+
+Kamera yang digunakan sebagai penginderaan merupakan kamera depan \textit{smartphone} sehingga memerlukan aplikasi pihak ketiga untuk menghubungkan dengan \textit{GCS}, aplikasi droidcam digunakan untuk mengatasi masalah ini. Komunikasi pengiriman data penginderaan ini dilakukan menggunakan \textit{IP} atau \textit{Internet Protocol} dari \textit{Wi-Fi} yang digunakan oleh \textit{GCS} dan \textit{smartphone}.
+
+\section{Rancangan Pengujian}
+
+\subsection{Uji Elektronik}
+Komponen-komponen yang digunakan dihubungkan dengan kabel ke \textit{flight controller}, dengan blok diagram yang menentukan pemasangan komponen terhadap komponen lainnya seperti pada \cref{fig:blokdiagram}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{blokdiagram}
+	\caption{Blok Diagram Komponen Elektronik}
+	\label{fig:blokdiagram}
+\end{figure}
+
+Dengan catatan, pemasangan kabel daya \textit{ESC} dilakukan secara khusus yang akan menentukan arah putaran motor.  \textit{ESC} 1 hingga 4 dipasang secara berurutan. 
+
+Rancangan uji komponen dilaksanakan untuk mengetahui keadaan fungsionalitas dari setiap komponen yang sudah dipasang pada quadcopter.
+
+\begin{packed_item}
+	\item Uji fungsi pada komponen
+	\begin{packed_item}
+		\item [a.] Uji \textit{Accelerometer}
+		\\ Uji \textit{Accelerometer} dilakukan di \textit{GCS} dengan menggunakan aplikasi MissionPlanner pada bagian \textbf{Setup}, menuju ke \textbf{Mandatory Hardware}, lalu pilih \textbf{Accel Calibraion}. pengujian ini diperlukan untuk menentukan posisi dan arah hadap dari \textit{quadcopter} yang bisa di lihat di menu data. Beberapa posisi untuk melakukan Uji \textit{accelerometer} bisa dilihat melalui tabel \cref{tab:ujiaccel}.
+		\begin{table}[h]
+			\caption{Tabel Uji \textit{Accelerometer}}
+			\centering
+			\begin{tabular}{|c|c|c|}
+				\hline
+				\textbf{No} & \textbf{Posisi}    & \textbf{Posisi Quadcopter} \\ \hline
+				1  & Level     &                   \\ \hline
+				2  & Right     &                   \\ \hline
+				3  & Left      &                   \\ \hline
+				4  & Nose Down &                   \\ \hline
+				5  & Nose Up   &                   \\ \hline
+				6  & Back      &                   \\ \hline
+			\end{tabular}
+			\label{tab:ujiaccel}
+		\end{table}
+		
+		\item [b.] Uji Fungsi Kompas
+		\\ Uji kompas dilakukan untuk mendapatkan arah mata angin yang sejajar dengan magnet bumi. Beberapa hal penting perlu diperhatikan saat melakukan uji kompas seperti memastikan \textit{GPS} pada \textit{quadcopter} telah aktif, menguji diruangan terbuka agar mendapat nilai yang lebih rinci, dan tidak lokasi pengujian jauh dari benda logam atau benda yang menghasilkan medan magnet.
+		Pengujian dilakukan dengan menggunakan aplikasi MissionPlanner, dengan memilih \textbf{Compass} di menu \textbf{Mandatory Hardware}. Posisi yang digunakan untuk uji kompas sama dengan uji \textit{accelerometer}, hanya saja perlu memutar \textit{quadcopter} ke arah 180 derajat searah jarum jam dan berkebalikan untuk setiap posisi.
+		
+		\item [c.] Uji Fungsi \textit{ESC} dan Motor
+		\\ Uji \textit{ESC} dan Motor ini digunakan untuk mengkalibrasi \textit{ESC} agar setiap \textit{ESC} menggerakkan motor secara bersamaan. Pastikan \textit{propeller} tidak terpasang saat melakukan pengujian. 
+		Pengujian \textit{ESC} dan motor dilakukan juga di aplikasi MissionPlanner pada menu \textbf{Setup}, \textbf{Mandatory Hardware}, lalu pilih \textbf{ESC Calibration}. Pada menu ini juga dijelaskan langkah-langkah yang perlu dilakukan saat uji kalibrasi.
+		Untuk memastikan apakah kalibrasi sudah berhasil atau belum, dapat dicoba dengan melakukan \textit{arming} pada quadcopter dan melihat apakah seluruh motor berputar dengan bersamaan atau sudah berhenti secara selaras.
+		
+		\item [d.]  Uji Fungsi \textit{Radio Control}
+		\\ Pengujian \textit{RC} ini digunakan untuk mengatur nilai paling kecil hingga paling besar seluruh channel pada \textit{RC}. Sebelum memulai pngujian ini, pastikan reciever \textit{RC} terpasang pada \textit{quadcopter} dengan baik dan terhubung pada \textit{RC} dengan posisi setiap \textit{channel RC} pada posisi awal/semula. Pengujian ini disarankan menggunakan kabel  \textit{USB} dan \textit{quadcopter} yang terhubung tanpa dipasang baterai.
+		Pengujian ini dilakukan di aplikasi MissionPlanner pada menu \textbf{Setup}, \textbf{Mandatory Hardware}, lalu pilih \textbf{Radio Calibration}. Klik pada tombol \textbf{Calibrate Radio}, setelah itu putar seluruh tuas yang ada pada radio kesegala arah secara maksimal, apabila sudah, klik pada tombol \textbf{Click when Done}. Setelah selesai maka akan muncul jendela baru yang mengkonfirmasi nilai minimum dan maximum setiap \textbf{channel}, yang bisa dimasukkan ke dalam tabel \cref{tab:radio}.
+		\begin{table}[h]
+			\caption{Tabel Uji \textit{Radio Control}}
+			\label{tab:radio}
+			\centering
+			\begin{tabular}{|c|c|c|c|}
+				\hline
+				\textbf{No} & \textbf{Channel}   & \textbf{Nilai Minimum} & \textbf{Nilai Maximum} \\ \hline
+				1  & CH1     & &            \\ \hline
+				2  & CH2     & &           \\ \hline
+				3  & CH3     & &           \\ \hline
+				4  & CH4     & &           \\ \hline
+				5  & CH5 	 & &           \\ \hline
+				6  & CH6     & &           \\ \hline
+				7  & CH7     & &           \\ \hline
+				8  & CH8     & &           \\ \hline
+			\end{tabular}
+		\end{table}
+		
+		\item [e.] Uji Fungsi \textit{GPS}
+		\\ Uji fungsi \textit{GPS} dilakukan untuk mendapatkan hasil kelayakan komponen \textit{GPS} yang digunakan pada penelitian ini, disisi lain, dapat melihat kualitas dan keakuratan penangkapan lokasi oleh \textit{GPS}.
+		Pengujian dilakukan dengan menggunakan pembacaan aplikasi MissionPlanner dengan menaruh \textit{quadcopter} pada tempat terbuka dan membaca parameternya di aplikasi tersebut, beberapa parameter yang dicari adalah parameter \textit{HDOP}, \textit{latitude}, \textit{longitude}, dan letak \textit{realtime} dari \textit{quadcopter}. Setelah mendapati data tersebut, perbandingan perlu dilakukan menggunakan perangkat lain yang memiliki fitur \textit{GPS} yakni \textit{smartphone} \textit{android}.
+		
+		\item [f.] Uji Fungsi Kamera
+		\\Uji fungsi ini dimaksudkan untuk mencari kelayakan kamera yang digunakan yaitu kamera dari \textit{smartphone andorid} dengan spesifikasi pada merek \textit{Samsung A10s} dengan resolusi kamera depan sebesar 8MP. 
+		Uji kamera dilakukan dengan cara membaca \textit{ArUco Marker}, untuk melihat apakah kamera dapat membaca \textit{ArUco marker} dengan baik atau tidak dibuktikan dengan melakukan pengujian ini.
+		Terdapat 2 pilihan dalam penggunaan kamera sebagai penginderaan pada penelitian ini, yang pertama yaitu penggunaan kamera \textit{FPV} dan penggunaan kamera \textit{smartphone android}. Pada pengujian ini, dilakuakn perbandingan terhadap penggunaan kamera \textit{FPV} dan kamera \textit{smartphone android} untuk mencari manakah yang lebih baik diantara keduanya.
+		
+	\end{packed_item}
+\end{packed_item}
+
+
+\subsection{Uji Deteksi \textit{ArUco Marker}}
+Pengujian ini dilakukan dengan software Pycharm dengan bahasa pemrograman \textit{Python} 3.7. Pengujian deteksi ini dilakukan untuk mendapatkan program yang dapat mengidentifikasi \textit{ArUco Marker} yang tertangkap oleh penginderaan kamera. Pengujian dilakukan dengan cara membuat program berdasarkan \textit{OpenCV} dan mengambil \textit{input} kamera yang behadapan langsung dengan \textit{ArUco marker} yang digunakan.
+Pengujian ini juga dilakukan untuk mencari tahu apakah program dapat memilih \textit{ArUco Marker} mana yang akan digunakan sebagai acuan penginderaan, saat terdapat 2 \textit{ArUco Marker} yang terbaca, maka \textit{ArUco marker} yang terbesar lah yang akan digunakan sebagai acuan, apabila hanya ada 1 yang terbaca, maka \textit{ArUco Marker} itulah yang akan dijadikan acuan. Hasil pembacaan kedua \textit{ArUco Marker} dari pengujian ini dimasukkan ke dalam tabel dibawah ini.
+
+\begin{table}[h]
+	\caption{Tabel Deteksi \textit{ArUco Marker}}
+	\label{tab:deteksiaruco}
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{No} & \textbf{Jarak}    & \textbf{Hasil}	   \\ \hline
+		1  & 50cm     &            \\ \hline
+		2  & 100cm    &            \\ \hline
+		3  & 150cm    &            \\ \hline
+		4  & 200cm    &            \\ \hline
+		5  & 250cm    &            \\ \hline
+		6  & 300cm    &            \\ \hline
+		7  & 400cm    &            \\ \hline
+	\end{tabular}
+\end{table}
+
+\section{Rancangan Uji Pendaratan}
+Rancangan Uji Misi merupakan salah satu pengujian utama \textit{landing} pada penelitian ini. Dilakukan dengan menjalankan 2 lintasan uji dengan 2 kali pengujian.
+
+\begin{packed_enum}
+	\item Pengujian Pada Jalur Lintasan 1
+	\\Pengujian ini menggunakan mode \textbf{GUIDED} pada \textit{quadcopter} yang menggunakan program pada aplikasi PyCharm untuk memerintahkan \textit{quadcopter} agar mendarat pada landasan \textit{ArUco Marker} saat \textit{ArUco Marker} terdeteksi oleh kamera. 
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.3]{jalur1}
+		\caption{Arah Pengujian untuk Jalur 1}
+		\label{fig:jalur1}
+	\end{figure}
+	
+	Pengujian dilakukan sebanyak 2 kali untuk mengetahui apakah \textit{quadcopter} dapat mengikuti jalur landasan yang bergerak maju dan melakukan pendaratan.
+	
+	\item Pengujian Pada Jalur lintasan 2
+	\\Pengujian terakhir ialah pendaratan pada landasan \textit{ArUco marker} yang bergerak, dengan mode \textbf{GUIDED} yang sepenuhnya menggunakan program pada aplikasi PyCharm. \textit{Quadcopter} akan mengikuti gerakan landasan berdasarkan arah pada gambar dibawah ini.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.3]{jalur2}
+		\caption{Arah Pengujian untuk Jalur 2}
+		\label{fig:jalur2}
+	\end{figure}
+	
+	Pengujian dilakukan sebanyak 2 kali untuk mencari tahu apakah quadcopter dapat mengikuti \textit{ArUco marker} yang bergerak ke arah serong dan mampu mendarat dengan presisi diatasnya.
+	
+\end{packed_enum}
+
