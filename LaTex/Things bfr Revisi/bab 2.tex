@@ -1,0 +1,321 @@
+%==================================================================
+% Ini adalah bab 2
+% Silahkan edit sesuai kebutuhan, baik menambah atau mengurangi \section, \subsection
+%==================================================================
+
+\chapter[PENDEKATAN PEMECAHAN MASALAH]{\\ PENDEKATAN PEMECAHAN MASALAH}
+
+\section{\textit{Quadcopter}}
+
+\textit{Quadcopter} merupakan contoh teknologi \textit{Unmanned Aerial Vehicle (UAV)}, yaitu pesawat tanpa awak yang berkembang pesat dan menjadi subjek banyak penelitian di industri, militer, agrikultur, dan lainnya. \textit{Quadcopter} adalah jenis pesawat \textit{Vertical Take Off and Landing (VTOL)} yang menggunakan empat motor penggerak yang dikendalikan oleh \textit{flight controller (FC)}, yang dilengkapi dengan algoritma, sensor-sensor khusus, dan GPS \citep{devianto2017sistem}. 
+
+Perkembangan \textit{Quadcopter} bermula dari eksperimen lepas landas pada tahun 1907 oleh Jacques dan Louis Breguet, peneliti dari Perancis, yang membangun dan menguji \textit{Quadcopter} \textit{Gyroplane No. 1}. Meskipun berhasil lepas landas, \textit{Quadcopter} ini kurang stabil dan tidak efektif. Pada tahun 1924, insinyur Perancis Étienne Oehmichen berhasil menerbangkan \textit{Quadcopter} miliknya (\textit{Oehmichen No.2}) sejauh 360 meter, memecahkan rekor dunia. Di tahun yang sama, \textit{Quadcopter} milik Étienne juga berhasil terbang sejauh 1 kilometer dalam waktu 7 menit dan 40 detik \citep{aerospace}.
+
+Motor merupakan komponen utama pada \textit{Quadcopter} yang bertanggung jawab untuk memutar baling-baling (propeller), yang sangat penting untuk proses lepas landas dan stabilisasi penerbangan \citep{zuhri2023penerapan}. Pada \textit{Quadcopter}, terdapat dua jenis putaran motor utama, yaitu \textit{Clockwise} (\textit{CW}, searah jarum jam) dan \textit{CounterClockwise} (\textit{CCW}, melawan arah jarum jam). Dalam konfigurasi \textit{Quadcopter} standar, dua motor akan berputar secara \textit{CW}, sementara dua motor lainnya berputar secara \textit{CCW}. Penempatan poros dan arah putaran motor yang berlawanan ini mengikuti prinsip momen torsi, yang memungkinkan \textit{Quadcopter} untuk menghasilkan gaya angkat dan kontrol yang diperlukan untuk stabil dalam penerbangannya. Secara desain, putaran motor \textit{Quadcopter} dapat dilihat pada \cref{fig:motor}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{putaranmotor}
+	\caption{Putaran Motor Pada \textit{Quadcopter} (Sumber: drones.stackexchange.com)}
+	\label{fig:motor}
+\end{figure}
+
+Dari gambar diatas, motor nomor 1 dan 4 akan berputar searah jarum jam (\textit{CW}), yang menyebabkan frame \textit{Quadcopter} bergerak melawan arah jarum jam jika dilihat dari atas. Sementara itu, motor nomor 2 dan 3 akan berputar melawan arah jarum jam (\textit{CCW}), sehingga frame \textit{Quadcopter} bergerak searah jarum jam.
+
+Dengan pengaturan ini, momen torsi dari motor-motor tersebut akan saling mengimbangi dan menciptakan stabilitas. Ketika semua motor berputar bersamaan, total momen torsi pada frame \textit{Quadcopter} akan mendekati nol, yang memungkinkan \textit{Quadcopter} untuk terbang dengan lebih stabil.
+
+Gerakan \textit{Quadcopter}, seperti maju, mundur, miring ke kanan, miring ke kiri, berputar kanan, dan berputar kiri, dikendalikan oleh kecepatan putaran motornya. Gerakan maju dan mundur disebut pitch, gerakan miring ke kanan atau kiri disebut roll, dan gerakan berputar ke kanan atau kiri disebut yaw. Setiap gerakan ini dipengaruhi oleh perbedaan kecepatan antara motor-motor \textit{Quadcopter}, yang diatur oleh \textit{flight controller} untuk mengatur posisi dan orientasi dalam penerbangan. \cref{fig:gerakqc} merupakan grafik arah dari pergerakan \textit{Quadcopter} \citep{chandrapa}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{rollpitchyaw}
+	\caption{Gerakan \textit{Quadcopter} Dengan Istilahnya (Sumber: discuss.px4.io)}
+	\label{fig:gerakqc}
+\end{figure}
+
+\subsection{\textit{Flight Controller (FC)}}
+\textit{Flight Controller (FC)} adalah komponen utama atau otak dari \textit{Quadcopter}. Komponen ini berupa papan sirkuit dengan sensor-sensor yang mendeteksi gerakan \textit{Quadcopter} dan perintah pilot (menggunakan \textit{remote control} atau kode program). Dengan data dari sensor, \textit{Flight Controller} mengatur kecepatan setiap motor untuk menggerakkan \textit{Quadcopter} sesuai arah yang diinginkan.
+
+Semua jenis \textit{Flight Controller} dilengkapi dengan sensor dasar seperti sensor putaran (\textit{gyroscope/gyro}) dan sensor kecepatan (\textit{accelerometers/accel}). Beberapa \textit{FC} yang lebih modern memiliki fitur yang lebih lengkap seperti sensor ketinggian (\textit{barometer/baro}) hingga penggunaan kompas (\textit{mangnetometer}).
+
+\textit{Flight Controller} juga memiliki beberapa port yang dapat dihubungkan dengan alat-alat lainnya yang dapat menunjang penggunaan \textit{Quadcopter} seperti \textit{ESC}, \textit{GPS}, \textit{LED}, Penerima Radio, Kamera \textit{FPV}, dan \textit{VTX}.
+
+Mengatur \textit{Flight Controller} dilakukan dengan menggunakan \textit{firmware} khusus. Terdapat banyak pilihan \textit{firmware} dengan fitur yang berbeda-beda. Pada penelitian ini, digunakan \textit{firmware} Ardupilot MissionPlanner. Beberapa contoh \textit{firmware} populer lainnya yang sering digunakan adalah iNav, KISS, dan Betaflight.
+
+\cref{fig:pixhawk2} adalah contoh dari sebuah \textit{flight controller} dengan model Pixhawk 2.4.8 yang digunakan pada penelitian ini.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{pixhawk2}
+	\caption{\textit{Flight Controller} Pixhawk 2.4.8 beserta penjelasan pin (Sumber: dojofordrones.com)}
+	\label{fig:pixhawk2}
+\end{figure}
+
+\subsection{\textit{Brushless Motor}}
+Motor \textit{Brushless} adalah motor listrik yang menggunakan arus searah (\textit{Direct Current/DC}) untuk menghasilkan putaran pada rotor. Motor ini dibangun dengan stator yang berisi kumparan dan rotor yang dilengkapi dengan magnet. Motor ini bekerja berdasarkan prinsip elektromagnetisme, di mana putaran dihasilkan dengan mengatur arus listrik yang diberikan ke kumparan stator. \cref{fig:brushless} menunjukkan jenis motor \textit{brushless} yang digunakan dalam penelitian ini.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{brushless}
+	\caption{\textit{Brushless DC Motor} (Sumber: www.readytosky.com)}
+	\label{fig:brushless}
+\end{figure}
+
+\subsection{\textit{Electronic Speed Controller (ESC)} }
+Komponen yang digunakan untuk mengatur kecepatan putaran motor. \textit{ESC} akan menerima data perintah dari \textit{Flight Controller} dan memproses data tersebut sehingga akan menghasilkan output yang akan mempercepat atau memperlambat putaran dari motor. \cref{fig:esc} ini merupakan contoh bentuk dari \textit{ESC}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{esc}
+	\caption{\textit{ESC} (Sumber: www.tytorobotics.com)}
+	\label{fig:esc}
+\end{figure}
+
+\subsection{\textit{Frame} \textit{Quadcopter}}
+\textit{Frame} \textit{Quadcopter} adalah salah satu desain dari banyaknya \textit{multirotor} dalam dunia \textit{VTOL}, memiliki 4 lengan yang masing-masing ujungnya memiliki motor dan sebuah propeller, contohnya adalah \cref{fig:frame}. Konfigurasi 4 lengan ini memberikan stabilitas, kemampuan manuver dan kapasitas muatan yang sangat baik. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{frameqc}
+	\caption{\textit{Frame} \textit{Quadcopter} model F450 (Sumber: www.flyrobo.in)}
+	\label{fig:frame}
+\end{figure}
+
+\subsection{Propeller}
+\textit{Propeller} adalah baling-baling yang mengubah gerak putar menjadi gaya dorong linear. Baling-baling ini mengangkat \textit{quadcopter} dengan berputar, menciptakan aliran udara yang menyebabkan perbedaan tekanan antara permukaan atas dan bawah baling-baling. Pada penelitian ini, digunakan propeller dengan ukuran 10 \textit{inch} seperti pada \cref{fig:propeller}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{propeller}
+	\caption{\textit{Propeller 10inch} (Sumber: www.welkinUAV.com)}
+	\label{fig:propeller}
+\end{figure}
+
+\subsection{\textit{Radio Control}}
+Sebuah alat elektronik yang digunakan untuk mengoperasikan perangkat lain dari jarak jauh. Biasanya berbentuk kecil dan tanpa kabel, alat ini dilengkapi dengan berbagai tombol atau tuas untuk menyesuaikan pengaturan, dan dirancang untuk digenggam dengan tangan.
+
+\textit{Radio control} terdiri dari dua bagian, yaitu bagian \textit{transmitter} (pengirim) yang berfungsi mengirim data perintah dan bagian \textit{reciever} (penerima) yang berfungsi untuk menerima perintah dari \textit{transmitter} dan meneruskan data tersebut ke \textit{microcontroller} \citep{mediyutansyah2020perancangan}. Pada \cref{fig:rc}, terdapat 2 komponen yang mana komponen yang memiliki 2 tuas merupakan radio control bagian \textit{transmitter}, sedangkan komponen kecil disampingnya merupakan \textit{radio control} bagian \textit{reciever}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{rc}
+	\caption{\textit{Radio Control} (\textit{Tranmitter} dan \textit{Reciever}) model Flysky f-i6 (Sumber: aeromodellingtutor.in)}
+	\label{fig:rc}
+\end{figure}
+
+\subsection{\textit{Global Positioning System (GPS)} }
+Merupakan sistem navigasi satelit yang dikontrol oleh Amerika Serikat yang dikhususkan untuk tujuan militer. Pada tahun 1980an, sistem ini dapat digunakan oleh masyarakat umum. Fungsinya adalah untuk melakukan penampilan waktu, arah, kecepatan, dan lokasi. Sistem ini dapat diandalkan dalam kondisi cuaca apa pun, memberikan banyak manfaat bagi para pengguna militer, sipil, dan komersial di seluruh dunia dan dapat diakses secara gratis oleh siapa saja yang memiliki perangkat \textit{GPS}. Ini juga menyediakan kemampuan perjalanan yang lebih baik bagi para pengendara, dan telah menjadi inti dari banyak aplikasi dan teknologi modern \citep{ali2020global}. \textit{GPS Ublox M10q} (\cref{fig:gps}) merupakan komponen \textit{GPS} yang digunakan pada penelitian ini.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{gps}
+	\caption{\textit{GPS Ublox m10q} (Sumber: www.kiwiquads.co.nz)}
+	\label{fig:gps}
+\end{figure}
+
+\subsection{\textit{Telemetry}}
+Telemetri adalah alat pengukur otomatis dan pengirim data nirkabel dari sumber jarak jauh. Telemetri bekerja dengan berbagai cara seperti sensor pada sumbernya mengukur data listrik, seperti tegangan dan arus, atau data fisik, seperti suhu dan tekanan yang kemudian mengirimkan data ini ke perangkat yang terhubung untuk dilakukan pemantauan dan analisa lebih jauh. \cref{fig:telemetry} adalah salah satu contoh telemetri yang digunakan pada penelitian ini, dengan penjelasan gambar sebelah kiri adalah telemetri yang dipasang pada \textit{GCS}, sedangkan gambar pada sebelah kiri adalah telemetri yang dipasang pada \textit{Quadcopter}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{telemetry}
+	\caption{\textit{Telemetry 433MHz} (Sumber: www.flipkart.com)}
+	\label{fig:telemetry}
+\end{figure}
+
+Pengembang software dan pengelola IT menggunakan telemetri untuk memantau kesehatan, keamanan, dan kinerja aplikasi dan komponen aplikasi dari jarak jauh secara \textit{real-time}. Penggunaan telemetri ini untuk mengukur waktu startup dan pemrosesan, \textit{crash}, perilaku pengguna dan penggunaan sumber daya, serta untuk memantau keadaan sistem. Telemetri juga digunakan untuk mengumpulkan informasi di berbagai bidang seperti meteorologi, pertanian, pertahanan dan kesehatan.
+
+
+\subsection{Baterai \textit{LiPo}}
+Baterai \textit{litium polimer}, atau lebih tepatnya baterai \textit{polimer litium-ion} (disingkat \textit{LiPo}), adalah baterai berteknologi \textit{litium-ion} yang dapat diisi ulang menggunakan elektrolit \textit{polimer}, bukan elektrolit cair. \textit{Polimer semipadat (gel)} dengan konduktivitas tinggi membentuk elektrolit ini. Baterai ini memberikan energi yang lebih tinggi dibandingkan jenis baterai \textit{litium} lainnya dan digunakan dalam aplikasi yang mengutamakan bobot, seperti perangkat seluler, pesawat yang dikendalikan radio, dan beberapa kendaraan listrik. \cref{fig:lipo} adalah contoh dari baterai \textit{Li-Po}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1.3]{lipo}
+	\caption{Baterai \textit{LiPo 3c} (Sumber: skill-lync.com)}
+	\label{fig:lipo}
+\end{figure}
+
+\subsection{\textit{Safety Switch}}
+Merupakan sebuah saklar tekan yang ditahan menggunakan tangan, yang berfungsi untuk mengaktifkan/menonaktifkan motor dan servo pada \textit{Quadcopter}. Terhubung secara langsung dengan \textit{flight control} Pixhawk dengan soketnya sendiri. Saat dalam kondisi \textit{safety}, motor akan dicegah untuk beroperasi, dan saat dilakukan pengecekan \textit{pre-arm} akan menyatakan error untuk mencegah kondisi \textit{arming} yang tidak disengaja.
+
+Beberapa arti dari kedipan lampu \textit{LED} pada \textit{safety switch} ini adalah :
+
+\begin{packed_item}
+	\item \textit{LED} Berkedip secara cepat : Sistem \textit{Quadcopter} sedang mempersiapkan komponen
+	\item \textit{LED} Berkedip secara lambat : Sistem sudah siap, namun masih dalam kondisi \textit{safety}
+	\item \textit{LED} selalu menyala : Sistem sudah siap dan kondisi \textit{safety} sudah dimatikan, sehingga motor/servo dapat menyala.
+\end{packed_item}
+
+\cref{fig:safetyswitch} merupakan visualisasi pemasangan \textit{safety switch} pada \textit{flight control} Pixhawk 2.4.8.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{safetyswitch}
+	\caption{Bentuk \textit{Safety Switch} yang terhubung pada \textit{flight control} PixHawk (Sumber : ardupilot.org)}
+	\label{fig:safetyswitch}
+\end{figure}
+
+\subsection{\textit{MAVLink}}
+Memiliki singkatan \textit{Micro Air Vehicle Link (MAVLink)}, merupakan protokol komunikasi untuk alat tanpa awak seperti Drone tanpa awak (\textit{Unmanned Aerial Vehicle}, \textit{UAV}) kapal tanpa awak (\textit{Unmanned Surface Vehicle, USV})  dan kendaraan tanpa awak (\textit{Unmanned Ground Vehicle, UGV}). Protokol ini yang mengatur pertukaran kiriman data dari alat tanpa awak ke \textit{GCS}. Protokol ini sering kali digunakan pada sistem otonom, seperti ArduPilot dan PX4. Protokol ini memiliki banyak fitur yang tidak hanya digunakan untuk memonitoring atau mengkontrol alat tanpa awak, namun juga memiliki kemampuan untuk mengirim data secara online ke internet \citep{koubaa2019micro}.
+
+Pesan yang dikirim oleh protokol ini didefinisikan dalam file berbentuk \textit{XML}, dan setiap file \textit{XML} akan mendefinisikan beberapa pesan yang didukung oleh sistem \textit{MAVLink}, yang biasa disebut "\textit{dialect}". Kumpulan referensi pesan yang diimplementasikan oleh sebagian besar \textit{GCS} didefinisikan didalam common.xml \citep{mavlink}. \cref{fig:mavlink} merupakan logo dari \textit{MAVLink}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{mavlink}
+	\caption{Logo \textit{MAVLink} (Sumber: mavlink.io)}
+	\label{fig:mavlink}
+\end{figure}
+
+ Berdasarkan web resmi MAVLink, beberapa bahasa pemrograman yang telah didukung oleh protokol komunikasi \textit{MAVLink} adalah : Bahasa pemrograman \textit{Python 3} (Versi 3.3 keatas), \textit{Python 2} (Versi 2.7 keatas), \textit{C},\textit{ C++} (untuk versi 11), \textit{C-Sharp}, \textit{Objective C}, \textit{Java}, \textit{JavaScript} (\textit{Stable}, \textit{NextGen},), \textit{TypeScript}, \textit{Lua}, \textit{WLua}, \textit{Swift}, \textit{Rust}, dan \textit{Ada}.
+
+\section{\textit{Computer Vision}}
+\textit{Computer Vision} adalah bidang kecerdasan buatan (\textit{Artificial Intelegence / AI}) yang menggunakan pembelajaran mesin (\textit{machine learning}) dan jaringan saraf (\textit{neural network}) untuk mengajarkan komputer dan sistem memperoleh informasi dari gambar digital, video, atau masukan visual lainnya dan mengambil tindakan ketika mereka melihat cacat atau masalah \citep{efrian2022image}.
+Cara kerja \textit{computer vision} adalah melatih mesin untuk melakukan fungsi-fungsi umum seperti membedakan objek, mengethui jarak, apakah objek bergerak hingga mengidentifikasi apakah ada yang salah dengan gambar, dengan bantuan dari data yang terkumpul menggunakan alat \textit{input} seperti kamera \citep{mustofa2023ai}. 
+
+\subsection{\textit{Image Processing} (Pengolahan Gambar)}
+\textit{Image processing} adalah metode untuk melakukan beberapa operasi pada suatu gambar, untuk mendapatkan gambar yang disempurnakan atau untuk mengekstrak beberapa informasi berguna dari gambar tersebut. Metode ini adalah jenis pemrosesan sinyal di mana inputnya berupa gambar dan outputnya dapat berupa gambar atau karakteristik/fitur yang terkait dengan gambar tersebut \citep{nurakbar2022pengenalan}.
+
+Pemrosesan gambar pada dasarnya mencakup tiga langkah berikut:
+
+\begin{packed_item}
+	\item Menginput gambar melalui alat pengambil gambar.
+	\item Menganalisis dan memanipulasi gambar.
+	\item Output yang hasilnya dapat berupa gambar atau laporan yang diubah berdasarkan analisis gambar input.
+\end{packed_item}
+
+Ada dua jenis metode yang digunakan dalam pengolahan gambar, yaitu \textit{analog} dan \textit{digital}. Metode \textit{analog} digunakan untuk media fisik seperti cetakan dan foto, sementara metode \textit{digital} memfasilitasi manipulasi gambar \textit{digital} menggunakan komputer. Tiga tahap umum yang dialami semua jenis data saat menggunakan teknik \textit{digital} meliputi pra-pemrosesan, peningkatan, dan pengambilan informasi tampilan \citep{digitalimageproc}.
+
+Operasi pada \textit{Image processing} dapat dibagi berdasarkan tujuan dari pengolahan, yaitu:
+
+\begin{packed_enum}
+	\item \textit{Image Enhancement} (Peningkatan kualitas gambar)
+	\\	Operasi peningkatan kualitas gambar berfungsi untuk meningkatkan fitur tertentu pada gambar sehingga tingkat keberhasilan dalam pengolahan gambar berikutnya menjadi lebih tinggi. Operasi ini lebih banyak berhubungan dengan penajaman dari fitur tertentu pada gambar. Peningkatan kualitas gambar ini dapat dilakukan secara manual, dengan menggunakan program lukis atau dengan pertolongan software untuk lainnya.
+	\item \textit{Image Restoration} (Pemulihan gambar)
+	\\	Operasi pemulihan gambar bertujuan untuk mengembalikan kondisi gambar yang rusak atau cacat ke keadaan semula, akibat gangguan yang menyebabkan penurunan kualitas gambar, seperti degradasi. Degradasi terjadi saat gambar menjadi kabur (\textit{blur}), yang mengurangi kualitasnya. \textit{Blur} dapat disebabkan oleh berbagai faktor, seperti pergerakan selama pengambilan gambar oleh alat optik seperti kamera, penggunaan alat optik yang tidak fokus, penggunaan lensa dengan sudut lebar, gangguan atmosfer, pencahayaan yang singkat sehingga mengurangi jumlah foton yang ditangkap oleh alat optik, dan sebagainya. Gambar yang tertangkap oleh alat-alat optik seperti mata, kamera, dan lainnya sebenarnya merupakan citra yang telah mengalami degradasi. Dalam hal ini, jika f(x, y) adalah gambar asli dan g(x, y) adalah gambar terdegradasi, maka g(x, y) adalah hasil perkalian f(x, y) dengan operator distorsi H ditambah dengan cacat tambahan n(x, y): g(x, y) = Hf(x, y) + n(x, y).
+	\item \textit{Image Compression} (Kompresi gambar)
+	\\	Kompresi gambar bertujuan untuk meminimalkan jumlah bit yang diperlukan untuk merepresentasikan gambar. Hal ini sangat berguna apabila hendak mengirimkan gambar berukuran besar. Gambar yang berukuran besar akan berpengaruh pada lamanya waktu pengiriman, maka dari itu kompresi gambar akan memadatkan ukuran gambar menjadi lebih kecil dari ukuran asli sehingga waktu yang diperlukan untuk transfer data juga akan lebih cepat.	
+	Ada dua tipe utama kompresi data, yaitu kompresi tipe \textit{lossless} dan kompresi tipe \textit{lossy}. Kompresi tipe \textit{lossy} adalah kompresi dimana terdapat data yang hilang selama proses kompresi. Akibatnya kualitas data yang dihasilkan jauh lebih rendah daripada kualitas data asli. Sementara itu, kompresi tipe \textit{lossless} tidak menghilangkan informasi setelah proses kompresi terjadi, akibatnya kualitas gambar hasil kompresi juga tidak berkurang
+	\item \textit{Image Representation and Modelling} (Representasi dan permodelan gambar).
+	\\	Representasi mengacu pada data konversi dari hasil segmentasi ke bentuk yang lebih sesuai untuk proses pengolahan pada komputer. Keputusan pertama yang harus sudah dihasilkan pada tahap ini adalah data yang akan diproses dalam batasan-batasan atau daerah yang lengkap. Batas representasi digunakan ketika penekanannya pada karakteristik bentuk luar, dan area representasi digunakan ketika penekanannya pada karakteristik dalam, sebagai contoh tekstur. Setelah data telah direpresentasikan ke bentuk tipe yang lebih sesuai, tahap selanjutnya adalah menguraikan data.
+\end{packed_enum}
+
+\subsection{\textit{ArUco Marker}}
+\textit{AruCo marker}, seperti yang dijelaskan pada bab sebelumnya, merupakan kotak sintetik yang disusun oleh garis tepi hitam dan matriks biner bagian dalam yang menentukan identifikasi dari marker tersebut. Garis tepi hitam digunakan untuk pendeteksi gambar secara cepat dan memungkinkan kodifikasi biner, sekaligus pengaplikasian teknik deteksi dan \textit{error} \citep{priambodo2022vision}.
+ArUco marker (\cref{fig:aruco}) sering digunakan di aplikasi robotika dan \textit{Augmented Reality} yang penggunaannya cukup sederhana, misalnya seseorang dapat meletakkan \textit{ArUco marker} di samping stasiun pengisian robot, tombol elevator, atau objek lain yang akan menjadi titik yang akan di kerjakan/operasikan oleh robot \citep{stemR}. Berdasarkan situs web \textit{OpenCV} (salah satu library yang digunakan dalam \textit{Computer Vision}), kelebihan dari \textit{ArUco marker} ialah marker dengan pendeteksian kuat, cepat dan sederhana \citep{detectaruco}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{aruco}
+	\caption{Gambar \textit{ArUco Marker} (Sumber: learnopencv.com)}
+	\label{fig:aruco}
+\end{figure}
+
+\textit{ArUco marker} sendiri terbagi menjadi banyak kamus (\textit{dictionary}), atau kumpulan-kumpulan id yang disatukan dengan karakteristik masing-masing kamus. Dibawah ini adalah daftar kamus \textit{ArUco Marker} yang terdaftar berdasarkan dari web resmi \textit{ArUco} pada \textit{OpenCV} \citep{opencvscv}:
+
+\lstinputlisting[language=Python]{kode/arucodict.py}
+
+Pada daftar kamus diatas, dapat dilihat bahwa masing-masing kamus memiliki nama yang hampir sama satu dengan lainnya. Nama setiap kamus \textit{ArUco Marker} ini memiliki format DICT\_(Bit)\_(Jumlah Id), dengan arti DICT disini adalah format untuk memanggil kamus (\textit{dictionary}) dari ArUco Marker itu sendiri, Bit adalah jumlah dari bit \textit{ArUco Marker} yang akan digunakan, dan Jumlah Id memiliki makna banyaknya Id yang terdapat di kamus tersebut.
+
+Pada penelitian ini, digunakan kamus \textit{ArUco Marker} dengan kode :
+
+\lstinputlisting[language=Python]{kode/arucodictyangdipake.py}
+
+Dengan makna, penggunaan \textit{ArUco Marker} dengan nilai 6x6 bit dan jumlah id sebanyak 50 id. 
+
+Untuk mendapatkan \textit{Marker} yang diinginkan, bisa digunakan \textit{website generator} untuk \textit{ArUco Marker} pada lintsan \url{https://chev.me/arucogen/} dengan tampilan seperti pada \cref{fig:arucogen}. Dengan memilih ukuran dan kamus dari \textit{ArUco marker} yang hendak digunakan, pengguna dapat mencari Id \textit{ArUco marker} yang diinginkan.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{arucogen}
+	\caption{Website generator \textit{ArUco Marker} (Sumber: chev.me)}
+	\label{fig:arucogen}
+\end{figure}
+
+\begin{packed_item}
+	\item \textit{Detection Parameter}
+	\\ Salah satu parameter pembacaan dari '\textit{ArUcoDetector}' ialah objek pada '\textit{ArUcoParameters}'. Objek '\textit{ArUcoParameters}' ini memasukkan seluruh opsi dalam proses deteksi dari \textit{ArUco Marker}. Dibawah ini dijelaskan bagian-bagian dari masing-masing \textit{parameter} deteksi. \textit{Parameter} ini bisa di golongkan tergantung pada proses yang dilakukan.
+		\begin{packed_enum}
+			\item \textit{Threshholding}
+			\\ Proses deteksi \textit{ArUco Marker} yang palng awal adalah proses \textit{Thresholding} suatu gambar masukan. \cref{fig:threshold} merupakan contoh gambar yang digunakan pada proses \textit{thresholding}.
+			
+			\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.2]{threshold}
+				\caption{Contoh gambar yang di \textit{threshold} (Sumber: docs.opencv.org)}
+				\label{fig:threshold}
+			\end{figure}
+			
+			\item \textit{Contour Filtering}
+			\\	Setelah proses \textit{thresholding}, dilakukan deteksi \textit{contour}, namun tidak semua \textit{contour} dapat dijadikan sebagai kandidat \textit{Marker}. \textit{Contour} ini akan di saring (\textit{filter}) terlebih dahulu dalam beberapa proses agar dapat memisahkan countour yang dianggap bukan \textit{Marker}. 
+			
+			Dalam beberapa kasus seringkali dipertanyakan keseimbangan antara performa dan kapasitas deteksi. Semua hal yang berhubngan dengan deteksi \textit{contour} akan di proses dengan menggunakan proses komputasi yang tinggi. Sehingga disarankan untuk memisahkan kandidat \textit{contour} yang pada proses awal ini. Sementara itu, apabila kondisi penyaringan yang terlalu ketat, dapat membuat contour yang seharusnya menjadi \textit{marker} untuk ikut terpisah, sehingga tidak terdeteksi. 		
+			
+			\item \textit{Bit Extraction}
+			\\ Setelah proses deteksi kandidat, \textit{bit} dari setiap kandidat dianalisa dengan tujuan untuk menentukan apakah kandidat tersebut sebuah marker atau bukan.
+			
+			Sebelum menganalisa nilai kode biner tersebut, nilai \textit{bit} perlu di keluarkan terlebih dahulu. Untuk melakukannya, distorsi perspektif perlu diperbaiki dan hasil gambar akan di simpan (\textit{threshold}) menggunakan Otsu \textit{threshold} untuk membedakan \textit{pixel} hitam dan \textit{pixel} putih.
+			
+			\cref{fig:removeperspective} adalah gambar yang didapat setelah menghilangkan distorsi perspektif sebuah \textit{marker}.
+			
+			\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.4]{removeperspective}
+				\caption{Sebelum distorsi dihilangkan (atas) Sesudah distorsi dihilangkan (bawah) (Sumber: docs.opencv.org)}
+				\label{fig:removeperspective}
+			\end{figure}
+			
+			Gambar akan dibagi menjadi sebuah kotak kisi-kisi dengan nomor sel yang sama dengan nomor \textit{bit} pada \textit{marker}. Pada setiap \textit{sel}, nilai pada \textit{pixel} hitam dan putih dihitung untuk menentukan nilai bit yang ada pada sel seperti pada \cref{fig:markercells}
+			
+			\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.4]{markercells}
+				\caption{Sel pada setiap \textit{bit} pada \textit{Marker} (Sumber: docs.opencv.org)}
+				\label{fig:markercells}
+			\end{figure}
+			
+			\item \textit{Marker Identification}
+			\\ Setelah seluruh bit telah dikeluarkan, langkah selanjutnya adalah mengecek apakah kode biner yang terbaca termasuk dalam kamus marker.
+		
+		\end{packed_enum}
+\end{packed_item}
+
+\subsection{\textit{Python}}
+Bahasa pemrograman \textit{Python} (Logo ada pada \cref{fig:python})merupakan bahasa tingkat tinggi yang umum digunakan. Apabila dibandingkan dengan bahasa pemrograman seperti bahasa \textit{C}, \textit{python} memiliki syntax bahasa yang lebih sederhana. \textit{Python} menggunakan filosofi pembacaan program yang menekan keterbacaan kode program. Bahasa pemrograman \textit{python} mendukung banyak model pemrograman, seperti model pemrograman berorientasi objek, imperatif, dan fungsional. \textit{Python} sering digunakan sebagai bahasa skrip (\textit{scripting languange}), namun juga digunakan pada bahasa \textit{non-skrip}. Menggunakan aplikasi pihak ketiga, pytho dapat dibenahi dan didiakses secara mandiri (\textit{standalone}) dikarenakan intrepeternya yang tersedia di banyak sistem operasi \citep{van2007python}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{python}
+	\caption{Gambar logo \textit{python} (Sumber: www.ntuclearninghub.com)}
+	\label{fig:python}
+\end{figure}
+
+\textit{Python} pertama kali diperkenalkan pada tahun 1980an, dan di implementasikan pada tahun 1989 oleh Guido van Rossum di sebuah Institut Matematika dan Ilmu Komputer (\textit{CWI}) di Belanda sebagai penerus dari bahasa pemrograman \textit{ABC} yang mampu menangani pengecualian (\textit{exception}) dan mampu berinteraksi dengan sistem operasi \textit{Amoeba}. Pada saat itu, Van Rossum merupakan penulis utama dari \textit{python}, dikarenakan peran utamanya yang berkelanjutan dalam menentukan arah \textit{python} itulah membuatnya menyandang gelar tersebut yang diberikan oleh komunitas \textit{python} \citep{tulchak}.
+
+Pada penelitian ini, digunakan versi \textit{python} 3, lebih spesifiknya yaitu versi 3.7. Alasan utama pemilihan versi 3 ini adalah kemudahan dan penggunaan sintak yang lebih sederhana dibandingkan dengan \textit{python} versi 2 apabila menurut berbagai sumber seperti \citep{diffpy} dan \citep{diffpy2}. Alasan lainnya yaitu penggunaan \textit{library} (pustaka yang akan mengatur \textit{Quadcopter}) yang hanya mendukung versi python 3.7 keatas.
+
+\section{\textit{PID Controller}}
+Kontroler \textit{PID} adalah jenis kontroler yang dapat menentukan presisi dalam sistem instrumentasi dengan karakteristik umpan balik dalam sistem tersebut. Komponen kontrol \textit{PID} terdiri dari tiga tipe, yaitu \textit{proporsional}, \textit{integral}, dan \textit{derivatif}. Ketiga elemen ini bertujuan untuk mempercepat reaksi sistem, menghilangkan \textit{offset}, dan menyederhanakan perubahan awal yang signifikan. Penggunaan kontrol \textit{PID} dapat memberikan efek positif dalam mengontrol sistem, mengurangi kesalahan dalam sistem, dan meningkatkan ketepatan sistem \citep{setyawan2015sistem}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{pid}
+	\caption{Blok Diagram Dari PID Controller}
+	\label{fig:pid}
+\end{figure}
+
+Figur pada \cref{fig:pid} merupakan rumus kontrol \textit{PID} berdasarkan metode Ziegler-Nichols, dengan keluaran rumus \textit{PID} berupa \citep{jamal2015implementasi}: 
+
+\begin{equation}
+	c(k)=K_{P}\cdot e(t)+K_{I}\cdot \int_{o}^{t}e(t)dt+K_{D}\cdot de(t)/dt
+\end{equation}
+
+Dengan rumus waktu diskrit, rumus keluaran sinyal PID akan seperti:
+
+\begin{equation}
+	c(k)=K_{P}(e(k)+K_{I}=K_{I}\cdot T_{S}[e(k-1)+e(k)]+K_{D}e(k)-e(k-1)/T_{s}
+\end{equation}
+
+
+Dari figur diatas, dapat disimpulkan bahwa hasil output dari \textit{controller PID} adalah penjumlahan dari seluruh controller \textit{proporsional}, \textit{controller} \textit{integral}, dan \textit{diferensial}. Karakteristik dari \textit{PID} controller sangat dipengaruhi oleh kontribusi besar dari ketiga parameter P, I, dan D. Variabel dalam kontrol \textit{PID} dapat memicu fokus pada satu atau dua parameter yang dapat memiliki nilai yang lebih tinggi/rendah daripada yang lainnya \citep{arizona2018miniatur}.
