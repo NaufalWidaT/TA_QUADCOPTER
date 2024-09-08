@@ -1,0 +1,722 @@
+%==================================================================
+% Ini adalah bab 4
+% Silahkan edit sesuai kebutuhan, baik menambah atau mengurangi \section, \subsection
+%==================================================================
+
+\chapter[HASIL DAN PEMBAHASAN]{\\ HASIL DAN PEMBAHASAN}
+
+\section{Hasil Pengembangan Sistem}
+
+Hasil pengembangan sistem pada penelitian ini dibagi menjadi beberapa bagian, yang dikerjakan dengan melakukan pemasangan seluruh alat dan bahan menjadi 1 alat yaitu \textit{quadcopter}.
+Komponen yang dirakit pada \textit{quadcopter} adalah \textit{Frame} F450, \textit{Flight Controller}, Damper, \textit{ESC}, \textit{Motor Brushless}, \textit{Radio Control (Reciever)}, \textit{GPS}, Telemetri, Baterai \textit{Li-Po}, \textit{Buzzer}, \textit{Safety Switch} dan \textit{Smartpone Handle}.
+
+Pengembangan dimulai dengan merakit \textit{frame} dengan model f450 sebagai kerangka utama \textit{quadcopter}, dan dilanjutkan kegiatan pemasangan beberapa komponen elektronik pada \textit{quadcopter}, seperti \textit{flight controller} dengan damper hingga pemasangan terkahir yaitu baterai \textit{Li-Po}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{merancangqc}
+	\caption{Proses pemasangan komponen pada \textit{quadcopter}}
+	\label{fig:merancangqc}
+\end{figure}
+
+Pemasangan seluruh komponen quacopter beserta landasan \textit{ArUco Marker} yang telah dibuat dapat dilihat pada \cref{fig:hasilqcdanaruco}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{hasilqcdanaruco}
+	\caption{Hasil akhir perancangn \textit{quadcopter} dan landasan \textit{ArUco Marker}}
+	\label{fig:hasilqcdanaruco}
+\end{figure}
+
+\section{Hasil Uji Elektronik}
+Hasil pada bagian ini berisikan pengujian-pengujian sistem untuk mendapatkan hasil kelayakan dan kesesuaian komponen yang dipasang pada \textit{quadcopter}. Tujuan dari pengujian ini adalah memastikan bahwa seluruh komponen dapat bekerja dengan optimal agar dapat mendukung tujuan utama dari penelitian ini yaitu pendaratan otonom pada landasan bergerak berbasis \textit{ArUco Marker}.
+
+\subsection{Uji Fungsi \textit{Accelerometer}}
+Pengujian ini dilakukan dengan cara memutar frame \textit{quadcopter} searah dengan perintah yang diminta saat memulai proses kalibrasi dari awal hingga selesai. Apabila proses kalibrasi telah berhasil, maka akan diakhiri dengan suara pada pixhawk dan pada aplikasi MissionPlanner akan muncul kalimat seperti \textbf{Accel Calibration Succesfully}. Saat \textit{frame} diputar, tampilan visual pada MissionPlanner akan ikut berubah selaras dengan perubahan pada \textit{frame} \textit{quadcopter}. 
+
+\cref{fig:mpaccel1} merupakan gambar langkah yang dipilih untuk melakukan uji \textit{accelerometer} pada MissionPlanner.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{mpaccel1}
+	\caption{Tampilan saat menu "Accel Calibration" dipilih, beserta langkah-langkah yang dipilih selanjutnya}
+	\label{fig:mpaccel1}
+\end{figure}
+
+Pengujian dimulai ketika tombol \textbf{Calibrate Accel} dimulai, dibawah tombol tersebut akan muncul kalimat yang muncul memerintahkan proses kalibrasi dengan cara mengubah posisi \textit{quadcopter} sesuai dengan perintah yang dimunculkan oleh kalimat tersebut. 
+
+Hasil dari pengujian ini adalah pengubah posisian \textit{quadcopter} terhadap 6 posisi kalibrasi, yang akan dimasukkan didalam \cref{tab:accel4}.
+
+\begin{table}[H]
+	\caption{Tabel hasil uji \textit{accelerometer}}
+	\label{tab:accel4}
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{No} & \textbf{Posisi}    & \textbf{Posisi \textit{quadcopter}}                                          \\ \hline
+		1  & Level     & Berada pada bidang datar menghadap ke depan                \\ \hline
+		2  & Right     & Miring ke kiri 90°                                         \\ \hline
+		3  & Left      & Miring ke kanan 90°                                        \\ \hline
+		4  & Nose Down & Ujung \textit{quadcopter} menghadap ke bawah                        \\ \hline
+		5  & Nose Up   & Ujung \textit{quadcopter} menghadap ke atas                         \\ \hline
+		6  & Back      & berbalik 180° (terbalik), menghadap ke depan seperti Level \\ \hline
+	\end{tabular}
+\end{table}
+
+\cref{fig:allaccel} merupakan foto posisi \textit{quadcopter} saat dilakukan uji \textit{accelerometer}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{allaccel}
+	\caption{Seluruh posisi \textit{quadcopter} saat uji \textit{accelerometer} }
+	\label{fig:allaccel}
+\end{figure}
+
+Dan \cref{fig:allaccelhud} ini adalah tampilan pada \textit{HUD} aplikasi MissionPlanner.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{allaccelhud}
+	\caption{Seluruh tampilan HUD MissionPlanner saat uji \textit{accelerometer} }
+	\label{fig:allaccelhud}
+\end{figure}
+
+\subsection{Uji Fungsi Kompas}
+Pemgujian kompas ini memiliki langkah yang sama dengan kalibrasi \textit{accelerometer}, yaitu mengubah posisi \textit{quadcopter} berdasarkan perintah aplikasi, hanya saja pada proses kalibrasi kompas ini dilakukan dengan cara memutar \textit{quadcopter} 180° searah jarum jam, lalu kembali ke posisi semula, lalu memutar \textit{quadcopter} 180° berkebalikan dari jarum jam. Kegiatan ini dilakukan untuk setiap posisi sama seperti pada saat kalibrasi \textit{accelerometer}, yaitu 6 posisi Level, Left, Right, Nose Down, Nose Up, dan Back. \cref{fig:mpcompass1} adalah gambar langkah yang dilakukan untuk melaksanakan uji fungsi kompas.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{mpcompass1}
+	\caption{Tampilan saat menu "Compass" dipilih, beserta langkah-langkah yang dipilih selanjutnya}
+	\label{fig:mpcompass1}
+\end{figure}
+
+Pengujian diulai saat menekan tombol \textbf{Start}. \cref{fig:muterqccompass} merupakan visualisasi dari proses kalibrasi kompas untuk posisi \textit{level}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{muterqccompass}
+	\caption{Visualisasi perputaran \textit{quadcopter} pada proses kalibrasi kompas pada posisi \textit{Level}}
+	\label{fig:muterqccompass}
+\end{figure}
+
+Akan muncul nada pada PixHawk yang menandakan proses kalibrasi telah selesai, dan pada aplikasi MissionPlanner akan muncul jendela baru yang menyatakan bahwa proses kalibrasi telah berhasil dan memerintahkan untuk mengaktifkan ulang \textit{quadcopter}. Pengaktifan ulang dilakukan dengan cara mencabut baterai pada \textit{quadcopter}, lalu memasangnya kembali.
+
+\subsection{Uji Fungsi \textit{ESC} dan Motor}
+Pengujian ini dilakukan dengan cara pengkalibrasian \textit{ESC}, dengan tujuan menyelaraskan output yang dikeluarkan oleh setiap \textit{ESC} pada motor, agar perputaran motor satu dengan lainnya tidak berbeda. \cref{fig:mpesc1} merupakan gambar langkah yang dituju untuk melakukan uji fungsi \textit{ESC}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{mpesc1}
+	\caption{Tampilan menu saat ESC Calibration dipilih bersama dengan nomor langkah}
+	\label{fig:mpesc1}
+\end{figure}
+
+Dilakukan proses kalibrasi pada \textit{ESC} dengan menekan tombol \textbf{Calibrate ESC's} dan disampingnya merupakan langkah-langkah yang perlu dilakukan pada saat proses ini.
+
+Setelah proses kalibrasi selesai, dilanjutkan dengan pengujian pada ke-empat motor secara individual maupun secara bersamaan. Pengujian ini dilakukan juga di aplikasi MissionPlanner dengan langkah menu pada \cref{fig:mpmotortest1}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{mpmotortest1}
+	\caption{Tampilan menu Motor Test}
+	\label{fig:mpmotortest1}
+\end{figure}
+
+Dilakukan percobaan menggunakan aplikasi dengan parameter \textit{Throttle} sebesar 10\% dan 40\% dengan durasi 20 detik. \cref{fig:motortest1040} ini merupakan hasil putaran motor berdasarkan \textit{PWM}.
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{1\textwidth}
+		\centering
+		\includegraphics[scale=0.5]{mpmotortest10p}
+		\caption{Tampilan hasil uji motor pada \textit{throttle} 10\%}
+		\label{fig:mpmotortest40}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{1\textwidth}
+		\centering
+		\includegraphics[scale=0.5]{mpmotortest40p}
+		\caption{Tampilan hasil uji motor pada \textit{throttle} 40\%}
+		\label{fig:mpmotortest10}
+	\end{subfigure}
+	\caption{Hasil Uji motor pada MissionPlanner}
+	\label{fig:motortest1040}
+\end{figure}
+
+Dari gambar diatas, didapat ke 4 motor yang  memiliki nilai putaran yang sama menurut aplikasi, yaitu 1096 untuk throttle 10\%, dan 1400 untuk throttle 40\%.
+
+Untuk mendapati data lebih yang lebih nyata, dilakukan pengujian putaran motor dengan menggunakan \textit{Tachometer}. Data hasil dari pengujian \textit{tachometer} ini dimasukkan ke dalam \cref{tab:tachometer}.
+
+\begin{table}[H]
+	\caption{Pengujian Motor Menggunakan \textit{Tachometer}}
+	\label{tab:tachometer}
+	\centering
+	\begin{tabular}{|c|c|ccccc|}
+		\hline
+		\multirow{2}{*}{\textbf{No}} & \multirow{2}{*}{\textbf{Motor}} & \multicolumn{5}{c|}{\textbf{Kecepatan (RPM)}}                                                                                        \\ \cline{3-7} 
+		&                        & \multicolumn{1}{c|}{10\%}   & \multicolumn{1}{c|}{20\%}   & \multicolumn{1}{c|}{30\%}  & \multicolumn{1}{c|}{40\%}  & 50\%  \\ \hline
+		1                   & Motor 1                & \multicolumn{1}{c|}{2438.1} & \multicolumn{1}{c|}{6647.8} & \multicolumn{1}{c|}{10000} & \multicolumn{1}{c|}{18668} & 23262 \\ \hline
+		2                   & Motor 2                & \multicolumn{1}{c|}{2902.0} & \multicolumn{1}{c|}{6889.0} & \multicolumn{1}{c|}{10004} & \multicolumn{1}{c|}{19079} & 23868 \\ \hline
+		3                   & Motor 3                & \multicolumn{1}{c|}{2861.9} & \multicolumn{1}{c|}{6761.8} & \multicolumn{1}{c|}{10293} & \multicolumn{1}{c|}{18922} & 23059 \\ \hline
+		4                   & Motor 4                & \multicolumn{1}{c|}{2673.6} & \multicolumn{1}{c|}{6643.9} & \multicolumn{1}{c|}{10634} & \multicolumn{1}{c|}{18649} & 23210 \\ \hline
+	\end{tabular}
+\end{table}
+
+Dari tabel diatas, dapat dilihat bahwa setiap putaran motor memiliki nilai yang hampir sama satu dengan lainnya pada setiap presentase pengujian, sehingga membuktikan bahwa motor yang digunakan adalah layak untuk mendukung penelitian ini.
+
+\subsection{Uji Fungsi \textit{Radio Controll}}
+Pengujian \textit{Radio Control} dilakukan pada aplikasi MissionPlanner. Pengujian ini dilakukan untuk mendapat nilai minimum dan maksimum pada setiap channel pada \textit{radio controll}. Sebelum memulai pengujian ini, perlu dipastikan terlebih dahulu bahwa \textit{reciever radio control} pada \textit{quadcopter} terpasang dengan baik. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{mpradio3}
+	\caption{Tampilan menu Radio Calibration setelah \textit{radio controll} dinyalakan}
+	\label{fig:mpradio3}
+\end{figure}
+
+Proses pengujin dimulai saat menekan tombol \textbf{Calibrate Radio} (seperti pada \cref{fig:mpradio3})yang akan memulai proses kalibrasi \textit{radio controll}. Setelah menekan tombol, seluruh \textit{channel} pada \textit{radio control} perlu di putar ke segala arah untuk mendapatkan hasil yang maksimal. Setelah pengujian berakhir, akan muncul jendela baru yang muncul yang menginformasikan hasil minimum hingga maksimum untuk setiap \textit{channel} yang digunakan.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{mpradio5}
+	\caption{Hasil kalibrasi \textit{radio controll}}
+	\label{fig:mpradio5}
+\end{figure}
+
+Dari \cref{fig:mpradio5}, dapat dimasukkan data dari hasil kalibrasi \textit{radio control} pada \cref{tab:radiocal}, beserta pengalihfungsian beberapa \textit{channel} sebagai mode terbang.
+
+\begin{table}[h]
+	\caption{Hasil Uji fungsi \textit{radio control}}
+	\label{tab:radiocal}
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\textbf{No} & \textbf{Channel} & \textbf{Nilai min} & \textbf{Nilai max} & \textbf{Fungsi}                                                                      \\ \hline
+		1  & CH1     & 1119      & 2000      & Roll                                                                        \\ \hline
+		2  & CH2     & 1000      & 2000      & Pitch                                                                       \\ \hline
+		3  & CH3     & 1000      & 2000      & Throttle                                                                    \\ \hline
+		4  & CH4     & 1000      & 2000      & Yaw                                                                         \\ \hline
+		5  & CH5     & 1000      & 2000      & \begin{tabular}[c]{@{}c@{}}Mode Terbang \\ (Loiter dan Guided)\end{tabular} \\ \hline
+		6  & CH6     & 1000      & 2000      & Standby                                                                     \\ \hline
+	\end{tabular}
+\end{table}
+
+\subsection{Uji Fungsi \textit{GPS}}
+Pengujian ini diambil untuk mengathui beberapa parameter yang perlu dicari seperti nilai \textit{HDOP GPS}, nilai \textit{Latitude}, dan nilai \textit{Lognitude} yang tertangkap sebagai acuan perbandingan yang akan dilakukan. Letak \textit{quadcopter} pada layar dapat juga dijadikn pembanding arah depan \textit{quadcopter} saat dilakukan pengujian.
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{1\textwidth}
+		\centering
+		\includegraphics[scale=0.5]{paramgps}
+		\caption{Hasil Paramater MissionPlanner yang sudah diubah}
+		\label{fig:paramgps}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{1\textwidth}
+		\centering
+		\includegraphics[scale=0.9]{hdopgps}
+		\caption{Nilai \textit{HDOP} (Berada dibawah samping kanan parameter)}
+		\label{fig:hdopgps}
+	\end{subfigure}
+	\caption{Hasil pembacaan parameter pada aplikasi}
+	\label{fig:gpsonmissionplanner}
+\end{figure}
+
+Dari \cref{fig:gpsonmissionplanner} (\textit{quadcopter} masih terhubung dengan MissionPlanner), dapat di ambil nilai parameter yang dibutuhkan, dan akan dimasukkan ke dalam \cref{tab:gpsparam}.
+
+\begin{table}[h]
+	\caption{Parameter \textit{GPS} yang terbaca}
+	\label{tab:gpsparam}
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{HDOP} & \textbf{Latitude} & \textbf{Longitude} \\ \hline
+		0,7  & -7,74    & 110,39    \\ \hline
+	\end{tabular}
+\end{table}
+
+Untuk nilai \textit{HDOP}, berdasarkan sumber dari internet \citep{dop}, didapati nilai untuk peringkat nilai \textit{HDOP} pada \cref{tab:hdoprate}.
+
+\begin{table}[H]
+	\caption{Rating \textit{HDOP}}
+	\label{tab:hdoprate}
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{HDOP}             & \textbf{Rating}      \\ \hline
+		1                & Ideal       \\ \hline
+		1-2              & Sangat Baik \\ \hline
+		2-5              & Baik        \\ \hline
+		5-10             & Sedang      \\ \hline
+		10-20            & Cukup       \\ \hline
+		\textgreater{}20 & Kurang Baik \\ \hline
+	\end{tabular}
+\end{table}
+
+
+Dari \cref{tab:hdoprate} diatas dan dari parameter di MissionPlanner, dapat disimpulkan bahwa \textit{HDOP} pada \textit{GPS} yang digunakan di penelitian ini memiliki peringkat yang ideal karena bernilai kurang dari 1.
+
+Untuk nilai Latitude dan Longitude, dibutuhkan \textit{GPS} dari perangkat lain untuk melakukan perbandingan, yaitu menggunakan \textit{GPS} pada \textit{smartphone android} dengan menggunakan aplikasi \textit{Google Map}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{gpsandro}
+	\caption{Hasil tangkapan layar pada \textit{smartphone}}
+	\label{fig:gpsandro}
+\end{figure}
+
+Dari tangkapan layar diatas, dapat dilihat nilai \textit{Latitude} dan \textit{Longitude} saat pengambilan data saat itu juga, didapati nilai \textit{Latitude} dan \textit{Longitude} seperti pada \cref{tab:longlat}.
+
+\begin{table}[h]
+	\caption{\textit{Longitude} dan \textit{Latitude} Mission Planner}
+	\label{tab:longlat}
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Latitude} & \textbf{Longitude} \\ \hline
+		-7,744   & 110,383   \\ \hline
+	\end{tabular}
+\end{table}
+
+Apabila dibandingan dengan \textit{GPS} \textit{quadcopter}, maka akan didapat \cref{tab:gpscomparison} dibawah ini.
+
+\begin{table}[h]
+	\caption{Perbandingan \textit{GPS}}
+	\label{tab:gpscomparison}
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{GPS} & \textbf{Latitude} & \textbf{Longitude} \\ \hline
+		GPS Smartphone & -7,744   & 110,383   \\ \hline
+		GPS \textit{quadcopter} & -7,74    & 110,39    \\ \hline
+	\end{tabular}
+\end{table}
+
+Dengan perbandingan nilai tersebut, dapat dilihat bahwa nilai \textit{Latitude} dan \textit{Longitude} yang ditangkap \textit{GPS} \textit{quadcopter} dan \textit{GPS Smartphone} tidak memiliki selisih yang terlalu jauh, sehingga dapat dikatakan bahwa komponen \textit{GPS} yang digunakan pada penelitian ini memiliki level penangkapan lokasi yang memiliki keakuratan tinggi seperti \textit{GPS} pada \textit{smartphone}.
+
+Untuk membuktikan lebih jauh, \cref{fig:gpsqcdanlaptop} terdapat gambar \textit{quadcopter}, \textit{smartphone} dan laptop (sebagai MissionPlanner) diletakkan sejajar dan bersbelahan saat pengujian dilakukan.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.05]{gpsqcdanlaptop}
+	\caption{Posisi \textit{quadcopter}, Laptop dan \textit{Smartphone android} sejajar menghadap ke gunung merapi (Utara)}
+	\label{fig:gpsqcdanlaptop}
+\end{figure}
+
+\subsection{Uji Fungsi Kamera}
+Pengujian fungsi kamera ini dilakukan untuk mendapatkan nilai kelayakan kamera yang digunakan di penelitian ini. Digunakan kamera depan pada \textit{smartphone android} dengan merek Samsung A10s dengan spesifikasi kamera depan sebesar 8MP.
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{1\textwidth}
+		\centering
+		\includegraphics[scale=0.43]{droidcampc}
+		\caption{Tampilan droidcam \textit{GCS}}
+		\label{fig:droidcampc}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{1\textwidth}
+		\centering
+		\includegraphics[scale=0.2]{droidcamandro}
+		\caption{Tampilan \textit{droidcam android}}
+		\label{fig:droidcamandro}
+	\end{subfigure}
+	\caption{Proses menghubungkan smartphone dengan \textit{GCS} melalui \textit{Droidcam}}
+	\label{fig:droidcamandropc}
+\end{figure}
+
+\cref{fig:droidcamandropc} diatas merupakan cara mengkoneksikan kamera \textit{sartphone} dengan \textit{GCS}. Setelah terhubung, kamera \textit{smartphone} dapat dipanggil pada program \textit{python} dengan menggunakan aplikasi Pycharm, untuk uji coba kamera, digunakan program yang dikushuskan untuk memanggil kamera dnn mendeteksi \textit{ArUco Marker}, untuk melihat apakah kamera dapat memiliki pembacaan yang jelas. \cref{fig:kameraandro1} merupakan pengujian dengan menggunakan kamera \textit{smartphone} dengan \textit{ArUco Marker} yang sudah dibuat pada \textit{GCS}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{kameraandro1}
+	\caption{Kamera mengambil gambar dengan jernih dan dapat membaca \textit{ArUco Marker}}
+	\label{fig:kameraandro1}
+\end{figure}
+
+Penelitian ini sebelumnya menggunakan kamera \textit{FPV}, dihubungkan menggunakan video \textit{reciever} yang terpasang pada \textit{GCS} dan video \textit{transmitter} pada \textit{quadcopter}. Hasil dari penggunaan kamera \textit{FPV} tersebut didapati hasil pengambilan gambar sperti pada \cref{fig:kamerafpv1}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{kamerafpv1}
+	\caption{Kamera \textit{FPV} mengambil gambar kurang jelas, \textit{ArUco Marker} tidak terbaca}
+	\label{fig:kamerafpv1}
+\end{figure}
+
+Penggunaan kamera \textit{FPV} ini mengambil gambar yang kurang baik, diakibatkan oleh terlalu banyak cahaya yang masuk kamera sehingga \textit{ArUco Marker} tidak terbaca dengan baik. Disisi lain, kamera smartphone dapat membaca \textit{ArUco Marker} dan memberkan gambar visual dengan sangat baik, karena alasan inilah kamera \textit{smartphone} digunakan.
+
+\section{Hasil Uji Pendeteksi \textit{ArUco Marker}}
+\begin{packed_item}
+	\item Hasil Uji deteksi \textit{ArUco Marker}
+	\\ Dengan menggunakan \textit{library OpenCV} dan menggunakan \textit{library} \textit{ArUco Marker}, dapat dibuat program untuk membaca \textit{ArUco Marker} dengan hasil pada \cref{fig:deteksiaruco}.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.4]{deteksiaruco}
+		\caption{Gambar kedua \textit{ArUco Marker} yang berhasil terdeteksi}
+		\label{fig:deteksiaruco}
+	\end{figure}
+	
+	Dari hasil diatas, dapat disimpulkan bahwa program awal sudah dapat membaca \textit{ArUco Marker} yang tertangkap oleh kamera dan mampu mengidentifikasi \textit{ID} pada \textit{ArUco Marker} tersebut.\\
+	
+	\item Hasil Uji Program Pemilihan \textit{ArUco Marker}
+	\\ Dikarenakan penggunaan 2 \textit{ArUco Marker} pada penelitian ini, program yang dibuat harus bisa membedakan \textit{ArUco Marker} mana yang akan digunakan sebagai acuan penginderaan kamera, sehingga dikembangkan lagi program tersebut dengan hasil pada \cref{fig:memiliharuco}.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}[b]{0.4\textwidth}
+			\centering
+			\includegraphics[scale=0.3]{memiliharuco1}
+			\caption{Kedua \textit{ArUco Marker} terdeteksi, tapi hanya yang terbesar yang dipilih}
+			\label{fig:memiliharuco1}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.4\textwidth}
+			\centering
+			\includegraphics[scale=0.3]{memiliharuco2}
+			\caption{\textit{ArUco Marker} kecil yang terdeteksi}
+			\label{fig:memiliharuco2}
+		\end{subfigure}
+		\caption{Hasil Uji Pemilihan ArUcoMarker}
+		\label{fig:memiliharuco}
+	\end{figure}
+	
+	Dari hasil diatas, program sudah mampu membedakan antara 2 \textit{ArUco Marker} yang akan digunakan, dan mampu memilih \textit{ArUco marker} yang besar terlebih dahulu untuk dijadikan acuan utama, dan mampu beralih ke \textit{ArUco Marker} kecil saat \textit{ArUco Marker} besar tidak terdeteksi.\\
+	
+	Pengujian ini juga mencari jarak deteksi dari pembacaan kedua \textit{ArUco Marker}, yang hasil dari pembacaan tersebut dimasukkan ke dalam \cref{tab:deteksiaruco18} dan \cref{tab:deteksiaruco5}.
+	
+	\begin{table}[H]
+		\caption{Tabel Deteksi Jarak dari \textit{ArUco Marker} besar (Id=18)}
+		\label{tab:deteksiaruco18}
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{No} & \textbf{Jarak} & \textbf{Hasil}            \\ \hline
+			1  & 50cm  & Tidak Terdeteksi \\ \hline
+			2  & 100cm & Terdeteksi       \\ \hline
+			3  & 150cm & Terdeteksi       \\ \hline
+			4  & 200cm & Terdeteksi       \\ \hline
+			5  & 250cm & Terdeteksi       \\ \hline
+			6  & 300cm & Terdeteksi       \\ \hline
+			7  & 400cm & Terdeteksi       \\ \hline
+		\end{tabular}
+	\end{table}
+	
+	
+	\begin{table}[H]
+		\caption{Tabel Deteksi Jarak dari \textit{ArUco Marker} kecil (Id=5)}
+		\label{tab:deteksiaruco5}
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{No} & \textbf{Jarak} & \textbf{Hasil}            \\ \hline
+			1  & 50cm  & Terdeteksi       \\ \hline
+			2  & 100cm & Terdeteksi       \\ \hline
+			3  & 150cm & Terdeteksi       \\ \hline
+			4  & 200cm & Terdeteksi       \\ \hline
+			5  & 250cm & Terdeteksi       \\ \hline
+			6  & 300cm & Terdeteksi       \\ \hline
+			7  & 400cm & Tidak Terdeteksi \\ \hline
+		\end{tabular}
+	\end{table}
+	
+	Dari kedua tabel diatas, pembacaan kedua \textit{ArUco Marker} berbeda dijarak 50cm dan 400cm, saat ketinggian tertinggi (400cm), \textit{ArUco Marker} besar (Id=18) akan terbaca jelas, namun saat turun di jarak paling rendah (50cm), \textit{ArUco Marker} terlalu besar untuk masuk ke dalam \textit{frame} kamera, sehingga tidak terbaca. Sedangkan \textit{ArUco Marker} kecil (Id=5), dapat terbaca jelas saat di ketinggian 50cm, dan tidak terbaca saat ketinggian 400cm.
+\end{packed_item}
+
+\section{Hasil Uji Pendaratan}
+Pada bagian ini dijelaskan hasil pengujian utama yaitu pengujian pendaratan berdasarkan pembacaan \textit{ArUco Marker}, dan program yang sudah dibuat untuk pengujian ini.
+
+Ketinggian lepas landas \textit{quadcopter} adalah setinggi 3 meter, dan akan bergerak mengikuti landasan \textit{ArUco Marker} berdasarkan pembacaan kamera, \textit{quadcopter} akan menurunkan ketinggian hingga akhirnya landing diatas \textit{ArUco Marker}. 
+
+Pengujian dilakukan sebanyak 5 kali percobaan untuk 2 jalur lintasan.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{pembacaanpasterbang}
+	\caption{Pembacaan \textit{ArUco Marker} saat \textit{quadcopter} terbang dan landasan ditarik}
+	\label{fig:pembacaanpasterbang}
+\end{figure}
+
+Proses koreksi pada seluruh pengujian ini mengalami beberapa kendala karena gangguan angin yang berhembus cukup kencang dan mampu menggeser \textit{quadcopter} saat mengudara, membuat pembacaan \textit{ArUco Marker} menjadi semakin acak, selain itu hempasan angin yang memantul keatas disebabkan oleh motor brushless (saat \textit{quadcopter} berada di ketinggian dibawah 2m) juga mempengaruhi proses koreksi sumbu X dan Y ini. Koneksi internet (\textit{Wi-Fi}) yang digunakan untuk menghubungkan kamera smartphone dengan \textit{PC} terkadang melambat, menambah gangguan proses koreksi. Salah satu parameter yang diteliti adalah hasil koreksi kesalahan X dan Y dari pembacaan penginderaan \textit{quadcopter}, yang akan dimasukkan ke dalam grafik dibawah ini.
+
+Dikhususkan pada pengujian lintasan 1 untuk kedua pengujian, laptop yang digunakan oleh peneliti tidak sedang dalam mode pengisian daya, sehingga performa laptop tidak maksimal dan menyebabkan lagging pada pembacaan penginderaan kamera. Hal ini cukup mempengaruhi proses koreksi posisi oleh \textit{quadcopter}. 
+Lagging ini terkadang menyebabkan rusaknya pengambilan gambar oleh kamera seperti pada \cref{fig:brokenkam}. \textit{Frame} yang menampilkan hasil tangkapan kamera juga terhenti / freeze.
+Untuk pengujian lintasan 2, laptop peneliti digunakan dalam mode pengisian daya, yang meningkatkan performa laptop, sehingga membantu proses koreksi posisi.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{brokenkam}
+	\caption{Tampilan frame yang rusak pada layar laptop}
+	\label{fig:brokenkam}
+\end{figure}
+
+\subsection{Hasil Uji Lintasan 1A}
+Hasil dari uji ini merupakan pendaratan dengan jalur maju. \textit{quadcopter} akan mengikuti arah landasan dengan koreksi posisi yang membuat \textit{quadcopter} maju ke depan.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{graf11xy}
+	\caption{Grafik Sumbu X dan Y berdasarkan pembacaan kamera Lintasan 1 Pengujian pertama}
+	\label{fig:graf11xy}
+\end{figure}
+
+Grafik \cref{fig:graf11xy} merupakan grafik pembacaan sumbu X dan Y setiap masuk di toleransi yang akan menurunkan ketinggian \textit{quadcopter} pada pengujian pertama untuk lintasan 1.
+
+Pada pengujian ini, diberikan toleransi untuk sumbu X sebesar 300-360, dan sumbu Y sebesar 220-270 pada ketinggian diatas 2,5m. Pada ketinggian dibawah 2,5 meter toleransi sumbu X sebesar 260-300 dengan toleransi sumbu Y yang sama.
+Alasan kenapa diambil 2 toleransi sumbu X pada  ketinggian yang berbeda adalah karena peneliti mencoba untuk membuat \textit{quadcopter} menurunkan jarak saat berada di posisi tengah \textbf{agak ke depan},sehingga \textit{ArUco Marker} kecil akan terbaca. Pada kondisi \textit{ArUco marker} besar tidak terdeteksi, dapat langsung berganti dengan \textit{ArUco marker} kecil.
+
+Sumbu X terbaca pada rentang nilai 326-358 untuk ketinggian diatas 2m, dan pada rentang nilai 254-266 untuk ketinggian dibawah 2m. Sumbu Y terbaca pada rentang 226-261.
+
+Waktu yang dibutuhkan oleh \textit{quadcopter} untuk koreksi posisi akan dimasukkan ke dalam \cref{tab:uji11}.
+
+\begin{table}[H]
+	\caption{Waktu koreksi \textit{quadcopter} pada pengujian lintasan 1 pertama}
+	\label{tab:uji11}
+	\centering
+	\begin{tabular}{@{}|c|c|@{}}
+		\hline
+		No        & Waktu Koreksi (s) \\ \hline
+		1         & 24                \\ \hline
+		2         & 26                \\ \hline
+		3         & 46                \\ \hline
+		4         & 15                \\ \hline
+		5         & 25                \\ \hline
+		6         & 21                \\ \hline
+		7         & 3                 \\ \hline
+		Rata-rata & 22.86             \\ \hline
+	\end{tabular}
+\end{table}
+
+Untuk mencapai koreksi posisi dan penurunan ketinggian pertama, dibutuhkan 24 detik proses koreksi posisi oleh \textit{quadcopter}, dilanjutkan dengan 26 detik, 46 detik, 15 detik, 25 detik, 21 detik, dan yang terakhir adalah 3 detik. Dengan rata-rata proses koreksi adalah 22.86 detik.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{graf11h}
+	\caption{Grafik ketinggian \textit{quadcopter} Lintasan 1 Pengujian pertama}
+	\label{fig:graf11h}
+\end{figure}
+
+Grafik \cref{fig:graf11h} merupakan grafik penurunan ketinggian \textit{quadcopter}, mulai dari \textit{take off}, hingga mendarat diatas landasan \textit{ArUco Marker}. Terlihat di semua titik, \textit{quadcopter} turun dengan secara perlahan dengan jarak penurunan ketinggian kira-kira 0.2m hingga 0.4m per penurunan ketinggian.
+Pada Pengujian ini, \textit{quadcopter} akan melakukan pendaratan saat di ketinggian 1 meter.\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{j1u1}
+	\caption{Letak \textit{Landing} Pengujian Lintasan 1 pertama}
+	\label{fig:j1u1}
+\end{figure}
+
+letak pendaratan \textit{quadcopter} pada landasan pengujian pertama ada pada \cref{fig:j1u1} diatas. Terlihat bahwa \textit{quadcopter} masih memasuki kawasan \textit{ArUco Marker} dengan 2 kaki landing skit.
+Pengujian pertama ini memakan waktu kurang lebih 160 detik, dari awal take off, hingga mendarat, waktu terlama yang digunakan apabila dibandingkan dengan pengujian lainnya.
+
+\subsection{Hasil Uji Lintasan 1B}
+Hasil uji ini merupakan pengujian kedua dari lintasan 1, yang masih menggunakan gerak maju \textit{quadcopter}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{graf12xy}
+	\caption{Grafik Sumbu X dan Y berdasarkan pembacaan kamera Lintasan 1 Pengujian kedua}
+	\label{fig:graf12xy}
+\end{figure}
+
+Pengujian ini menggunakan toleransi sumbu X dan Y yang sama dengan pengujian pertama. Dari grafik \cref{fig:graf12xy}, Sumbu X terbaca pada rentang 332-347 pada ketinggian diatas 2,5m, dan 280-300 pada ketinggian dibawah 2,5m. Sumbu Y terbaca pada rentang 223-266.
+
+Dibawah adalah \cref{tab:uji12} yang merupakan tabel waktu yang dibutuhkan oleh \textit{quadcopter} untuk melakukan koreksi posisi.
+
+\begin{table}[H]
+	\caption{Waktu koreksi \textit{quadcopter} pada pengujian lintasan 1 kedua}
+	\label{tab:uji12}
+	\centering
+	\begin{tabular}{@{}|c|c|@{}}
+		\hline
+		No        & Waktu koreksi (s) \\ \hline
+		1         & 3                 \\ \hline
+		2         & 7                 \\ \hline
+		3         & 4                 \\ \hline
+		4         & 6                 \\ \hline
+		5         & 20                \\ \hline
+		6         & 18                \\ \hline
+		7         & 14                \\ \hline
+		8         & 2                 \\ \hline
+		9         & 6                 \\ \hline
+		Rata-rata & 8.89              \\ \hline
+	\end{tabular}
+\end{table}
+
+Waktu yang digunakan untuk melakukan koreksi pada pengujian lintasan 1 kedua ini lebih singkat daripada pengujian pertama, yaitu 3 detik, 7 detik, 4 detik, 6 detik, 20 detik, 18 detik, 14 detik, 2 detik dan 6 detik. Rata-rata waktu yang dibutuhkan koreksi posisi adalah 8.89 detik.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{graf12h}
+	\caption{Grafik ketinggian \textit{quadcopter} Lintasan 1 Pengujian kedua}
+	\label{fig:graf12h}
+\end{figure}
+
+Grafik \cref{fig:graf12h} merupakan grafik penurunan ketinggian pengujian kedua terlihat lebih lambat daripada pengujian pertama. Jarak penurunan ketinggian per koreksi posisi kira-kira antara 0.1m hingga 0.4 meter.
+Pada Pengujian ini, \textit{quadcopter} akan melakukan pendaratan saat diketinggian 1,3 meter.\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{j1u2}
+	\caption{Letak Landing Pengujian Lintasan 1 kedua}
+	\label{fig:j1u2}
+\end{figure}
+
+Letak pendaratan \textit{quadcopter} dtunjukkan pada \cref{fig:j1u2} untuk pengujian kedua. \textit{quadcopter} mendarat diluar \textit{ArUco Marker}, namun masih berada di dekat atau toleransi jarak pendaratan landasan.
+
+Pengujian kedua ini memakan waktu yang lebih singkat daripada pengujian pertama, dengan waktu kurang lebih 96 detik, dari awal take off, hingga mendarat.
+
+Pendaratan pengujian kedua ini terjadi bukan karena sumbu X dan sumbu Y yang masuk di nilai toleransi, tetapi karena \textit{quadcopter} sudah berada di ketinggian dibawah 1.5 meter, dan kedua \textit{ArUco Marker} tidak terbaca, sehingga mengaktifkan pendaratan otomatis berdasarkan kriteria tersebut. 
+
+\subsection{Hasil Uji Lintasan 2A}
+Pengujian pertama pada lintasan kedua menggunakan jalur yang menyerong, mulai dari menyerong ke kanan, kiri, lalu kembali ke kanan, membuat \textit{quadcopter} harus melakukan gerak menyerong sembari melakukan proses koreksi.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{graf21xy}
+	\caption{Grafik Sumbu X dan Y berdasarkan pembacaan kamera Lintasan 2 Pengujian pertama}
+	\label{fig:graf21xy}
+\end{figure}
+
+Rentang nilai toleransi untuk pengujian lintasan 2 ini tidak dibeda-bedakan, yaitu pada nilai toleransi 260-300 untuk Sumbu X, dan 220-260 untuk Sumbu Y di seluruh ketinggian.
+
+Dari grafik \cref{fig:graf21xy}, sumbu X terbaca dari rentang nilai 261-282, dan sumbu Y terbaca dari rentang 231-255.  
+
+Waktu koreksi posisi pada pengujian ini dimasukkan dalam \cref{tab:uji21}.
+
+\begin{table}[H]
+	\caption{Waktu koreksi \textit{quadcopter} pada pengujian lintasan 2 Pertama}
+	\label{tab:uji21}
+	\centering
+	\begin{tabular}{@{}|c|c|@{}}
+		\hline
+		No        & Waktu koreksi (s) \\ \hline
+		1         & 6                 \\ \hline
+		2         & 37                \\ \hline
+		3         & 5                 \\ \hline
+		4         & 34                \\ \hline
+		5         & 1                 \\ \hline
+		Rata-rata & 16.6              \\ \hline
+	\end{tabular}
+\end{table}
+
+Waktu yang digunakan untuk mengoreksi posisi pada pengujian ini adalah 6 detik, 37 detik, 5 detik, 34 detik, dan 1 detik. Rata-rata waktu yang digunakan untuk koreksi posisi adalah 16.6 detik.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{graf21h}
+	\caption{Grafik ketinggian \textit{quadcopter} Lintasan 2 Pengujian pertama}
+	\label{fig:graf21h}
+\end{figure}
+
+\cref{fig:graf21h} diatas merupakan grafik penurunan ketinggian setiap koreksi posisi. Pada pengujian ini, hanya terjadi 4x koreksi posisi yang disebabkan oleh penurunan ketinggian yang cukup jauh seperti pada penurunan pertama sebesar 0.7m, dan penurunan ketiga sebesar 0.8m. Hal ini terjadi karena saat melakukan penurunan, sumbu X dan Y yang terbaca masih didalam toleransi, sehingga \textit{quadcopter} menurunkan ketinggian yang lebih dari biasanya.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{j2u1}
+	\caption{Letak Landing Pengujian Lintasan 2 pertama}
+	\label{fig:j2u1}
+\end{figure}
+
+Letak pendaratan pengujian pertama ini berada di luar landasan seperti pada \cref{fig:j2u1}, namun masih di dekat jarak toleransi landasan.
+Pengujian pertama lintasan 2 ini menggunakan waktu kurang lebih 83 detik.
+
+\subsection{Hasil Uji Lintasan 2B}
+Pengujian kedua pada lintasan kedua memiliki jalur yang sedikit berbeda dari yang pertama, hal yang berbeda adalah gerakan dimulai dari menyerong ke kiri, kanan, lalu kembali ke kiri lagi. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{graf22xy}
+	\caption{Grafik Sumbu X dan Y berdasarkan pembacaan kamera Lintasan 2 Pengujian pertama}
+	\label{fig:graf22xy}
+\end{figure}
+
+Pengujian ini menggunakan titik sumbu toleransi X dan Y seperti pengujian pertama.
+Dari grafik \cref{fig:graf22xy} terlihat pada grafik bahwa sumbu X terbaca dari rentang nilai 264-292, dan sumbu Y terbaca dari rentang 230-261.
+
+Tabel \cref{tab:uji22} merupakan tabel penggunaan waktu pada pengujian kedua ini.
+
+\begin{table}[H]
+	\caption{Waktu koreksi \textit{quadcopter} pada pengujian lintasan 2 Kedua}
+	\label{tab:uji22}
+	\centering
+	\begin{tabular}{@{}|c|c|@{}}
+		\hline
+		No        & Waktu koreksi (s) \\ \hline
+		1         & 2                 \\ \hline
+		2         & 7                 \\ \hline
+		3         & 25                \\ \hline
+		4         & 6                 \\ \hline
+		5         & 12                \\ \hline
+		6         & 5                 \\ \hline
+		7         & 3                 \\ \hline
+		Rata-rata & 8.58              \\ \hline
+	\end{tabular}
+\end{table}
+
+Waktu yang digunakan untuk proses koreksi posisi adalah 2 detik, 7 detik, 25 detik, 6 detik, 12 detik, 5 detik, dan 3 detik, dengan rata-rata penggunaan waktunya adalah 8.58 detik.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{graf22h}
+	\caption{Grafik ketinggian \textit{quadcopter} Lintasan 2 Pengujian pertama}
+	\label{fig:graf22h}
+\end{figure}
+
+Grafik \cref{fig:graf22h} adalah penurunan ketinggian pengujian kedua memiliki nilai turun yang standar. Penurunan ketinggian berkisar diantara 0.3m hingga 0.4m. \textit{quadcopter} melakukan pendaratan pada saat di ketinggian 1.4m.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{j2u2}
+	\caption{Letak Landing Pengujian Lintasan 2 pertama}
+	\label{fig:j2u2}
+\end{figure}
+
+Letak pendaratan pengujian kedua untuk lintasan 2 ini lebih presisi daripada yang pertama, seperti yang ditunjukkan oleh \cref{fig:j2u2}. Sebagan besar \textit{quadcopter} berada diatas landasan \textit{ArUco Marker}.
+Pengujian kedua ini menggunakan waktu yang lebih singkat yaitu 60 detik, waktu tercepat apabila dibandingkan dengan seluruh pengujian pada penelitian ini.
+
+
+\subsection{Analisa Letak Pendaratan yang Meleset}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{allland}
+	\caption{Visualisasi lokasi titik pendaratan seluruh pengujian}
+	\label{fig:allland}
+\end{figure}
+
+Lokasi pendaratan seluruh pengujian di visualisasikan pada \cref{fig:allland}, dengan lingkaran warna yang merupakan titik tengah \textit{quadcopter} terhadap landasan \textit{ArUco Marker}.
+ 
+Dari 2 kali pengujan untuk 2 lintasan, setiap lintasan memiliki hasil yang kurang baik (lintasan 1 uji kedua dan Lintasan 2 uji pertama) dan hasil yang baik ( lintasan 1 pertama dan lintasan 2 kedua). 
+
+\begin{packed_enum}
+	\item Lintasan 1 Uji kedua
+	\\ Pendaratan uji kedua di lintasan pertama yang meleset terjadi karena fitur keamanan pada program \textit{quadcopter} aktif saat ketinggian berada di bawah 1,5 meter dan kedua \textit{ArUco Marker} tidak terbaca. Akibatnya, \textit{quadcopter} mendarat di posisi terakhir di mana \textit{ArUco Marker} tidak terbaca.
+	Koreksi posisi terakhir sumbu X dan Y pada pengujian ini adalah pembacaan \textit{ArUco Marker} kecil, terlihat pada \cref{fig:l1u2last}. 
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.6]{l1u2last}
+		\caption{Posisi terakhir \textit{ArUco Marker} yang terbaca pada lintasan 1 uji 2 sebelum landing}
+		\label{fig:l1u2last}
+	\end{figure}
+	
+	Saat koreksi posisi terakhir ini, \textit{quadcopter} terkena hempasan angin oleh putaran propeler yang kembali ke arah \textit{quadcopter}, sehingga menggeser \textit{quadcopter} saat melakukan koreksi posisi. Angin yang berhembus dan \textit{lagging} yang terjadi akibat laptop yang tidak dalam performa penuh juga berpengaruh pada proses koreksi posisi ini.
+	
+	
+	\item Lintasan 2 Uji pertama
+	\\ Pada uji pertama di lintasan kedua, pendaratan meleset disebabkan faktor eksternal. Jika berdasarkan grafik \cref{fig:graf21xy}, titik sumbu terakhir X dan Y berada pada 261 dan 254. Seharusnya, \textit{quadcopter} mendarat pada posisi seperti yang ditunjukkan pada \cref{fig:l2u1last}.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.6]{l2u1last}
+		\caption{Pembacaan titik terakhir sebelum melakukan pendaratan untuk pengujian lintasan 2 uji pertama}
+		\label{fig:l2u1last}
+	\end{figure}
+	
+	Faktor external yang dimaksud adalah angin yang berhembus membuat \textit{quadcopter} bergeser posisinya saat melakukan pendaratan, hempasan angin yang diciptakan oleh propeler juga dapat menggerakkan \textit{quadcopter}.
+	
+\end{packed_enum}
+
